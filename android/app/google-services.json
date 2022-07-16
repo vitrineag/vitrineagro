@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "434346116313",
+    "firebase_url": "https://food-io-221d5.firebaseio.com",
+    "project_id": "food-io-221d5",
+    "storage_bucket": "food-io-221d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434346116313:android:e20e3cd8d658c1a546aac8",
+        "android_client_info": {
+          "package_name": "com.vitrine.vitrineagro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434346116313-faif9jomgvlgs1agr80rojcndhb4ll9i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vitrine.vitrineagro",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "434346116313-nr5pnob4tuhfr2b2s7150nteikn6m9m1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk1Y-2WFjrL7zdrm5aE8cWungreXFoxsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434346116313-nr5pnob4tuhfr2b2s7150nteikn6m9m1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "434346116313-2421p40nd39312jcassm0o9cemjco04f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vitrine.vitrineagro"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
