@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartupListWidget extends StatefulWidget {
@@ -32,6 +33,13 @@ class _StartupListWidgetState extends State<StartupListWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Stack(
             children: [
+              Align(
+                alignment: AlignmentDirectional(1, 1),
+                child: SvgPicture.asset(
+                  'assets/images/bg-decoration.svg',
+                  fit: BoxFit.cover,
+                ),
+              ),
               Align(
                 alignment: AlignmentDirectional(0, 0),
                 child: SingleChildScrollView(

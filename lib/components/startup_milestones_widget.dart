@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartupMilestonesWidget extends StatefulWidget {
@@ -38,7 +39,12 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                   child: Container(
                     height: 92,
                     decoration: BoxDecoration(
-                      color: Color(0xFFEAF8F5),
+                      gradient: LinearGradient(
+                        colors: [Color(0xFF9CEFE3), Color(0xFFBEFFCD)],
+                        stops: [0, 1],
+                        begin: AlignmentDirectional(1, -1),
+                        end: AlignmentDirectional(-1, 1),
+                      ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Padding(
@@ -61,17 +67,30 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                           ),
-                          Text(
-                            widget.startup!.clientsCount!.toString(),
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 32,
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 21, 0),
+                                child: Text(
+                                  widget.startup!.clientsCount!.toString(),
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 32,
+                                      ),
                                 ),
+                              ),
+                              SvgPicture.asset(
+                                'assets/images/workers.svg',
+                                fit: BoxFit.cover,
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -83,7 +102,12 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                   child: Container(
                     height: 92,
                     decoration: BoxDecoration(
-                      color: Color(0xFFEAF8F5),
+                      gradient: LinearGradient(
+                        colors: [Color(0xFFFFC993), Color(0xFFFFF5BC)],
+                        stops: [0, 1],
+                        begin: AlignmentDirectional(1, -1),
+                        end: AlignmentDirectional(-1, 1),
+                      ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Padding(
@@ -106,23 +130,36 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                           ),
-                          Text(
-                            formatNumber(
-                              widget.startup!.lastYearRevenue!,
-                              formatType: FormatType.custom,
-                              currency: 'R\$',
-                              format: '',
-                              locale: '',
-                            ),
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 32,
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                formatNumber(
+                                  widget.startup!.lastYearRevenue!,
+                                  formatType: FormatType.custom,
+                                  currency: 'R\$',
+                                  format: '',
+                                  locale: '',
                                 ),
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontSize: 32,
+                                    ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                                child: SvgPicture.asset(
+                                  'assets/images/revenue.svg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -134,7 +171,12 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                   child: Container(
                     height: 92,
                     decoration: BoxDecoration(
-                      color: Color(0xFFEAF8F5),
+                      gradient: LinearGradient(
+                        colors: [Color(0xFF93DEFF), Color(0xFFC1DBFF)],
+                        stops: [0, 1],
+                        begin: AlignmentDirectional(1, -1),
+                        end: AlignmentDirectional(-1, 1),
+                      ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Padding(
@@ -159,6 +201,56 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                           ),
                           Text(
                             widget.startup!.lastYearGrowth!,
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  fontSize: 32,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
+                  child: Container(
+                    height: 92,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xFFEBDDFF), Color(0xFFD0CCFF)],
+                        stops: [0, 1],
+                        begin: AlignmentDirectional(1, -1),
+                        end: AlignmentDirectional(-1, 1),
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Investimentos recebidos',
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          Text(
+                            widget.startup!.lastInvestmentReceived!,
                             textAlign: TextAlign.start,
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
@@ -227,7 +319,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
           phone: false,
         ))
           Wrap(
-            spacing: 14,
+            spacing: 0,
             runSpacing: 14,
             alignment: WrapAlignment.start,
             crossAxisAlignment: WrapCrossAlignment.start,
@@ -236,153 +328,280 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
             verticalDirection: VerticalDirection.down,
             clipBehavior: Clip.none,
             children: [
-              Container(
-                height: 92,
-                decoration: BoxDecoration(
-                  color: Color(0xFFEAF8F5),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Número de clientes',
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                      Text(
-                        widget.startup!.clientsCount!.toString(),
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 32,
-                            ),
-                      ),
-                    ],
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
+                child: Container(
+                  height: 92,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF9CEFE3), Color(0xFFBEFFCD)],
+                      stops: [0, 1],
+                      begin: AlignmentDirectional(1, -1),
+                      end: AlignmentDirectional(-1, 1),
+                    ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-              ),
-              Container(
-                height: 92,
-                decoration: BoxDecoration(
-                  color: Color(0xFFEAF8F5),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Faturamento no ultimo ano',
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                      Text(
-                        formatNumber(
-                          widget.startup!.lastYearRevenue!,
-                          formatType: FormatType.custom,
-                          currency: 'R\$',
-                          format: '',
-                          locale: '',
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Número de clientes',
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 32,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 21, 0),
+                              child: Text(
+                                widget.startup!.clientsCount!.toString(),
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontSize: 32,
+                                    ),
+                              ),
                             ),
-                      ),
-                    ],
+                            SvgPicture.asset(
+                              'assets/images/workers.svg',
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                height: 92,
-                decoration: BoxDecoration(
-                  color: Color(0xFFEAF8F5),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Crescimento no ultimo ano',
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
+                child: Container(
+                  height: 92,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFFFC993), Color(0xFFFFF5BC)],
+                      stops: [0, 1],
+                      begin: AlignmentDirectional(1, -1),
+                      end: AlignmentDirectional(-1, 1),
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Faturamento no ultimo ano',
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              formatNumber(
+                                widget.startup!.lastYearRevenue!,
+                                formatType: FormatType.custom,
+                                currency: 'R\$',
+                                format: '',
+                                locale: '',
+                              ),
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    fontSize: 32,
+                                  ),
                             ),
-                      ),
-                      Text(
-                        widget.startup!.lastYearGrowth!,
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 32,
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                              child: SvgPicture.asset(
+                                'assets/images/revenue.svg',
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                height: 92,
-                decoration: BoxDecoration(
-                  color: Color(0xFFEAF8F5),
-                  borderRadius: BorderRadius.circular(8),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
+                child: Container(
+                  height: 92,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF93DEFF), Color(0xFFC1DBFF)],
+                      stops: [0, 1],
+                      begin: AlignmentDirectional(1, -1),
+                      end: AlignmentDirectional(-1, 1),
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Crescimento no ultimo ano',
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                        Text(
+                          widget.startup!.lastYearGrowth!,
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 32,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Número de funcionários',
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                      Text(
-                        widget.startup!.employeeCount!,
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Rubik',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 32,
-                            ),
-                      ),
-                    ],
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
+                child: Container(
+                  height: 92,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFEBDDFF), Color(0xFFD0CCFF)],
+                      stops: [0, 1],
+                      begin: AlignmentDirectional(1, -1),
+                      end: AlignmentDirectional(-1, 1),
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Investimentos recebidos',
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                        Text(
+                          widget.startup!.lastInvestmentReceived!,
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 32,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
+                child: Container(
+                  height: 92,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFEAF8F5),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Número de funcionários',
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                        Text(
+                          widget.startup!.employeeCount!,
+                          textAlign: TextAlign.start,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Rubik',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 32,
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -1,8 +1,6 @@
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_video_player.dart';
-import '../flutter_flow/flutter_flow_youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -61,26 +59,7 @@ class _TesteWidgetState extends State<TesteWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [
-              FlutterFlowVideoPlayer(
-                path:
-                    'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4',
-                videoType: VideoType.network,
-                autoPlay: false,
-                looping: true,
-                showControls: true,
-                allowFullScreen: true,
-                allowPlaybackSpeedMenu: false,
-              ),
-              FlutterFlowYoutubePlayer(
-                url: 'https://www.youtube.com/watch?v=C30hQ0ZSFoM',
-                autoPlay: false,
-                looping: true,
-                mute: false,
-                showControls: true,
-                showFullScreen: true,
-              ),
-            ],
+            children: [],
           ),
         ),
       ),

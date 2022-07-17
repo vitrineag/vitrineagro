@@ -23,8 +23,6 @@ abstract class StartupsRecord
 
   String? get customerNiche;
 
-  String? get maturity;
-
   String? get businessModel;
 
   String? get logo;
@@ -34,8 +32,6 @@ abstract class StartupsRecord
   String? get instagramUrl;
 
   String? get linkedinUrl;
-
-  String? get email;
 
   String? get pitchYoutubeUrl;
 
@@ -55,6 +51,14 @@ abstract class StartupsRecord
 
   String? get employeeCount;
 
+  int? get foundationYear;
+
+  String? get productStageName;
+
+  String? get site;
+
+  BuiltList<String>? get sectorsOfActivity;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -66,13 +70,11 @@ abstract class StartupsRecord
     ..valueProposalText = ''
     ..problemResolutionText = ''
     ..customerNiche = ''
-    ..maturity = ''
     ..businessModel = ''
     ..logo = ''
     ..facebookUrl = ''
     ..instagramUrl = ''
     ..linkedinUrl = ''
-    ..email = ''
     ..pitchYoutubeUrl = ''
     ..clientsCount = 0
     ..lastYearRevenue = 0.0
@@ -81,7 +83,11 @@ abstract class StartupsRecord
     ..pitchPdfUrl = ''
     ..state = ''
     ..country = ''
-    ..employeeCount = '';
+    ..employeeCount = ''
+    ..foundationYear = 0
+    ..productStageName = ''
+    ..site = ''
+    ..sectorsOfActivity = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('startups');
@@ -111,13 +117,11 @@ Map<String, dynamic> createStartupsRecordData({
   String? valueProposalText,
   String? problemResolutionText,
   String? customerNiche,
-  String? maturity,
   String? businessModel,
   String? logo,
   String? facebookUrl,
   String? instagramUrl,
   String? linkedinUrl,
-  String? email,
   String? pitchYoutubeUrl,
   int? clientsCount,
   double? lastYearRevenue,
@@ -127,6 +131,9 @@ Map<String, dynamic> createStartupsRecordData({
   String? state,
   String? country,
   String? employeeCount,
+  int? foundationYear,
+  String? productStageName,
+  String? site,
 }) =>
     serializers.toFirestore(
         StartupsRecord.serializer,
@@ -137,13 +144,11 @@ Map<String, dynamic> createStartupsRecordData({
           ..valueProposalText = valueProposalText
           ..problemResolutionText = problemResolutionText
           ..customerNiche = customerNiche
-          ..maturity = maturity
           ..businessModel = businessModel
           ..logo = logo
           ..facebookUrl = facebookUrl
           ..instagramUrl = instagramUrl
           ..linkedinUrl = linkedinUrl
-          ..email = email
           ..pitchYoutubeUrl = pitchYoutubeUrl
           ..clientsCount = clientsCount
           ..lastYearRevenue = lastYearRevenue
@@ -152,4 +157,8 @@ Map<String, dynamic> createStartupsRecordData({
           ..pitchPdfUrl = pitchPdfUrl
           ..state = state
           ..country = country
-          ..employeeCount = employeeCount));
+          ..employeeCount = employeeCount
+          ..foundationYear = foundationYear
+          ..productStageName = productStageName
+          ..site = site
+          ..sectorsOfActivity = null));

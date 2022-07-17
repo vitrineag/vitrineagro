@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="323" height="364" viewBox="0 0 323 364">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.463" y1="0.288" x2="0.179" y2="0.732" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#bdf4d0"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="clip-Prancheta_2">
+      <rect width="323" height="364"/>
+    </clipPath>
+  </defs>
+  <g id="Prancheta_2" data-name="Prancheta – 2" clip-path="url(#clip-Prancheta_2)">
+    <g id="Group_206" data-name="Group 206" transform="translate(359.519 525.266) rotate(-160)">
+      <path id="Path_19" data-name="Path 19" d="M173.78,321.737S-21.059,220.78,1.877,0C68.461,10.548,154.47,82.383,225.439,250.2S173.78,321.737,173.78,321.737Z" transform="matrix(-0.951, 0.309, -0.309, -0.951, 343.344, 401.49)" fill="url(#linear-gradient)"/>
+      <path id="Path_17" data-name="Path 17" d="M173.033,317.464S-22.705,219.084,2.188,0C69.27,9.873,155.458,80.336,225.713,246.087S173.033,317.464,173.033,317.464Z" transform="matrix(-0.883, 0.469, -0.469, -0.883, 449.678, 343.211)" fill="url(#linear-gradient)"/>
+      <path id="Path_18" data-name="Path 18" d="M175.68,309.135S-24.129,214.266,2.432,0c68.6,9.212,156.442,77.512,227.51,239.037S175.68,309.135,175.68,309.135Z" transform="translate(449.637 224.099) rotate(132)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

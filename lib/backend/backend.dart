@@ -6,6 +6,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
 import 'schema/startups_record.dart';
+import 'schema/user_favorities_startups_record.dart';
+import 'schema/sectors_of_activity_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -15,6 +17,8 @@ export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
 export 'schema/startups_record.dart';
+export 'schema/user_favorities_startups_record.dart';
+export 'schema/sectors_of_activity_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -99,6 +103,93 @@ Future<FFFirestorePage<StartupsRecord>> queryStartupsRecordPage({
       pageSize: pageSize,
       isStream: isStream,
     );
+
+/// Functions to query UserFavoritiesStartupsRecords (as a Stream and as a Future).
+Stream<List<UserFavoritiesStartupsRecord>> queryUserFavoritiesStartupsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      UserFavoritiesStartupsRecord.collection,
+      UserFavoritiesStartupsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<UserFavoritiesStartupsRecord>>
+    queryUserFavoritiesStartupsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+        queryCollectionOnce(
+          UserFavoritiesStartupsRecord.collection,
+          UserFavoritiesStartupsRecord.serializer,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
+
+Future<FFFirestorePage<UserFavoritiesStartupsRecord>>
+    queryUserFavoritiesStartupsRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          UserFavoritiesStartupsRecord.collection,
+          UserFavoritiesStartupsRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
+
+/// Functions to query SectorsOfActivityRecords (as a Stream and as a Future).
+Stream<List<SectorsOfActivityRecord>> querySectorsOfActivityRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SectorsOfActivityRecord.collection,
+      SectorsOfActivityRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SectorsOfActivityRecord>> querySectorsOfActivityRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SectorsOfActivityRecord.collection,
+      SectorsOfActivityRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<SectorsOfActivityRecord>>
+    querySectorsOfActivityRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          SectorsOfActivityRecord.collection,
+          SectorsOfActivityRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
 
 Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
     {Query Function(Query)? queryBuilder,

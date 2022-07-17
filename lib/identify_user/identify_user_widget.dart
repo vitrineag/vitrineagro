@@ -241,6 +241,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                       child: FlutterFlowDropDown(
+                        initialOption: typeSelectValue ??= 'Agroindústrias',
                         options: [
                           'Agroindústrias',
                           'Ambientes de inovação',
