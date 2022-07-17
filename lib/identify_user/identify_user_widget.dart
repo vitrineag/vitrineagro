@@ -69,6 +69,39 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                StreamBuilder<List<SectorsOfActivityRecord>>(
+                  stream: querySectorsOfActivityRecord(),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                          ),
+                        ),
+                      );
+                    }
+                    List<SectorsOfActivityRecord>
+                        listViewSectorsOfActivityRecordList = snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewSectorsOfActivityRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewSectorsOfActivityRecord =
+                            listViewSectorsOfActivityRecordList[listViewIndex];
+                        return Text(
+                          'Hello World',
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                        );
+                      },
+                    );
+                  },
+                ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [

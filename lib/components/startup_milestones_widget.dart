@@ -74,7 +74,11 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 21, 0),
                                 child: Text(
-                                  widget.startup!.clientsCount!.toString(),
+                                  formatNumber(
+                                    widget.startup!.clientsCount!,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.commaDecimal,
+                                  ),
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
@@ -136,10 +140,9 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                               Text(
                                 formatNumber(
                                   widget.startup!.lastYearRevenue!,
-                                  formatType: FormatType.custom,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.commaDecimal,
                                   currency: 'R\$',
-                                  format: '',
-                                  locale: '',
                                 ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
@@ -368,7 +371,11 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 21, 0),
                               child: Text(
-                                widget.startup!.clientsCount!.toString(),
+                                formatNumber(
+                                  widget.startup!.clientsCount!,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.commaDecimal,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -430,10 +437,9 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                             Text(
                               formatNumber(
                                 widget.startup!.lastYearRevenue!,
-                                formatType: FormatType.custom,
+                                formatType: FormatType.decimal,
+                                decimalType: DecimalType.commaDecimal,
                                 currency: 'R\$',
-                                format: '',
-                                locale: '',
                               ),
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)

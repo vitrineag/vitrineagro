@@ -24,11 +24,7 @@ class _ActivityHorizontalListWidgetState
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 24),
       child: StreamBuilder<List<SectorsOfActivityRecord>>(
-        stream: querySectorsOfActivityRecord(
-          queryBuilder: (sectorsOfActivityRecord) =>
-              sectorsOfActivityRecord.where('description',
-                  whereIn: widget.startup!.sectorsOfActivity!.toList()),
-        ),
+        stream: querySectorsOfActivityRecord(),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {

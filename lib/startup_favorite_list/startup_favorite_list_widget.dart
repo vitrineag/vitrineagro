@@ -7,27 +7,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class StartupListWidget extends StatefulWidget {
-  const StartupListWidget({Key? key}) : super(key: key);
+class StartupFavoriteListWidget extends StatefulWidget {
+  const StartupFavoriteListWidget({Key? key}) : super(key: key);
 
   @override
-  _StartupListWidgetState createState() => _StartupListWidgetState();
+  _StartupFavoriteListWidgetState createState() =>
+      _StartupFavoriteListWidgetState();
 }
 
-class _StartupListWidgetState extends State<StartupListWidget> {
+class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'StartupList'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'StartupFavoriteList'});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Color(0xFFFAEDE2),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
