@@ -64,44 +64,11 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Form(
             key: formKey,
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.always,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                StreamBuilder<List<SectorsOfActivityRecord>>(
-                  stream: querySectorsOfActivityRecord(),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                          ),
-                        ),
-                      );
-                    }
-                    List<SectorsOfActivityRecord>
-                        listViewSectorsOfActivityRecordList = snapshot.data!;
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: listViewSectorsOfActivityRecordList.length,
-                      itemBuilder: (context, listViewIndex) {
-                        final listViewSectorsOfActivityRecord =
-                            listViewSectorsOfActivityRecordList[listViewIndex];
-                        return Text(
-                          'Hello World',
-                          style: FlutterFlowTheme.of(context).bodyText1,
-                        );
-                      },
-                    );
-                  },
-                ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -145,6 +112,13 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                             ),
                         textAlign: TextAlign.start,
                         maxLines: 1,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return 'Campo obrigatório';
+                          }
+
+                          return null;
+                        },
                       ),
                     ),
                     Padding(
@@ -187,6 +161,16 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                         textAlign: TextAlign.start,
                         maxLines: 1,
                         keyboardType: TextInputType.emailAddress,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return 'Campo obrigatório';
+                          }
+
+                          if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+                            return 'Informe um email válido';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     Padding(
@@ -228,6 +212,13 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                             ),
                         textAlign: TextAlign.start,
                         maxLines: 1,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return 'Campo obrigatório';
+                          }
+
+                          return null;
+                        },
                       ),
                     ),
                     Padding(
@@ -269,6 +260,13 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                             ),
                         textAlign: TextAlign.start,
                         maxLines: 1,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return 'Campo obrigatório';
+                          }
+
+                          return null;
+                        },
                       ),
                     ),
                     Padding(
@@ -300,7 +298,6 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                           final typeSelectUserTypeRecord =
                               typeSelectUserTypeRecordList.first;
                           return FlutterFlowDropDown(
-                            initialOption: typeSelectValue ??= 'Agroindústrias',
                             options: typeSelectUserTypeRecord!.type!
                                 .toList()!
                                 .toList(),
@@ -386,6 +383,10 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                       logFirebaseEvent('Button_Validate-Form');
                       if (formKey.currentState == null ||
                           !formKey.currentState!.validate()) {
+                        return;
+                      }
+
+                      if (typeSelectValue == null) {
                         return;
                       }
 

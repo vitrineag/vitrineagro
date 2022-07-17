@@ -24,7 +24,11 @@ class _ActivityHorizontalListWidgetState
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 24),
       child: StreamBuilder<List<SectorsOfActivityRecord>>(
-        stream: querySectorsOfActivityRecord(),
+        stream: querySectorsOfActivityRecord(
+          queryBuilder: (sectorsOfActivityRecord) =>
+              sectorsOfActivityRecord.where('description',
+                  whereIn: widget.startup!.sectorsOfActivity!.toList()),
+        ),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -64,18 +68,9 @@ class _ActivityHorizontalListWidgetState
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Image.network(
-                            rowSectorsOfActivityRecord!.icone!,
-                            width: 18,
-                            height: 18,
-                            fit: BoxFit.cover,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                            child: Text(
-                              rowSectorsOfActivityRecord!.description!,
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
+                          Text(
+                            rowSectorsOfActivityRecord!.description!,
+                            style: FlutterFlowTheme.of(context).bodyText1,
                           ),
                         ],
                       ),

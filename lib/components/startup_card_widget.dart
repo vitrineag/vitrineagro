@@ -192,41 +192,39 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                 ),
               ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
-                  child: Text(
-                    widget.startup!.valueProposalText!,
-                    maxLines: 1,
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Rubik',
-                          color: Color(0xFF032B44),
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
+              child: Container(
+                decoration: BoxDecoration(),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      widget.startup!.valueProposalText!,
+                      maxLines: 1,
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Rubik',
+                            color: Color(0xFF032B44),
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                  child: Text(
-                    widget.startup!.problemResolutionText!,
-                    maxLines: 3,
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Rubik',
-                          color: Color(0xFF032B44),
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
-                ),
-              ],
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+              child: Text(
+                widget.startup!.problemResolutionText!,
+                maxLines: 3,
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Rubik',
+                      color: Color(0xFF032B44),
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
+              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 24),

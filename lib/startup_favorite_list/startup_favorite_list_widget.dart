@@ -48,8 +48,8 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      StreamBuilder<List<StartupsRecord>>(
-                        stream: queryStartupsRecord(),
+                      StreamBuilder<List<UserFavoritiesStartupsRecord>>(
+                        stream: queryUserFavoritiesStartupsRecord(),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -64,7 +64,8 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                               ),
                             );
                           }
-                          List<StartupsRecord> wrapStartupsRecordList =
+                          List<UserFavoritiesStartupsRecord>
+                              wrapUserFavoritiesStartupsRecordList =
                               snapshot.data!;
                           return Wrap(
                             spacing: 24,
@@ -76,16 +77,39 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                             verticalDirection: VerticalDirection.down,
                             clipBehavior: Clip.none,
                             children: List.generate(
-                                wrapStartupsRecordList.length, (wrapIndex) {
-                              final wrapStartupsRecord =
-                                  wrapStartupsRecordList[wrapIndex];
-                              return Container(
-                                width: 336,
-                                decoration: BoxDecoration(),
-                                child: StartupCardWidget(
-                                  isFavorite: false,
-                                  startup: wrapStartupsRecord,
-                                ),
+                                wrapUserFavoritiesStartupsRecordList.length,
+                                (wrapIndex) {
+                              final wrapUserFavoritiesStartupsRecord =
+                                  wrapUserFavoritiesStartupsRecordList[
+                                      wrapIndex];
+                              return StreamBuilder<StartupsRecord>(
+                                stream: StartupsRecord.getDocument(
+                                    wrapUserFavoritiesStartupsRecord!.startup!),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: CircularProgressIndicator(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  final containerStartupsRecord =
+                                      snapshot.data!;
+                                  return Container(
+                                    width: 336,
+                                    decoration: BoxDecoration(),
+                                    child: StartupCardWidget(
+                                      isFavorite: true,
+                                      startup: containerStartupsRecord,
+                                    ),
+                                  );
+                                },
                               );
                             }),
                           );
