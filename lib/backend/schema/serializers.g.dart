@@ -10,7 +10,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SectorsOfActivityRecord.serializer)
       ..add(StartupsRecord.serializer)
       ..add(UserFavoritiesStartupsRecord.serializer)
+      ..add(UserTypeRecord.serializer)
       ..add(UsersRecord.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>()))

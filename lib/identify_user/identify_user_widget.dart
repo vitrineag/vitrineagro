@@ -240,41 +240,64 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                      child: FlutterFlowDropDown(
-                        initialOption: typeSelectValue ??= 'Agroindústrias',
-                        options: [
-                          'Agroindústrias',
-                          'Ambientes de inovação',
-                          'Investidores',
-                          'Pesquisadores e universidades',
-                          'Produtor rural',
-                          'Startups',
-                          'Outros'
-                        ],
-                        onChanged: (val) =>
-                            setState(() => typeSelectValue = val),
-                        width: double.infinity,
-                        height: 60,
-                        textStyle:
-                            FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Outfit',
-                                  color: Color(0xFF14181B),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                        hintText: 'Público',
-                        icon: Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          color: Color(0xFF57636C),
-                          size: 15,
+                      child: FutureBuilder<List<UserTypeRecord>>(
+                        future: queryUserTypeRecordOnce(
+                          singleRecord: true,
                         ),
-                        fillColor: Colors.white,
-                        elevation: 2,
-                        borderColor: Color(0xFFF1F4F8),
-                        borderWidth: 2,
-                        borderRadius: 8,
-                        margin: EdgeInsetsDirectional.fromSTEB(24, 4, 12, 4),
-                        hidesUnderline: true,
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                ),
+                              ),
+                            );
+                          }
+                          List<UserTypeRecord> typeSelectUserTypeRecordList =
+                              snapshot.data!;
+                          // Return an empty Container when the document does not exist.
+                          if (snapshot.data!.isEmpty) {
+                            return Container();
+                          }
+                          final typeSelectUserTypeRecord =
+                              typeSelectUserTypeRecordList.first;
+                          return FlutterFlowDropDown(
+                            initialOption: typeSelectValue ??= 'Agroindústrias',
+                            options: typeSelectUserTypeRecord!.type!
+                                .toList()!
+                                .toList(),
+                            onChanged: (val) =>
+                                setState(() => typeSelectValue = val),
+                            width: double.infinity,
+                            height: 60,
+                            textStyle:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Outfit',
+                                      color: Color(0xFF14181B),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                            hintText: 'Público',
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: Color(0xFF57636C),
+                              size: 15,
+                            ),
+                            fillColor: Colors.white,
+                            elevation: 2,
+                            borderColor: Color(0xFFF1F4F8),
+                            borderWidth: 2,
+                            borderRadius: 8,
+                            margin:
+                                EdgeInsetsDirectional.fromSTEB(24, 4, 12, 4),
+                            hidesUnderline: true,
+                          );
+                        },
                       ),
                     ),
                     if ((typeSelectValue) == 'Outros')
@@ -340,6 +363,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                         displayName: userNameController!.text,
                         company: companyNameController!.text,
                         role: titleRoleController!.text,
+                        userType: typeSelectValue,
+                        userTypeOtherDescription: otherFieldController!.text,
                       );
                       await currentUserReference!.update(usersUpdateData);
                       logFirebaseEvent('Button_Navigate-To');

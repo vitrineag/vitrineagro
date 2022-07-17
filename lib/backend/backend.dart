@@ -8,6 +8,7 @@ import 'schema/users_record.dart';
 import 'schema/startups_record.dart';
 import 'schema/user_favorities_startups_record.dart';
 import 'schema/sectors_of_activity_record.dart';
+import 'schema/user_type_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -19,6 +20,7 @@ export 'schema/users_record.dart';
 export 'schema/startups_record.dart';
 export 'schema/user_favorities_startups_record.dart';
 export 'schema/sectors_of_activity_record.dart';
+export 'schema/user_type_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -190,6 +192,48 @@ Future<FFFirestorePage<SectorsOfActivityRecord>>
           pageSize: pageSize,
           isStream: isStream,
         );
+
+/// Functions to query UserTypeRecords (as a Stream and as a Future).
+Stream<List<UserTypeRecord>> queryUserTypeRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      UserTypeRecord.collection,
+      UserTypeRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<UserTypeRecord>> queryUserTypeRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      UserTypeRecord.collection,
+      UserTypeRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<UserTypeRecord>> queryUserTypeRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      UserTypeRecord.collection,
+      UserTypeRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
     {Query Function(Query)? queryBuilder,

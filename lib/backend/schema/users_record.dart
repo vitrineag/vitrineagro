@@ -29,7 +29,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get role;
 
-  int? get userType;
+  String? get userType;
+
+  String? get userTypeOtherDescription;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -43,7 +45,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..phoneNumber = ''
     ..company = ''
     ..role = ''
-    ..userType = 0;
+    ..userType = ''
+    ..userTypeOtherDescription = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -75,7 +78,8 @@ Map<String, dynamic> createUsersRecordData({
   String? phoneNumber,
   String? company,
   String? role,
-  int? userType,
+  String? userType,
+  String? userTypeOtherDescription,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -88,4 +92,5 @@ Map<String, dynamic> createUsersRecordData({
           ..phoneNumber = phoneNumber
           ..company = company
           ..role = role
-          ..userType = userType));
+          ..userType = userType
+          ..userTypeOtherDescription = userTypeOtherDescription));

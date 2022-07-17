@@ -79,7 +79,15 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
     if (value != null) {
       result
         ..add('userType')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.userTypeOtherDescription;
+    if (value != null) {
+      result
+        ..add('userTypeOtherDescription')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -137,7 +145,11 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           break;
         case 'userType':
           result.userType = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'userTypeOtherDescription':
+          result.userTypeOtherDescription = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -170,7 +182,9 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? role;
   @override
-  final int? userType;
+  final String? userType;
+  @override
+  final String? userTypeOtherDescription;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -187,6 +201,7 @@ class _$UsersRecord extends UsersRecord {
       this.company,
       this.role,
       this.userType,
+      this.userTypeOtherDescription,
       this.ffRef})
       : super._();
 
@@ -210,6 +225,7 @@ class _$UsersRecord extends UsersRecord {
         company == other.company &&
         role == other.role &&
         userType == other.userType &&
+        userTypeOtherDescription == other.userTypeOtherDescription &&
         ffRef == other.ffRef;
   }
 
@@ -223,15 +239,17 @@ class _$UsersRecord extends UsersRecord {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, email.hashCode),
-                                        displayName.hashCode),
-                                    photoUrl.hashCode),
-                                uid.hashCode),
-                            createdTime.hashCode),
-                        phoneNumber.hashCode),
-                    company.hashCode),
-                role.hashCode),
-            userType.hashCode),
+                                    $jc(
+                                        $jc($jc(0, email.hashCode),
+                                            displayName.hashCode),
+                                        photoUrl.hashCode),
+                                    uid.hashCode),
+                                createdTime.hashCode),
+                            phoneNumber.hashCode),
+                        company.hashCode),
+                    role.hashCode),
+                userType.hashCode),
+            userTypeOtherDescription.hashCode),
         ffRef.hashCode));
   }
 
@@ -247,6 +265,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('company', company)
           ..add('role', role)
           ..add('userType', userType)
+          ..add('userTypeOtherDescription', userTypeOtherDescription)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -287,9 +306,14 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get role => _$this._role;
   set role(String? role) => _$this._role = role;
 
-  int? _userType;
-  int? get userType => _$this._userType;
-  set userType(int? userType) => _$this._userType = userType;
+  String? _userType;
+  String? get userType => _$this._userType;
+  set userType(String? userType) => _$this._userType = userType;
+
+  String? _userTypeOtherDescription;
+  String? get userTypeOtherDescription => _$this._userTypeOtherDescription;
+  set userTypeOtherDescription(String? userTypeOtherDescription) =>
+      _$this._userTypeOtherDescription = userTypeOtherDescription;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -311,6 +335,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _company = $v.company;
       _role = $v.role;
       _userType = $v.userType;
+      _userTypeOtherDescription = $v.userTypeOtherDescription;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -341,6 +366,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             company: company,
             role: role,
             userType: userType,
+            userTypeOtherDescription: userTypeOtherDescription,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

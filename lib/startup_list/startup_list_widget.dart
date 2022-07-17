@@ -89,6 +89,12 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                           );
                         },
                       ),
+                      Container(
+                        height: 90,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEEEEEE),
+                        ),
+                      ),
                     ],
                   ),
                 ),
