@@ -37,8 +37,6 @@ abstract class StartupsRecord
 
   int? get clientsCount;
 
-  double? get lastYearRevenue;
-
   String? get lastYearGrowth;
 
   String? get lastInvestmentReceived;
@@ -53,11 +51,13 @@ abstract class StartupsRecord
 
   int? get foundationYear;
 
-  String? get productStageName;
-
   String? get site;
 
   BuiltList<String>? get sectorsOfActivity;
+
+  String? get lastYearRevenue;
+
+  String? get maturity;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -77,7 +77,6 @@ abstract class StartupsRecord
     ..linkedinUrl = ''
     ..pitchYoutubeUrl = ''
     ..clientsCount = 0
-    ..lastYearRevenue = 0.0
     ..lastYearGrowth = ''
     ..lastInvestmentReceived = ''
     ..pitchPdfUrl = ''
@@ -85,9 +84,10 @@ abstract class StartupsRecord
     ..country = ''
     ..employeeCount = ''
     ..foundationYear = 0
-    ..productStageName = ''
     ..site = ''
-    ..sectorsOfActivity = ListBuilder();
+    ..sectorsOfActivity = ListBuilder()
+    ..lastYearRevenue = ''
+    ..maturity = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('startups');
@@ -124,7 +124,6 @@ Map<String, dynamic> createStartupsRecordData({
   String? linkedinUrl,
   String? pitchYoutubeUrl,
   int? clientsCount,
-  double? lastYearRevenue,
   String? lastYearGrowth,
   String? lastInvestmentReceived,
   String? pitchPdfUrl,
@@ -132,8 +131,9 @@ Map<String, dynamic> createStartupsRecordData({
   String? country,
   String? employeeCount,
   int? foundationYear,
-  String? productStageName,
   String? site,
+  String? lastYearRevenue,
+  String? maturity,
 }) =>
     serializers.toFirestore(
         StartupsRecord.serializer,
@@ -151,7 +151,6 @@ Map<String, dynamic> createStartupsRecordData({
           ..linkedinUrl = linkedinUrl
           ..pitchYoutubeUrl = pitchYoutubeUrl
           ..clientsCount = clientsCount
-          ..lastYearRevenue = lastYearRevenue
           ..lastYearGrowth = lastYearGrowth
           ..lastInvestmentReceived = lastInvestmentReceived
           ..pitchPdfUrl = pitchPdfUrl
@@ -159,6 +158,7 @@ Map<String, dynamic> createStartupsRecordData({
           ..country = country
           ..employeeCount = employeeCount
           ..foundationYear = foundationYear
-          ..productStageName = productStageName
           ..site = site
-          ..sectorsOfActivity = null));
+          ..sectorsOfActivity = null
+          ..lastYearRevenue = lastYearRevenue
+          ..maturity = maturity));

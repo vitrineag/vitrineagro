@@ -111,13 +111,6 @@ class _$StartupsRecordSerializer
         ..add('clientsCount')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.lastYearRevenue;
-    if (value != null) {
-      result
-        ..add('lastYearRevenue')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
-    }
     value = object.lastYearGrowth;
     if (value != null) {
       result
@@ -166,13 +159,6 @@ class _$StartupsRecordSerializer
         ..add('foundationYear')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.productStageName;
-    if (value != null) {
-      result
-        ..add('productStageName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.site;
     if (value != null) {
       result
@@ -187,6 +173,20 @@ class _$StartupsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.lastYearRevenue;
+    if (value != null) {
+      result
+        ..add('lastYearRevenue')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.maturity;
+    if (value != null) {
+      result
+        ..add('maturity')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -263,10 +263,6 @@ class _$StartupsRecordSerializer
           result.clientsCount = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
-        case 'lastYearRevenue':
-          result.lastYearRevenue = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
-          break;
         case 'lastYearGrowth':
           result.lastYearGrowth = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -295,10 +291,6 @@ class _$StartupsRecordSerializer
           result.foundationYear = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
-        case 'productStageName':
-          result.productStageName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'site':
           result.site = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -308,6 +300,14 @@ class _$StartupsRecordSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
+          break;
+        case 'lastYearRevenue':
+          result.lastYearRevenue = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'maturity':
+          result.maturity = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -350,8 +350,6 @@ class _$StartupsRecord extends StartupsRecord {
   @override
   final int? clientsCount;
   @override
-  final double? lastYearRevenue;
-  @override
   final String? lastYearGrowth;
   @override
   final String? lastInvestmentReceived;
@@ -366,11 +364,13 @@ class _$StartupsRecord extends StartupsRecord {
   @override
   final int? foundationYear;
   @override
-  final String? productStageName;
-  @override
   final String? site;
   @override
   final BuiltList<String>? sectorsOfActivity;
+  @override
+  final String? lastYearRevenue;
+  @override
+  final String? maturity;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -391,7 +391,6 @@ class _$StartupsRecord extends StartupsRecord {
       this.linkedinUrl,
       this.pitchYoutubeUrl,
       this.clientsCount,
-      this.lastYearRevenue,
       this.lastYearGrowth,
       this.lastInvestmentReceived,
       this.pitchPdfUrl,
@@ -399,9 +398,10 @@ class _$StartupsRecord extends StartupsRecord {
       this.country,
       this.employeeCount,
       this.foundationYear,
-      this.productStageName,
       this.site,
       this.sectorsOfActivity,
+      this.lastYearRevenue,
+      this.maturity,
       this.ffRef})
       : super._();
 
@@ -430,7 +430,6 @@ class _$StartupsRecord extends StartupsRecord {
         linkedinUrl == other.linkedinUrl &&
         pitchYoutubeUrl == other.pitchYoutubeUrl &&
         clientsCount == other.clientsCount &&
-        lastYearRevenue == other.lastYearRevenue &&
         lastYearGrowth == other.lastYearGrowth &&
         lastInvestmentReceived == other.lastInvestmentReceived &&
         pitchPdfUrl == other.pitchPdfUrl &&
@@ -438,9 +437,10 @@ class _$StartupsRecord extends StartupsRecord {
         country == other.country &&
         employeeCount == other.employeeCount &&
         foundationYear == other.foundationYear &&
-        productStageName == other.productStageName &&
         site == other.site &&
         sectorsOfActivity == other.sectorsOfActivity &&
+        lastYearRevenue == other.lastYearRevenue &&
+        maturity == other.maturity &&
         ffRef == other.ffRef;
   }
 
@@ -472,17 +472,17 @@ class _$StartupsRecord extends StartupsRecord {
                                                                 linkedinUrl.hashCode),
                                                             pitchYoutubeUrl.hashCode),
                                                         clientsCount.hashCode),
-                                                    lastYearRevenue.hashCode),
-                                                lastYearGrowth.hashCode),
-                                            lastInvestmentReceived.hashCode),
-                                        pitchPdfUrl.hashCode),
-                                    state.hashCode),
-                                country.hashCode),
-                            employeeCount.hashCode),
-                        foundationYear.hashCode),
-                    productStageName.hashCode),
-                site.hashCode),
-            sectorsOfActivity.hashCode),
+                                                    lastYearGrowth.hashCode),
+                                                lastInvestmentReceived.hashCode),
+                                            pitchPdfUrl.hashCode),
+                                        state.hashCode),
+                                    country.hashCode),
+                                employeeCount.hashCode),
+                            foundationYear.hashCode),
+                        site.hashCode),
+                    sectorsOfActivity.hashCode),
+                lastYearRevenue.hashCode),
+            maturity.hashCode),
         ffRef.hashCode));
   }
 
@@ -502,7 +502,6 @@ class _$StartupsRecord extends StartupsRecord {
           ..add('linkedinUrl', linkedinUrl)
           ..add('pitchYoutubeUrl', pitchYoutubeUrl)
           ..add('clientsCount', clientsCount)
-          ..add('lastYearRevenue', lastYearRevenue)
           ..add('lastYearGrowth', lastYearGrowth)
           ..add('lastInvestmentReceived', lastInvestmentReceived)
           ..add('pitchPdfUrl', pitchPdfUrl)
@@ -510,9 +509,10 @@ class _$StartupsRecord extends StartupsRecord {
           ..add('country', country)
           ..add('employeeCount', employeeCount)
           ..add('foundationYear', foundationYear)
-          ..add('productStageName', productStageName)
           ..add('site', site)
           ..add('sectorsOfActivity', sectorsOfActivity)
+          ..add('lastYearRevenue', lastYearRevenue)
+          ..add('maturity', maturity)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -579,11 +579,6 @@ class StartupsRecordBuilder
   int? get clientsCount => _$this._clientsCount;
   set clientsCount(int? clientsCount) => _$this._clientsCount = clientsCount;
 
-  double? _lastYearRevenue;
-  double? get lastYearRevenue => _$this._lastYearRevenue;
-  set lastYearRevenue(double? lastYearRevenue) =>
-      _$this._lastYearRevenue = lastYearRevenue;
-
   String? _lastYearGrowth;
   String? get lastYearGrowth => _$this._lastYearGrowth;
   set lastYearGrowth(String? lastYearGrowth) =>
@@ -616,11 +611,6 @@ class StartupsRecordBuilder
   set foundationYear(int? foundationYear) =>
       _$this._foundationYear = foundationYear;
 
-  String? _productStageName;
-  String? get productStageName => _$this._productStageName;
-  set productStageName(String? productStageName) =>
-      _$this._productStageName = productStageName;
-
   String? _site;
   String? get site => _$this._site;
   set site(String? site) => _$this._site = site;
@@ -630,6 +620,15 @@ class StartupsRecordBuilder
       _$this._sectorsOfActivity ??= new ListBuilder<String>();
   set sectorsOfActivity(ListBuilder<String>? sectorsOfActivity) =>
       _$this._sectorsOfActivity = sectorsOfActivity;
+
+  String? _lastYearRevenue;
+  String? get lastYearRevenue => _$this._lastYearRevenue;
+  set lastYearRevenue(String? lastYearRevenue) =>
+      _$this._lastYearRevenue = lastYearRevenue;
+
+  String? _maturity;
+  String? get maturity => _$this._maturity;
+  set maturity(String? maturity) => _$this._maturity = maturity;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -655,7 +654,6 @@ class StartupsRecordBuilder
       _linkedinUrl = $v.linkedinUrl;
       _pitchYoutubeUrl = $v.pitchYoutubeUrl;
       _clientsCount = $v.clientsCount;
-      _lastYearRevenue = $v.lastYearRevenue;
       _lastYearGrowth = $v.lastYearGrowth;
       _lastInvestmentReceived = $v.lastInvestmentReceived;
       _pitchPdfUrl = $v.pitchPdfUrl;
@@ -663,9 +661,10 @@ class StartupsRecordBuilder
       _country = $v.country;
       _employeeCount = $v.employeeCount;
       _foundationYear = $v.foundationYear;
-      _productStageName = $v.productStageName;
       _site = $v.site;
       _sectorsOfActivity = $v.sectorsOfActivity?.toBuilder();
+      _lastYearRevenue = $v.lastYearRevenue;
+      _maturity = $v.maturity;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -702,7 +701,6 @@ class StartupsRecordBuilder
               linkedinUrl: linkedinUrl,
               pitchYoutubeUrl: pitchYoutubeUrl,
               clientsCount: clientsCount,
-              lastYearRevenue: lastYearRevenue,
               lastYearGrowth: lastYearGrowth,
               lastInvestmentReceived: lastInvestmentReceived,
               pitchPdfUrl: pitchPdfUrl,
@@ -710,9 +708,10 @@ class StartupsRecordBuilder
               country: country,
               employeeCount: employeeCount,
               foundationYear: foundationYear,
-              productStageName: productStageName,
               site: site,
               sectorsOfActivity: _sectorsOfActivity?.build(),
+              lastYearRevenue: lastYearRevenue,
+              maturity: maturity,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_pdf_viewer.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_youtube_player.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,7 +44,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                     width: MediaQuery.of(context).size.width,
                     height: 26,
                     constraints: BoxConstraints(
-                      maxWidth: 375,
+                      maxWidth: 365,
                     ),
                     decoration: BoxDecoration(
                       color: Color(0xFFFAEDE2),
@@ -91,25 +92,29 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                     ),
                   ),
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  constraints: BoxConstraints(
-                    maxWidth: 375,
-                  ),
-                  decoration: BoxDecoration(),
-                  child: Visibility(
-                    visible: responsiveVisibility(
-                      context: context,
-                      phone: false,
+                if (responsiveVisibility(
+                  context: context,
+                  phone: false,
+                ))
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    constraints: BoxConstraints(
+                      maxWidth: 375,
                     ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
-                      child: ActivityHorizontalListWidget(
-                        startup: widget.startup,
+                    decoration: BoxDecoration(),
+                    child: Visibility(
+                      visible: responsiveVisibility(
+                        context: context,
+                        phone: false,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
+                        child: ActivityHorizontalListWidget(
+                          startup: widget.startup,
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
             if (responsiveVisibility(
@@ -452,7 +457,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         ),
                                       ),
                                       Text(
-                                        widget.startup!.productStageName!,
+                                        widget.startup!.maturity!,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -780,49 +785,75 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 6),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        if ((widget.startup!.country) ==
-                                            'Brasil')
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 4, 0),
-                                            child: Container(
-                                              width: 24,
-                                              height: 24,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png',
-                                                fit: BoxFit.cover,
+                                  Container(
+                                    width: 180,
+                                    decoration: BoxDecoration(),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          if ((widget.startup!.country) ==
+                                              'Brasil')
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 4, 0),
+                                              child: Container(
+                                                width: 24,
+                                                height: 24,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png',
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4, 0, 0, 0),
-                                          child: Text(
-                                            widget.startup!.city!,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Rubik',
-                                                  color: Color(0xFF576771),
-                                                  fontSize: 12,
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 0, 0, 0),
+                                                  child: Text(
+                                                    widget.startup!.country!,
+                                                    maxLines: 2,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color:
+                                                              Color(0xFF576771),
+                                                          fontSize: 12,
+                                                        ),
+                                                  ),
                                                 ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        Text(
-                                          ',  ',
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 8),
+                                    child: Container(
+                                      width: 160,
+                                      decoration: BoxDecoration(),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4, 0, 0, 0),
+                                        child: AutoSizeText(
+                                          '${widget.startup!.city}, ${widget.startup!.state}',
+                                          maxLines: 2,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -831,17 +862,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 fontSize: 12,
                                               ),
                                         ),
-                                        Text(
-                                          widget.startup!.state!,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                color: Color(0xFF576771),
-                                                fontSize: 12,
-                                              ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                   ),
                                   Row(
@@ -890,27 +911,22 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 32),
-                                  child: Text(
-                                    widget.startup!.valueProposalText!,
-                                    textAlign: TextAlign.start,
-                                    maxLines: 1,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          color: Color(0xFF032B44),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ),
-                              ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
+                              child: Text(
+                                widget.startup!.valueProposalText!,
+                                textAlign: TextAlign.start,
+                                maxLines: 2,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: Color(0xFF032B44),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
                             ),
                             Padding(
                               padding:
@@ -987,7 +1003,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                 ),
                               ),
                               Text(
-                                widget.startup!.productStageName!,
+                                widget.startup!.maturity!,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -1039,30 +1055,34 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           ),
                         ),
                       ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                            child: Text(
-                              'Milestones',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              child: Text(
+                                'Milestones',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
                             ),
-                          ),
-                          StartupMilestonesWidget(
-                            startup: widget.startup,
-                          ),
-                        ],
+                            StartupMilestonesWidget(
+                              startup: widget.startup,
+                            ),
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 22, 0, 0),

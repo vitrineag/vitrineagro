@@ -138,11 +138,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                formatNumber(
-                                  widget.startup!.lastYearRevenue!,
-                                  formatType: FormatType.compact,
-                                  currency: 'R\$',
-                                ),
+                                widget.startup!.lastYearRevenue!,
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -434,11 +430,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              formatNumber(
-                                widget.startup!.lastYearRevenue!,
-                                formatType: FormatType.compact,
-                                currency: 'R\$',
-                              ),
+                              widget.startup!.lastYearRevenue!,
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
