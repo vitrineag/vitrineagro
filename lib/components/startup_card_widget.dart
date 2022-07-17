@@ -19,10 +19,12 @@ class StartupCardWidget extends StatefulWidget {
     Key? key,
     this.startup,
     this.isFavorite,
+    this.favoriteDocument,
   }) : super(key: key);
 
   final StartupsRecord? startup;
   final bool? isFavorite;
+  final UserFavoritiesStartupsRecord? favoriteDocument;
 
   @override
   _StartupCardWidgetState createState() => _StartupCardWidgetState();
@@ -359,6 +361,17 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                         onTap: () async {
                           logFirebaseEvent(
                               'STARTUP_CARD_Container_aqneprpo_ON_TAP');
+                          if (widget.isFavorite!) {
+                            logFirebaseEvent('ToggleIconButton_Backend-Call');
+
+                            final userFavoritiesStartupsUpdateData =
+                                createUserFavoritiesStartupsRecordData(
+                              active: false,
+                            );
+                            await widget.favoriteDocument!.reference
+                                .update(userFavoritiesStartupsUpdateData);
+                            return;
+                          }
                           logFirebaseEvent('ToggleIconButton_Backend-Call');
 
                           final userFavoritiesStartupsCreateData =
@@ -368,6 +381,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                             user: currentUserReference,
                             userName: currentUserDisplayName,
                             userPhone: currentPhoneNumber,
+                            active: true,
                           );
                           await UserFavoritiesStartupsRecord.collection
                               .doc()

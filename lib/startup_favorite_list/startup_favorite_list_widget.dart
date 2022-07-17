@@ -1,8 +1,10 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/startup_card_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../startup_list/startup_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -131,7 +133,13 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                         ),
                       ),
                       StreamBuilder<List<UserFavoritiesStartupsRecord>>(
-                        stream: queryUserFavoritiesStartupsRecord(),
+                        stream: queryUserFavoritiesStartupsRecord(
+                          queryBuilder: (userFavoritiesStartupsRecord) =>
+                              userFavoritiesStartupsRecord
+                                  .where('user',
+                                      isEqualTo: currentUserReference)
+                                  .where('active', isEqualTo: true),
+                        ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -187,8 +195,12 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     width: 336,
                                     decoration: BoxDecoration(),
                                     child: StartupCardWidget(
-                                      isFavorite: true,
+                                      isFavorite:
+                                          wrapUserFavoritiesStartupsRecord!
+                                              .active,
                                       startup: containerStartupsRecord,
+                                      favoriteDocument:
+                                          wrapUserFavoritiesStartupsRecord,
                                     ),
                                   );
                                 },
@@ -234,12 +246,20 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'STARTUP_FAVORITE_LIST_VITRINE_BTN_ON_TAP');
+                              logFirebaseEvent('Button_Navigate-To');
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => StartupListWidget(),
+                                ),
+                              );
                             },
-                            text: 'favoritos',
+                            text: 'Vitrine',
                             icon: Icon(
-                              Icons.star_border,
+                              Icons.vibration,
                               size: 15,
                             ),
                             options: FFButtonOptions(

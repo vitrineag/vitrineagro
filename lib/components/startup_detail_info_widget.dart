@@ -71,13 +71,42 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                           ),
-                          Text(
-                            '340',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
+                          StreamBuilder<List<UserFavoritiesStartupsRecord>>(
+                            stream: queryUserFavoritiesStartupsRecord(
+                              queryBuilder: (userFavoritiesStartupsRecord) =>
+                                  userFavoritiesStartupsRecord.where('startup',
+                                      isEqualTo: widget.startup!.reference),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<UserFavoritiesStartupsRecord>
+                                  countUserFavoritiesStartupsRecordList =
+                                  snapshot.data!;
+                              return Text(
+                                formatNumber(
+                                  countUserFavoritiesStartupsRecordList.length,
+                                  formatType: FormatType.compact,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
                                       fontFamily: 'Rubik',
                                       fontWeight: FontWeight.w600,
                                     ),
+                              );
+                            },
                           ),
                           Text(
                             ' vezes',
