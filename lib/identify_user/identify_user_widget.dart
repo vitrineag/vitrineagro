@@ -64,7 +64,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Form(
             key: formKey,
-            autovalidateMode: AutovalidateMode.always,
+            autovalidateMode: AutovalidateMode.disabled,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -372,65 +372,66 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                           maxLines: 1,
                         ),
                       ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 16),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent(
-                          'IDENTIFY_USER_PAGE_CONTINUAR_BTN_ON_TAP');
-                      logFirebaseEvent('Button_Validate-Form');
-                      if (formKey.currentState == null ||
-                          !formKey.currentState!.validate()) {
-                        return;
-                      }
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 16),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'IDENTIFY_USER_PAGE_CONTINUAR_BTN_ON_TAP');
+                          logFirebaseEvent('Button_Validate-Form');
+                          if (formKey.currentState == null ||
+                              !formKey.currentState!.validate()) {
+                            return;
+                          }
 
-                      if (typeSelectValue == null) {
-                        return;
-                      }
+                          if (typeSelectValue == null) {
+                            return;
+                          }
 
-                      logFirebaseEvent('Button_Backend-Call');
+                          logFirebaseEvent('Button_Backend-Call');
 
-                      final usersUpdateData = createUsersRecordData(
-                        email: emailAddressController!.text,
-                        displayName: userNameController!.text,
-                        company: companyNameController!.text,
-                        role: titleRoleController!.text,
-                        userType: typeSelectValue,
-                        userTypeOtherDescription: otherFieldController!.text,
-                      );
-                      await currentUserReference!.update(usersUpdateData);
-                      logFirebaseEvent('Button_Navigate-To');
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.leftToRight,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: StartupListWidget(),
+                          final usersUpdateData = createUsersRecordData(
+                            email: emailAddressController!.text,
+                            displayName: userNameController!.text,
+                            company: companyNameController!.text,
+                            role: titleRoleController!.text,
+                            userType: typeSelectValue,
+                            userTypeOtherDescription:
+                                otherFieldController!.text,
+                          );
+                          await currentUserReference!.update(usersUpdateData);
+                          logFirebaseEvent('Button_Navigate-To');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.leftToRight,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: StartupListWidget(),
+                            ),
+                          );
+                        },
+                        text: 'Continuar',
+                        options: FFButtonOptions(
+                          width: 270,
+                          height: 50,
+                          color: Color(0xFF4B39EF),
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle1.override(
+                                    fontFamily: 'Outfit',
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          elevation: 3,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
                         ),
-                      );
-                    },
-                    text: 'Continuar',
-                    options: FFButtonOptions(
-                      width: 270,
-                      height: 50,
-                      color: Color(0xFF4B39EF),
-                      textStyle:
-                          FlutterFlowTheme.of(context).subtitle1.override(
-                                fontFamily: 'Outfit',
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                              ),
-                      elevation: 3,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

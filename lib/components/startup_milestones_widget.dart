@@ -140,8 +140,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                               Text(
                                 formatNumber(
                                   widget.startup!.lastYearRevenue!,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
+                                  formatType: FormatType.compact,
                                   currency: 'R\$',
                                 ),
                                 textAlign: TextAlign.start,
@@ -437,8 +436,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                             Text(
                               formatNumber(
                                 widget.startup!.lastYearRevenue!,
-                                formatType: FormatType.decimal,
-                                decimalType: DecimalType.commaDecimal,
+                                formatType: FormatType.compact,
                                 currency: 'R\$',
                               ),
                               textAlign: TextAlign.start,
@@ -571,7 +569,12 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                 child: Container(
                   height: 92,
                   decoration: BoxDecoration(
-                    color: Color(0xFFEAF8F5),
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFC0F4EC), Color(0xFFFFFBA3)],
+                      stops: [0, 1],
+                      begin: AlignmentDirectional(1, -1),
+                      end: AlignmentDirectional(-1, 1),
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Padding(

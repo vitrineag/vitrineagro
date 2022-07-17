@@ -47,6 +47,88 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                      ))
+                        Container(
+                          height: 122,
+                          decoration: BoxDecoration(),
+                        ),
+                      if (responsiveVisibility(
+                        context: context,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                          child: Container(
+                            width: 336,
+                            decoration: BoxDecoration(),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 20,
+                                        color: Color(0x29000000),
+                                        offset: Offset(8, 1),
+                                        spreadRadius: 1,
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(12),
+                                      bottomRight: Radius.circular(12),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12, 12, 12, 12),
+                                    child: SvgPicture.asset(
+                                      'assets/images/logo.svg',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                                child: Text(
+                                  'Encontre sua startup',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 24,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       StreamBuilder<List<StartupsRecord>>(
                         stream: queryStartupsRecord(),
                         builder: (context, snapshot) {
@@ -99,106 +181,225 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                   ),
                 ),
               ),
-              Align(
-                alignment: AlignmentDirectional(0, 1),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 12),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 72,
-                    constraints: BoxConstraints(
-                      maxWidth: 768,
-                    ),
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 36,
-                          color: Color(0xFF557C67),
-                          offset: Offset(0, 14),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
-                              logFirebaseEvent('Button_Navigate-To');
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      StartupFavoriteListWidget(),
-                                ),
-                              );
-                            },
-                            text: 'favoritos',
-                            icon: Icon(
-                              Icons.star_border,
-                              size: 15,
-                            ),
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 48,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'filtros',
-                            icon: Icon(
-                              Icons.filter_alt_outlined,
-                              size: 15,
-                            ),
-                            options: FFButtonOptions(
-                              height: 48,
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(31),
-                            ),
-                          ),
+              if (responsiveVisibility(
+                context: context,
+                tablet: false,
+                tabletLandscape: false,
+                desktop: false,
+              ))
+                Align(
+                  alignment: AlignmentDirectional(0, 1),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 12),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 72,
+                      constraints: BoxConstraints(
+                        maxWidth: 768,
+                      ),
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 36,
+                            color: Color(0xFF557C67),
+                            offset: Offset(0, 14),
+                          )
                         ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
+                                logFirebaseEvent('Button_Navigate-To');
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        StartupFavoriteListWidget(),
+                                  ),
+                                );
+                              },
+                              text: 'favoritos',
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 15,
+                              ),
+                              options: FFButtonOptions(
+                                width: 130,
+                                height: 48,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: 'filtros',
+                              icon: Icon(
+                                Icons.filter_alt_outlined,
+                                size: 15,
+                              ),
+                              options: FFButtonOptions(
+                                height: 48,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    18, 0, 18, 0),
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(31),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+              ))
+                Align(
+                  alignment: AlignmentDirectional(0, -1),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 68,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 36,
+                            color: Color(0x27557C67),
+                            offset: Offset(0, 14),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/logo.svg',
+                              fit: BoxFit.cover,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    logFirebaseEvent(
+                                        'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_Navigate-To');
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            StartupFavoriteListWidget(),
+                                      ),
+                                    );
+                                  },
+                                  text: 'favoritos',
+                                  icon: Icon(
+                                    Icons.star_border,
+                                    size: 15,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: 130,
+                                    height: 48,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                    elevation: 0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                FFButtonWidget(
+                                  onPressed: () {
+                                    print('Button pressed ...');
+                                  },
+                                  text: 'filtros',
+                                  icon: Icon(
+                                    Icons.filter_alt_outlined,
+                                    size: 15,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 48,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        18, 0, 18, 0),
+                                    color: FlutterFlowTheme.of(context)
+                                        .tertiaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(31),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

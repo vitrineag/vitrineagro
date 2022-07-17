@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../startup_detail/startup_detail_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              width: 350,
               constraints: BoxConstraints(
                 maxWidth: 356,
               ),
@@ -129,62 +131,85 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                             ),
                           ),
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            if ((widget.startup!.country) == 'Brasil')
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
+                        Container(
+                          width: 180,
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                            child: AutoSizeText(
+                              '${widget.startup!.city}, ${widget.startup!.state}',
+                              maxLines: 2,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color: Color(0xFF576771),
+                                    fontSize: 12,
                                   ),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png',
-                                    fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 180,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                          ),
+                        ),
+                        Container(
+                          width: 180,
+                          decoration: BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              if ((widget.startup!.country) == 'Brasil')
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 4, 0),
+                                  child: Container(
+                                    width: 24,
+                                    height: 24,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                              child: Text(
-                                widget.startup!.state!,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      color: Color(0xFF576771),
-                                      fontSize: 12,
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          4, 0, 0, 0),
+                                      child: Text(
+                                        '${widget.startup!.city}, ${widget.startup!.state}',
+                                        maxLines: 2,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              color: Color(0xFF576771),
+                                              fontSize: 12,
+                                            ),
+                                      ),
                                     ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Text(
-                              ',  ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    color: Color(0xFF576771),
-                                    fontSize: 12,
-                                  ),
-                            ),
-                            Text(
-                              widget.startup!.city!,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    color: Color(0xFF576771),
-                                    fontSize: 12,
-                                  ),
-                            ),
-                          ],
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 180,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                          ),
                         ),
                       ],
                     ),
@@ -193,24 +218,16 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
-              child: Container(
-                decoration: BoxDecoration(),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      widget.startup!.valueProposalText!,
-                      maxLines: 1,
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Rubik',
-                            color: Color(0xFF032B44),
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
+              child: Text(
+                widget.startup!.valueProposalText!,
+                maxLines: 2,
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Rubik',
+                      color: Color(0xFF032B44),
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
                     ),
-                  ],
-                ),
               ),
             ),
             Padding(
@@ -322,7 +339,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 36, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

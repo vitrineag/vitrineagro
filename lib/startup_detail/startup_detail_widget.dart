@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartupDetailWidget extends StatefulWidget {
@@ -87,20 +86,28 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         33, 0, 0, 0),
-                                    child: Text(
-                                      '< voltar',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Rubik',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'STARTUP_DETAIL_PAGE_Text_i0zx6d9j_ON_TAP');
+                                        logFirebaseEvent('Text_Navigate-Back');
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        '< voltar',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        33, 0, 33, 0),
+                                        13, 0, 13, 0),
                                     child: StartupDetailInfoWidget(
                                       startup: widget.startup,
                                     ),
@@ -171,11 +178,8 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                 tabletLandscape: false,
                 desktop: false,
               ))
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(19, 0, 19, 0),
-                  child: StartupDetailInfoWidget(
-                    startup: widget.startup,
-                  ),
+                StartupDetailInfoWidget(
+                  startup: widget.startup,
                 ),
               if (responsiveVisibility(
                 context: context,
@@ -301,8 +305,8 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SvgPicture.asset(
-                              'assets/images/logo.svg',
+                            Image.network(
+                              '',
                               fit: BoxFit.cover,
                             ),
                             FlutterFlowIconButton(
