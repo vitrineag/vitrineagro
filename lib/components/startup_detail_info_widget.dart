@@ -74,8 +74,10 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           StreamBuilder<List<UserFavoritiesStartupsRecord>>(
                             stream: queryUserFavoritiesStartupsRecord(
                               queryBuilder: (userFavoritiesStartupsRecord) =>
-                                  userFavoritiesStartupsRecord.where('startup',
-                                      isEqualTo: widget.startup!.reference),
+                                  userFavoritiesStartupsRecord
+                                      .where('startup',
+                                          isEqualTo: widget.startup!.reference)
+                                      .where('active', isEqualTo: true),
                             ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
@@ -379,52 +381,39 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 32),
-                                          child: Text(
-                                            widget.startup!.valueProposalText!,
-                                            textAlign: TextAlign.start,
-                                            maxLines: 1,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Rubik',
-                                                  color: Color(0xFF032B44),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 32),
+                                      child: Text(
+                                        widget.startup!.valueProposalText!,
+                                        textAlign: TextAlign.start,
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              color: Color(0xFF032B44),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 32),
-                                          child: Text(
-                                            widget.startup!
-                                                .problemResolutionText!,
-                                            textAlign: TextAlign.start,
-                                            maxLines: 3,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Rubik',
-                                                  color: Color(0xFF032B44),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 32),
+                                      child: Text(
+                                        widget.startup!.problemResolutionText!,
+                                        textAlign: TextAlign.start,
+                                        maxLines: 3,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              color: Color(0xFF032B44),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
                                     ),
                                   ],
                                 ),

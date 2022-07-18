@@ -4,7 +4,6 @@ import '../components/startup_card_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../startup_list/startup_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -250,12 +249,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                               logFirebaseEvent(
                                   'STARTUP_FAVORITE_LIST_VITRINE_BTN_ON_TAP');
                               logFirebaseEvent('Button_Navigate-To');
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => StartupListWidget(),
-                                ),
-                              );
+                              context.pushNamed('StartupList');
                             },
                             text: 'Vitrine',
                             icon: Icon(
@@ -357,13 +351,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     logFirebaseEvent(
                                         'STARTUP_FAVORITE_LIST_FAVORITOS_BTN_ON_T');
                                     logFirebaseEvent('Button_Navigate-To');
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            StartupFavoriteListWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('StartupFavoriteList');
                                   },
                                   text: 'favoritos',
                                   icon: Icon(

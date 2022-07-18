@@ -3,7 +3,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../verify_phone_authentication/verify_phone_authentication_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -233,14 +232,9 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                       context: context,
                                       phoneNumber: phoneNumberVal,
                                       onCodeSent: () async {
-                                        await Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                VerifyPhoneAuthenticationWidget(),
-                                          ),
-                                          (r) => false,
-                                        );
+                                        context.goNamedAuth(
+                                            'VerifyPhoneAuthentication',
+                                            mounted);
                                       },
                                     );
                                   },

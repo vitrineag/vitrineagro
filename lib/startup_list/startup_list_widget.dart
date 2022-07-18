@@ -1,9 +1,9 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/startup_card_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../startup_favorite_list/startup_favorite_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -168,10 +168,14 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                   stream: queryUserFavoritiesStartupsRecord(
                                     queryBuilder:
                                         (userFavoritiesStartupsRecord) =>
-                                            userFavoritiesStartupsRecord.where(
-                                                'startup',
-                                                isEqualTo: wrapStartupsRecord!
-                                                    .reference),
+                                            userFavoritiesStartupsRecord
+                                                .where('startup',
+                                                    isEqualTo:
+                                                        wrapStartupsRecord!
+                                                            .reference)
+                                                .where('user',
+                                                    isEqualTo:
+                                                        currentUserReference),
                                     singleRecord: true,
                                   ),
                                   builder: (context, snapshot) {
@@ -256,13 +260,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 logFirebaseEvent(
                                     'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
                                 logFirebaseEvent('Button_Navigate-To');
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        StartupFavoriteListWidget(),
-                                  ),
-                                );
+                                context.pushNamed('StartupFavoriteList');
                               },
                               text: 'favoritos',
                               icon: Icon(
@@ -365,13 +363,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     logFirebaseEvent(
                                         'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
                                     logFirebaseEvent('Button_Navigate-To');
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            StartupFavoriteListWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('StartupFavoriteList');
                                   },
                                   text: 'favoritos',
                                   icon: Icon(

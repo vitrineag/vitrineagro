@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../startup_detail/startup_detail_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -405,13 +404,12 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                     onPressed: () async {
                       logFirebaseEvent('STARTUP_CARD_COMP_MoreInfo_ON_TAP');
                       logFirebaseEvent('MoreInfo_Navigate-To');
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StartupDetailWidget(
-                            startup: widget.startup,
-                          ),
-                        ),
+                      context.pushNamed(
+                        'StartupDetail',
+                        params: {
+                          'startupSite': serializeParam(
+                              widget.startup!.site, ParamType.String),
+                        }.withoutNulls,
                       );
                     },
                     text: 'saiba mais',

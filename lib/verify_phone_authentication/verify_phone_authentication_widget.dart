@@ -3,7 +3,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../identify_user/identify_user_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -214,6 +213,7 @@ class _VerifyPhoneAuthenticationWidgetState
                                   logFirebaseEvent(
                                       'VERIFY_PHONE_AUTHENTICATION_CONFIRMAR_BT');
                                   logFirebaseEvent('Button_Auth');
+                                  GoRouter.of(context).prepareAuthEvent();
                                   final smsCodeVal = verifyCodeController!.text;
                                   if (smsCodeVal == null ||
                                       smsCodeVal.isEmpty) {
@@ -233,14 +233,7 @@ class _VerifyPhoneAuthenticationWidgetState
                                     return;
                                   }
 
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          IdentifyUserWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  context.goNamedAuth('Loading', mounted);
                                 },
                                 text: 'Confirmar',
                                 options: FFButtonOptions(
