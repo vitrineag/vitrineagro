@@ -1,9 +1,10 @@
 import '../backend/backend.dart';
 import '../components/startup_card_widget.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
-import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -60,6 +61,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       if (responsiveVisibility(
                         context: context,
@@ -99,9 +101,12 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                           ),
                         ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 20),
                         child: Container(
-                          width: 311,
+                          width: MediaQuery.of(context).size.width,
+                          constraints: BoxConstraints(
+                            maxWidth: 1000,
+                          ),
                           decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -215,89 +220,207 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                             );
                           }
                           final startup = algoliaSearchResults!?.toList() ?? [];
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            primary: false,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: startup.length,
-                            itemBuilder: (context, startupIndex) {
+                          return Wrap(
+                            spacing: 20,
+                            runSpacing: 20,
+                            alignment: WrapAlignment.start,
+                            crossAxisAlignment: WrapCrossAlignment.start,
+                            direction: Axis.horizontal,
+                            runAlignment: WrapAlignment.start,
+                            verticalDirection: VerticalDirection.down,
+                            clipBehavior: Clip.none,
+                            children:
+                                List.generate(startup.length, (startupIndex) {
                               final startupItem = startup[startupIndex];
-                              return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 0, 20, 20),
+                              return Container(
+                                width: 336,
+                                decoration: BoxDecoration(),
                                 child: StartupCardWidget(
                                   startup: startupItem,
                                 ),
                               );
-                            },
+                            }),
                           );
                         },
                       ),
-                      if ((random_data.randomInteger(1, 99)) == 0)
-                        FutureBuilder<List<StartupsRecord>>(
-                          future: StartupsRecord.search(
-                            term: functions
-                                .replaceCommaToSpace(textController!.text),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                  ),
-                                ),
-                              );
-                            }
-                            List<StartupsRecord> wrapStartupsRecordList =
-                                snapshot.data!;
-                            // Customize what your widget looks like with no search results.
-                            if (snapshot.data!.isEmpty) {
-                              return Container(
-                                height: 100,
-                                child: Center(
-                                  child: Text('No results.'),
-                                ),
-                              );
-                            }
-                            return Wrap(
-                              spacing: 24,
-                              runSpacing: 16,
-                              alignment: WrapAlignment.start,
-                              crossAxisAlignment: WrapCrossAlignment.start,
-                              direction: Axis.horizontal,
-                              runAlignment: WrapAlignment.start,
-                              verticalDirection: VerticalDirection.down,
-                              clipBehavior: Clip.none,
-                              children: List.generate(
-                                  wrapStartupsRecordList.length, (wrapIndex) {
-                                final wrapStartupsRecord =
-                                    wrapStartupsRecordList[wrapIndex];
-                                return Container(
-                                  width: 336,
-                                  decoration: BoxDecoration(),
-                                  child: StartupCardWidget(
-                                    startup: wrapStartupsRecord,
-                                  ),
-                                );
-                              }),
-                            );
-                          },
-                        ),
                       Container(
                         width: 0,
                         height: 90,
                         decoration: BoxDecoration(),
                       ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                        child: Container(
+                          width: 311,
+                          decoration: BoxDecoration(),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
+              if (responsiveVisibility(
+                context: context,
+                tablet: false,
+                tabletLandscape: false,
+                desktop: false,
+              ))
+                Align(
+                  alignment: AlignmentDirectional(0, 1),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 12),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 72,
+                      constraints: BoxConstraints(
+                        maxWidth: 768,
+                      ),
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 36,
+                            color: Color(0xFF557C67),
+                            offset: Offset(0, 14),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30,
+                              borderWidth: 1,
+                              buttonSize: 60,
+                              icon: Icon(
+                                Icons.menu,
+                                color: Color(0xFF0F0F0F),
+                                size: 32,
+                              ),
+                              onPressed: () {
+                                print('IconButton pressed ...');
+                              },
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
+                                logFirebaseEvent('Button_Navigate-To');
+                                context.pushNamed('StartupFavoriteList');
+                              },
+                              text: 'favoritos',
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 15,
+                              ),
+                              options: FFButtonOptions(
+                                width: 130,
+                                height: 44,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                elevation: 0,
+                                borderSide: BorderSide(
+                                  color: Color(0xFF0F0F0F),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(22),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+              ))
+                Align(
+                  alignment: AlignmentDirectional(0, -1),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 72,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 32,
+                            color: Color(0x29000000),
+                            offset: Offset(0, 12),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                              child: SvgPicture.asset(
+                                'assets/images/logo.svg',
+                                height: 31,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
+                                logFirebaseEvent('Button_Navigate-To');
+                                context.pushNamed('StartupFavoriteList');
+                              },
+                              text: 'favoritos',
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 15,
+                              ),
+                              options: FFButtonOptions(
+                                width: 130,
+                                height: 44,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                elevation: 0,
+                                borderSide: BorderSide(
+                                  color: Color(0xFF0F0F0F),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(22),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
