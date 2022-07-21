@@ -41,12 +41,26 @@ class _LoadingWidgetState extends State<LoadingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Stack(
             children: [
+              if (responsiveVisibility(
+                context: context,
+                tablet: false,
+                tabletLandscape: false,
+                desktop: false,
+              ))
+                Align(
+                  alignment: AlignmentDirectional(0, 1),
+                  child: SvgPicture.asset(
+                    'assets/images/bg_dec_bot.svg',
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               Align(
                 alignment: AlignmentDirectional(0, 0),
                 child: Padding(
@@ -59,25 +73,21 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                       Align(
                         alignment: AlignmentDirectional(0, 0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
                           child: SvgPicture.asset(
                             'assets/images/logo.svg',
-                            width: double.infinity,
-                            height: 100,
+                            width: 184,
                             fit: BoxFit.fill,
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 0),
-                        child: Container(
+                      Container(
+                        width: 60,
+                        height: 60,
+                        child: custom_widgets.CustomCircularProgressIndicador(
                           width: 60,
                           height: 60,
-                          child: custom_widgets.CustomCircularProgressIndicador(
-                            width: 60,
-                            height: 60,
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                          ),
+                          color: Color(0xFFFFA133),
                         ),
                       ),
                     ],

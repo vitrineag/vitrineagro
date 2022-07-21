@@ -50,9 +50,15 @@ abstract class SectorsOfActivityRecord
 Map<String, dynamic> createSectorsOfActivityRecordData({
   String? description,
   String? icone,
-}) =>
-    serializers.toFirestore(
-        SectorsOfActivityRecord.serializer,
-        SectorsOfActivityRecord((s) => s
-          ..description = description
-          ..icone = icone));
+}) {
+  final firestoreData = serializers.toFirestore(
+    SectorsOfActivityRecord.serializer,
+    SectorsOfActivityRecord(
+      (s) => s
+        ..description = description
+        ..icone = icone,
+    ),
+  );
+
+  return firestoreData;
+}

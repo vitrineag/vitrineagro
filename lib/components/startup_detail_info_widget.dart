@@ -74,10 +74,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           StreamBuilder<List<UserFavoritiesStartupsRecord>>(
                             stream: queryUserFavoritiesStartupsRecord(
                               queryBuilder: (userFavoritiesStartupsRecord) =>
-                                  userFavoritiesStartupsRecord
-                                      .where('startup',
-                                          isEqualTo: widget.startup!.reference)
-                                      .where('active', isEqualTo: true),
+                                  userFavoritiesStartupsRecord.where('startup',
+                                      isEqualTo: widget.startup!.reference),
                             ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
@@ -784,7 +782,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         0, 0, 0, 12),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFD6EFE8),
+                                        color: Color(0xFFFFEBB5),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: Padding(
@@ -796,7 +794,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               .bodyText1
                                               .override(
                                                 fontFamily: 'Rubik',
-                                                color: Color(0xFF12654E),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),

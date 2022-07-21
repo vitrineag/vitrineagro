@@ -23,8 +23,6 @@ abstract class UserFavoritiesStartupsRecord
 
   String? get userPhone;
 
-  bool? get active;
-
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -32,8 +30,7 @@ abstract class UserFavoritiesStartupsRecord
   static void _initializeBuilder(UserFavoritiesStartupsRecordBuilder builder) =>
       builder
         ..userName = ''
-        ..userPhone = ''
-        ..active = false;
+        ..userPhone = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('userFavoritiesStartups');
@@ -65,14 +62,18 @@ Map<String, dynamic> createUserFavoritiesStartupsRecordData({
   DocumentReference? user,
   String? userName,
   String? userPhone,
-  bool? active,
-}) =>
-    serializers.toFirestore(
-        UserFavoritiesStartupsRecord.serializer,
-        UserFavoritiesStartupsRecord((u) => u
-          ..createDate = createDate
-          ..startup = startup
-          ..user = user
-          ..userName = userName
-          ..userPhone = userPhone
-          ..active = active));
+}) {
+  final firestoreData = serializers.toFirestore(
+    UserFavoritiesStartupsRecord.serializer,
+    UserFavoritiesStartupsRecord(
+      (u) => u
+        ..createDate = createDate
+        ..startup = startup
+        ..user = user
+        ..userName = userName
+        ..userPhone = userPhone,
+    ),
+  );
+
+  return firestoreData;
+}

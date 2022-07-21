@@ -44,7 +44,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: AlignmentDirectional(0, -1),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -93,8 +93,8 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         12, 12, 12, 12),
-                                    child: SvgPicture.asset(
-                                      'assets/images/logo.svg',
+                                    child: Image.network(
+                                      '',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -134,10 +134,8 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                       StreamBuilder<List<UserFavoritiesStartupsRecord>>(
                         stream: queryUserFavoritiesStartupsRecord(
                           queryBuilder: (userFavoritiesStartupsRecord) =>
-                              userFavoritiesStartupsRecord
-                                  .where('user',
-                                      isEqualTo: currentUserReference)
-                                  .where('active', isEqualTo: true),
+                              userFavoritiesStartupsRecord.where('user',
+                                  isEqualTo: currentUserReference),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -194,12 +192,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     width: 336,
                                     decoration: BoxDecoration(),
                                     child: StartupCardWidget(
-                                      isFavorite:
-                                          wrapUserFavoritiesStartupsRecord!
-                                              .active,
                                       startup: containerStartupsRecord,
-                                      favoriteDocument:
-                                          wrapUserFavoritiesStartupsRecord,
                                     ),
                                   );
                                 },
@@ -269,6 +262,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                         .primaryColor,
                                     fontWeight: FontWeight.normal,
                                   ),
+                              elevation: 0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
@@ -339,8 +333,8 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SvgPicture.asset(
-                              'assets/images/logo.svg',
+                            Image.network(
+                              '',
                               fit: BoxFit.cover,
                             ),
                             Row(

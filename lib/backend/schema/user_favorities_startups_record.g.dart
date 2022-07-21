@@ -63,13 +63,6 @@ class _$UserFavoritiesStartupsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.active;
-    if (value != null) {
-      result
-        ..add('active')
-        ..add(
-            serializers.serialize(value, specifiedType: const FullType(bool)));
-    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -117,10 +110,6 @@ class _$UserFavoritiesStartupsRecordSerializer
           result.userPhone = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'active':
-          result.active = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool?;
-          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -146,8 +135,6 @@ class _$UserFavoritiesStartupsRecord extends UserFavoritiesStartupsRecord {
   @override
   final String? userPhone;
   @override
-  final bool? active;
-  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserFavoritiesStartupsRecord(
@@ -160,7 +147,6 @@ class _$UserFavoritiesStartupsRecord extends UserFavoritiesStartupsRecord {
       this.user,
       this.userName,
       this.userPhone,
-      this.active,
       this.ffRef})
       : super._();
 
@@ -182,7 +168,6 @@ class _$UserFavoritiesStartupsRecord extends UserFavoritiesStartupsRecord {
         user == other.user &&
         userName == other.userName &&
         userPhone == other.userPhone &&
-        active == other.active &&
         ffRef == other.ffRef;
   }
 
@@ -191,12 +176,10 @@ class _$UserFavoritiesStartupsRecord extends UserFavoritiesStartupsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc(
-                    $jc($jc($jc(0, createDate.hashCode), startup.hashCode),
-                        user.hashCode),
-                    userName.hashCode),
-                userPhone.hashCode),
-            active.hashCode),
+                $jc($jc($jc(0, createDate.hashCode), startup.hashCode),
+                    user.hashCode),
+                userName.hashCode),
+            userPhone.hashCode),
         ffRef.hashCode));
   }
 
@@ -208,7 +191,6 @@ class _$UserFavoritiesStartupsRecord extends UserFavoritiesStartupsRecord {
           ..add('user', user)
           ..add('userName', userName)
           ..add('userPhone', userPhone)
-          ..add('active', active)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -240,10 +222,6 @@ class UserFavoritiesStartupsRecordBuilder
   String? get userPhone => _$this._userPhone;
   set userPhone(String? userPhone) => _$this._userPhone = userPhone;
 
-  bool? _active;
-  bool? get active => _$this._active;
-  set active(bool? active) => _$this._active = active;
-
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -260,7 +238,6 @@ class UserFavoritiesStartupsRecordBuilder
       _user = $v.user;
       _userName = $v.userName;
       _userPhone = $v.userPhone;
-      _active = $v.active;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -287,7 +264,6 @@ class UserFavoritiesStartupsRecordBuilder
             user: user,
             userName: userName,
             userPhone: userPhone,
-            active: active,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

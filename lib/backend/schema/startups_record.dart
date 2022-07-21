@@ -100,6 +100,52 @@ abstract class StartupsRecord
       .get()
       .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
+  static StartupsRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      StartupsRecord(
+        (c) => c
+          ..name = snapshot.data['name']
+          ..category = snapshot.data['category']
+          ..city = snapshot.data['city']
+          ..valueProposalText = snapshot.data['valueProposalText']
+          ..problemResolutionText = snapshot.data['problemResolutionText']
+          ..customerNiche = snapshot.data['customerNiche']
+          ..businessModel = snapshot.data['businessModel']
+          ..logo = snapshot.data['logo']
+          ..facebookUrl = snapshot.data['facebookUrl']
+          ..instagramUrl = snapshot.data['instagramUrl']
+          ..linkedinUrl = snapshot.data['linkedinUrl']
+          ..pitchYoutubeUrl = snapshot.data['pitchYoutubeUrl']
+          ..clientsCount = snapshot.data['clientsCount']?.round()
+          ..lastYearGrowth = snapshot.data['lastYearGrowth']
+          ..lastInvestmentReceived = snapshot.data['lastInvestmentReceived']
+          ..pitchPdfUrl = snapshot.data['pitchPdfUrl']
+          ..state = snapshot.data['state']
+          ..country = snapshot.data['country']
+          ..employeeCount = snapshot.data['employeeCount']
+          ..foundationYear = snapshot.data['foundationYear']?.round()
+          ..site = snapshot.data['site']
+          ..sectorsOfActivity =
+              safeGet(() => ListBuilder(snapshot.data['sectorsOfActivity']))
+          ..lastYearRevenue = snapshot.data['lastYearRevenue']
+          ..maturity = snapshot.data['maturity']
+          ..ffRef = StartupsRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<StartupsRecord>> search(
+          {String? term,
+          FutureOr<LatLng>? location,
+          int? maxResults,
+          double? searchRadiusMeters}) =>
+      FFAlgoliaManager.instance
+          .algoliaQuery(
+            index: 'startups',
+            term: term,
+            maxResults: maxResults,
+            location: location,
+            searchRadiusMeters: searchRadiusMeters,
+          )
+          .then((r) => r.map(fromAlgolia).toList());
+
   StartupsRecord._();
   factory StartupsRecord([void Function(StartupsRecordBuilder) updates]) =
       _$StartupsRecord;
@@ -134,31 +180,37 @@ Map<String, dynamic> createStartupsRecordData({
   String? site,
   String? lastYearRevenue,
   String? maturity,
-}) =>
-    serializers.toFirestore(
-        StartupsRecord.serializer,
-        StartupsRecord((s) => s
-          ..name = name
-          ..category = category
-          ..city = city
-          ..valueProposalText = valueProposalText
-          ..problemResolutionText = problemResolutionText
-          ..customerNiche = customerNiche
-          ..businessModel = businessModel
-          ..logo = logo
-          ..facebookUrl = facebookUrl
-          ..instagramUrl = instagramUrl
-          ..linkedinUrl = linkedinUrl
-          ..pitchYoutubeUrl = pitchYoutubeUrl
-          ..clientsCount = clientsCount
-          ..lastYearGrowth = lastYearGrowth
-          ..lastInvestmentReceived = lastInvestmentReceived
-          ..pitchPdfUrl = pitchPdfUrl
-          ..state = state
-          ..country = country
-          ..employeeCount = employeeCount
-          ..foundationYear = foundationYear
-          ..site = site
-          ..sectorsOfActivity = null
-          ..lastYearRevenue = lastYearRevenue
-          ..maturity = maturity));
+}) {
+  final firestoreData = serializers.toFirestore(
+    StartupsRecord.serializer,
+    StartupsRecord(
+      (s) => s
+        ..name = name
+        ..category = category
+        ..city = city
+        ..valueProposalText = valueProposalText
+        ..problemResolutionText = problemResolutionText
+        ..customerNiche = customerNiche
+        ..businessModel = businessModel
+        ..logo = logo
+        ..facebookUrl = facebookUrl
+        ..instagramUrl = instagramUrl
+        ..linkedinUrl = linkedinUrl
+        ..pitchYoutubeUrl = pitchYoutubeUrl
+        ..clientsCount = clientsCount
+        ..lastYearGrowth = lastYearGrowth
+        ..lastInvestmentReceived = lastInvestmentReceived
+        ..pitchPdfUrl = pitchPdfUrl
+        ..state = state
+        ..country = country
+        ..employeeCount = employeeCount
+        ..foundationYear = foundationYear
+        ..site = site
+        ..sectorsOfActivity = null
+        ..lastYearRevenue = lastYearRevenue
+        ..maturity = maturity,
+    ),
+  );
+
+  return firestoreData;
+}

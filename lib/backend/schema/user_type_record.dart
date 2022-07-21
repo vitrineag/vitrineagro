@@ -41,5 +41,13 @@ abstract class UserTypeRecord
           {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
-Map<String, dynamic> createUserTypeRecordData() => serializers.toFirestore(
-    UserTypeRecord.serializer, UserTypeRecord((u) => u..type = null));
+Map<String, dynamic> createUserTypeRecordData() {
+  final firestoreData = serializers.toFirestore(
+    UserTypeRecord.serializer,
+    UserTypeRecord(
+      (u) => u..type = null,
+    ),
+  );
+
+  return firestoreData;
+}

@@ -13,3 +13,12 @@ import '../../auth/auth_util.dart';
 int getMoreActivitiesCount(List<String> activitiesList) {
   return activitiesList.length - 2;
 }
+
+UserFavoritiesStartupsRecord getFirstFavoritiesStartups(
+    List<UserFavoritiesStartupsRecord> favoriteStartupUsers) {
+  return favoriteStartupUsers.first;
+}
+
+String replaceCommaToSpace(String text) {
+  return text.replaceAll(',', ' ');
+}
