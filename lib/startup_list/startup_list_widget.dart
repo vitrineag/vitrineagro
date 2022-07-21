@@ -205,44 +205,93 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                           ),
                         ),
                       ),
-                      Builder(
-                        builder: (context) {
-                          if (algoliaSearchResults! == null) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: CircularProgressIndicator(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                ),
-                              ),
-                            );
-                          }
-                          final startup = algoliaSearchResults!?.toList() ?? [];
-                          return Wrap(
-                            spacing: 20,
-                            runSpacing: 20,
-                            alignment: WrapAlignment.start,
-                            crossAxisAlignment: WrapCrossAlignment.start,
-                            direction: Axis.horizontal,
-                            runAlignment: WrapAlignment.start,
-                            verticalDirection: VerticalDirection.down,
-                            clipBehavior: Clip.none,
-                            children:
-                                List.generate(startup.length, (startupIndex) {
-                              final startupItem = startup[startupIndex];
-                              return Container(
-                                width: 336,
-                                decoration: BoxDecoration(),
-                                child: StartupCardWidget(
-                                  startup: startupItem,
+                      if ((textController!.text == null ||
+                          textController!.text == ''))
+                        StreamBuilder<List<StartupsRecord>>(
+                          stream: queryStartupsRecord(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                  ),
                                 ),
                               );
-                            }),
-                          );
-                        },
-                      ),
+                            }
+                            List<StartupsRecord>
+                                firebaseListStartupsRecordList = snapshot.data!;
+                            return Wrap(
+                              spacing: 20,
+                              runSpacing: 20,
+                              alignment: WrapAlignment.start,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              direction: Axis.horizontal,
+                              runAlignment: WrapAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              clipBehavior: Clip.none,
+                              children: List.generate(
+                                  firebaseListStartupsRecordList.length,
+                                  (firebaseListIndex) {
+                                final firebaseListStartupsRecord =
+                                    firebaseListStartupsRecordList[
+                                        firebaseListIndex];
+                                return Container(
+                                  width: 336,
+                                  decoration: BoxDecoration(),
+                                  child: StartupCardWidget(
+                                    startup: firebaseListStartupsRecord,
+                                  ),
+                                );
+                              }),
+                            );
+                          },
+                        ),
+                      if ((textController!.text != null &&
+                          textController!.text != ''))
+                        Builder(
+                          builder: (context) {
+                            if (algoliaSearchResults! == null) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                  ),
+                                ),
+                              );
+                            }
+                            final startup =
+                                algoliaSearchResults!?.toList() ?? [];
+                            return Wrap(
+                              spacing: 20,
+                              runSpacing: 20,
+                              alignment: WrapAlignment.start,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              direction: Axis.horizontal,
+                              runAlignment: WrapAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              clipBehavior: Clip.none,
+                              children:
+                                  List.generate(startup.length, (startupIndex) {
+                                final startupItem = startup[startupIndex];
+                                return Container(
+                                  width: 336,
+                                  decoration: BoxDecoration(),
+                                  child: StartupCardWidget(
+                                    startup: startupItem,
+                                  ),
+                                );
+                              }),
+                            );
+                          },
+                        ),
                       Container(
                         width: 0,
                         height: 90,
