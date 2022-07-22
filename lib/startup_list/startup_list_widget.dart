@@ -153,7 +153,6 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                           .whenComplete(() => setState(() {}));
                                     },
                                   ),
-                                  autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     hintText: 'Digite a busca',
@@ -193,7 +192,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 ),
                               ),
                               Text(
-                                'Filtre startups por nome, segmento ou qualquer preferência desejada.',
+                                'Filtre startups por nome, segmento ou qualquer preferência desejada (para separar os temas utilize vírgula)',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(

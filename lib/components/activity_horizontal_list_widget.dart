@@ -22,70 +22,37 @@ class _ActivityHorizontalListWidgetState
     extends State<ActivityHorizontalListWidget> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          StreamBuilder<List<SectorsOfActivityRecord>>(
-            stream: querySectorsOfActivityRecord(
-              queryBuilder: (sectorsOfActivityRecord) =>
-                  sectorsOfActivityRecord.where('description',
-                      whereIn: widget.startup!.sectorsOfActivity!.toList()),
-              limit: 2,
+    return StreamBuilder<List<SectorsOfActivityRecord>>(
+      stream: querySectorsOfActivityRecord(
+        queryBuilder: (sectorsOfActivityRecord) =>
+            sectorsOfActivityRecord.where('description',
+                whereIn: functions.splitByChar(
+                    widget.startup!.sectorsOfActivity!, ', \\n')),
+        limit: 2,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: CircularProgressIndicator(
+                color: FlutterFlowTheme.of(context).primaryColor,
+              ),
             ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                    ),
-                  ),
-                );
-              }
-              List<SectorsOfActivityRecord> rowSectorsOfActivityRecordList =
-                  snapshot.data!;
-              return Row(
-                mainAxisSize: MainAxisSize.max,
-                children: List.generate(rowSectorsOfActivityRecordList.length,
-                    (rowIndex) {
-                  final rowSectorsOfActivityRecord =
-                      rowSectorsOfActivityRecordList[rowIndex];
-                  return Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                    child: Container(
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBtnText,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: Color(0xFF707070),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              rowSectorsOfActivityRecord!.description!,
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-              );
-            },
-          ),
-          if ((widget.startup!.sectorsOfActivity!.toList()!.length) > 2)
-            Padding(
+          );
+        }
+        List<SectorsOfActivityRecord> rowSectorsOfActivityRecordList =
+            snapshot.data!;
+        return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children:
+              List.generate(rowSectorsOfActivityRecordList.length, (rowIndex) {
+            final rowSectorsOfActivityRecord =
+                rowSectorsOfActivityRecordList[rowIndex];
+            return Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
               child: Container(
                 height: 32,
@@ -102,24 +69,17 @@ class _ActivityHorizontalListWidgetState
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        formatNumber(
-                          functions.getMoreActivitiesCount(widget
-                              .startup!.sectorsOfActivity!
-                              .toList()!
-                              .toList()),
-                          formatType: FormatType.custom,
-                          format: '+0',
-                          locale: 'pt_BR',
-                        ),
+                        rowSectorsOfActivityRecord!.description!,
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
-        ],
-      ),
+            );
+          }),
+        );
+      },
     );
   }
 }

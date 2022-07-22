@@ -130,31 +130,6 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFFEEC9),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12, 4, 12, 4),
-                                  child: Text(
-                                    widget.startup!.category!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ),
                             Container(
                               width: 180,
                               decoration: BoxDecoration(),
@@ -234,6 +209,26 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                           ],
                         ),
                       ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFEEC9),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                      child: Text(
+                        functions.getCategory(widget.startup!),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Rubik',
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
                     ),
                   ),
                 ),

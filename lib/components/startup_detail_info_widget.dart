@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_pdf_viewer.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_youtube_player.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
           children: [
             Row(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Padding(
@@ -44,7 +46,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                     width: MediaQuery.of(context).size.width,
                     height: 26,
                     constraints: BoxConstraints(
-                      maxWidth: 365,
+                      maxWidth: 355,
                     ),
                     decoration: BoxDecoration(
                       color: Color(0xFFFAEDE2),
@@ -126,7 +128,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                   phone: false,
                 ))
                   Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: 300,
                     constraints: BoxConstraints(
                       maxWidth: 375,
                     ),
@@ -137,7 +139,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                         phone: false,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                         child: ActivityHorizontalListWidget(
                           startup: widget.startup,
                         ),
@@ -578,30 +580,38 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 12, 0),
-                                    child: Container(
-                                      width: 42,
-                                      height: 42,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://picsum.photos/seed/42/42',
+                              InkWell(
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'STARTUP_DETAIL_INFO_Row_l3nryrp1_ON_TAP');
+                                  logFirebaseEvent('Row_Launch-U-R-L');
+                                  await launchURL(widget.startup!.linkedinUrl!);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 12, 0),
+                                      child: Container(
+                                        width: 42,
+                                        height: 42,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Image.network(
+                                          'https://picsum.photos/seed/42/42',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Nome do CEO',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
-                                  ),
-                                ],
+                                    Text(
+                                      widget.startup!.comercialName!,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ],
+                                ),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -635,26 +645,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         child: InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'STARTUP_DETAIL_INFO_Image_dlhhps2w_ON_TA');
-                                            logFirebaseEvent(
-                                                'Image_Launch-U-R-L');
-                                            await launchURL(
-                                                widget.startup!.facebookUrl!);
-                                          },
-                                          child: SvgPicture.asset(
-                                            'assets/images/facebook.svg',
-                                            width: 25,
-                                            height: 25,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 8, 0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
                                                 'STARTUP_DETAIL_INFO_Image_gklylnqk_ON_TA');
                                             logFirebaseEvent(
                                                 'Image_Launch-U-R-L');
@@ -675,8 +665,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               'STARTUP_DETAIL_INFO_Image_e1351n2m_ON_TA');
                                           logFirebaseEvent(
                                               'Image_Launch-U-R-L');
-                                          await launchURL(
-                                              widget.startup!.linkedinUrl!);
+                                          await launchURL(widget
+                                              .startup!.linkedinUrlCompany!);
                                         },
                                         child: SvgPicture.asset(
                                           'assets/images/linkedin.svg',
@@ -774,32 +764,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               color: Color(0xFF022B43),
                                               fontWeight: FontWeight.w500,
                                             ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 12),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFEBB5),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 4, 12, 4),
-                                        child: Text(
-                                          widget.startup!.category!,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
                                       ),
                                     ),
                                   ),
@@ -929,6 +893,31 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFEBB5),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      12, 4, 12, 4),
+                                  child: Text(
+                                    functions.getCategory(widget.startup!),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
@@ -1119,30 +1108,40 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 18),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 12, 0),
-                                        child: Container(
-                                          width: 42,
-                                          height: 42,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/42/42',
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_DETAIL_INFO_Row_5qf2x0nl_ON_TAP');
+                                      logFirebaseEvent('Row_Launch-U-R-L');
+                                      await launchURL(
+                                          widget.startup!.linkedinUrl!);
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 12, 0),
+                                          child: Container(
+                                            width: 42,
+                                            height: 42,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/42/42',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Text(
-                                        'Nome do CEO',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ],
+                                        Text(
+                                          widget.startup!.comercialName!,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Divider(
@@ -1183,27 +1182,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'STARTUP_DETAIL_INFO_Image_yaehi7yk_ON_TA');
-                                                logFirebaseEvent(
-                                                    'Image_Launch-U-R-L');
-                                                await launchURL(widget
-                                                    .startup!.facebookUrl!);
-                                              },
-                                              child: SvgPicture.asset(
-                                                'assets/images/facebook.svg',
-                                                width: 25,
-                                                height: 25,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 8, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                logFirebaseEvent(
                                                     'STARTUP_DETAIL_INFO_Image_59lh9irz_ON_TA');
                                                 logFirebaseEvent(
                                                     'Image_Launch-U-R-L');
@@ -1224,8 +1202,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                   'STARTUP_DETAIL_INFO_Image_v20yk5wd_ON_TA');
                                               logFirebaseEvent(
                                                   'Image_Launch-U-R-L');
-                                              await launchURL(
-                                                  widget.startup!.linkedinUrl!);
+                                              await launchURL(widget.startup!
+                                                  .linkedinUrlCompany!);
                                             },
                                             child: SvgPicture.asset(
                                               'assets/images/linkedin.svg',

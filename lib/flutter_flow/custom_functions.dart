@@ -22,3 +22,14 @@ UserFavoritiesStartupsRecord getFirstFavoritiesStartups(
 String replaceCommaToSpace(String text) {
   return text.replaceAll(',', ' ');
 }
+
+List<String> splitByChar(
+  String value,
+  String splitChar,
+) {
+  return value.split(splitChar);
+}
+
+String getCategory(StartupsRecord startup) {
+  return splitByChar(startup.category ?? '', ';').first;
+}

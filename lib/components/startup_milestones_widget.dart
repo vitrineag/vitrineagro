@@ -74,11 +74,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 21, 0),
                                 child: Text(
-                                  formatNumber(
-                                    widget.startup!.clientsCount!,
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.commaDecimal,
-                                  ),
+                                  widget.startup!.clientsCount!,
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
@@ -219,56 +215,6 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                   child: Container(
                     height: 92,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Color(0xFFEBDDFF), Color(0xFFD0CCFF)],
-                        stops: [0, 1],
-                        begin: AlignmentDirectional(1, -1),
-                        end: AlignmentDirectional(-1, 1),
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Investimentos recebidos',
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
-                          Text(
-                            widget.startup!.lastInvestmentReceived!,
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 32,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
-                  child: Container(
-                    height: 92,
-                    decoration: BoxDecoration(
                       color: Color(0xFFEAF8F5),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -366,11 +312,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 21, 0),
                               child: Text(
-                                formatNumber(
-                                  widget.startup!.clientsCount!,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
-                                ),
+                                widget.startup!.clientsCount!,
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -491,56 +433,6 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                         ),
                         Text(
                           widget.startup!.lastYearGrowth!,
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Rubik',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                fontSize: 32,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
-                child: Container(
-                  height: 92,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFFEBDDFF), Color(0xFFD0CCFF)],
-                      stops: [0, 1],
-                      begin: AlignmentDirectional(1, -1),
-                      end: AlignmentDirectional(-1, 1),
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Investimentos recebidos',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Rubik',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                        ),
-                        Text(
-                          widget.startup!.lastInvestmentReceived!,
                           textAlign: TextAlign.start,
                           style: FlutterFlowTheme.of(context)
                               .bodyText1

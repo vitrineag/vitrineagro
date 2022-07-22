@@ -77,13 +77,6 @@ class _$StartupsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.facebookUrl;
-    if (value != null) {
-      result
-        ..add('facebookUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.instagramUrl;
     if (value != null) {
       result
@@ -105,23 +98,10 @@ class _$StartupsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.clientsCount;
-    if (value != null) {
-      result
-        ..add('clientsCount')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     value = object.lastYearGrowth;
     if (value != null) {
       result
         ..add('lastYearGrowth')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.lastInvestmentReceived;
-    if (value != null) {
-      result
-        ..add('lastInvestmentReceived')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -166,14 +146,6 @@ class _$StartupsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.sectorsOfActivity;
-    if (value != null) {
-      result
-        ..add('sectorsOfActivity')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
     value = object.lastYearRevenue;
     if (value != null) {
       result
@@ -185,6 +157,41 @@ class _$StartupsRecordSerializer
     if (value != null) {
       result
         ..add('maturity')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.clientsCount;
+    if (value != null) {
+      result
+        ..add('clientsCount')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.comercialName;
+    if (value != null) {
+      result
+        ..add('comercialName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.linkedinUrlCompany;
+    if (value != null) {
+      result
+        ..add('linkedinUrlCompany')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.sectorsOfActivity;
+    if (value != null) {
+      result
+        ..add('sectorsOfActivity')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.feedNews;
+    if (value != null) {
+      result
+        ..add('feedNews')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -243,10 +250,6 @@ class _$StartupsRecordSerializer
           result.logo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'facebookUrl':
-          result.facebookUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'instagramUrl':
           result.instagramUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -259,16 +262,8 @@ class _$StartupsRecordSerializer
           result.pitchYoutubeUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'clientsCount':
-          result.clientsCount = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
         case 'lastYearGrowth':
           result.lastYearGrowth = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'lastInvestmentReceived':
-          result.lastInvestmentReceived = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'pitchPdfUrl':
@@ -295,18 +290,32 @@ class _$StartupsRecordSerializer
           result.site = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'sectorsOfActivity':
-          result.sectorsOfActivity.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
-          break;
         case 'lastYearRevenue':
           result.lastYearRevenue = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'maturity':
           result.maturity = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'clientsCount':
+          result.clientsCount = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'comercialName':
+          result.comercialName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'linkedinUrlCompany':
+          result.linkedinUrlCompany = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'sectorsOfActivity':
+          result.sectorsOfActivity = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'feedNews':
+          result.feedNews = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -340,19 +349,13 @@ class _$StartupsRecord extends StartupsRecord {
   @override
   final String? logo;
   @override
-  final String? facebookUrl;
-  @override
   final String? instagramUrl;
   @override
   final String? linkedinUrl;
   @override
   final String? pitchYoutubeUrl;
   @override
-  final int? clientsCount;
-  @override
   final String? lastYearGrowth;
-  @override
-  final String? lastInvestmentReceived;
   @override
   final String? pitchPdfUrl;
   @override
@@ -366,11 +369,19 @@ class _$StartupsRecord extends StartupsRecord {
   @override
   final String? site;
   @override
-  final BuiltList<String>? sectorsOfActivity;
-  @override
   final String? lastYearRevenue;
   @override
   final String? maturity;
+  @override
+  final String? clientsCount;
+  @override
+  final String? comercialName;
+  @override
+  final String? linkedinUrlCompany;
+  @override
+  final String? sectorsOfActivity;
+  @override
+  final String? feedNews;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -386,22 +397,23 @@ class _$StartupsRecord extends StartupsRecord {
       this.customerNiche,
       this.businessModel,
       this.logo,
-      this.facebookUrl,
       this.instagramUrl,
       this.linkedinUrl,
       this.pitchYoutubeUrl,
-      this.clientsCount,
       this.lastYearGrowth,
-      this.lastInvestmentReceived,
       this.pitchPdfUrl,
       this.state,
       this.country,
       this.employeeCount,
       this.foundationYear,
       this.site,
-      this.sectorsOfActivity,
       this.lastYearRevenue,
       this.maturity,
+      this.clientsCount,
+      this.comercialName,
+      this.linkedinUrlCompany,
+      this.sectorsOfActivity,
+      this.feedNews,
       this.ffRef})
       : super._();
 
@@ -425,22 +437,23 @@ class _$StartupsRecord extends StartupsRecord {
         customerNiche == other.customerNiche &&
         businessModel == other.businessModel &&
         logo == other.logo &&
-        facebookUrl == other.facebookUrl &&
         instagramUrl == other.instagramUrl &&
         linkedinUrl == other.linkedinUrl &&
         pitchYoutubeUrl == other.pitchYoutubeUrl &&
-        clientsCount == other.clientsCount &&
         lastYearGrowth == other.lastYearGrowth &&
-        lastInvestmentReceived == other.lastInvestmentReceived &&
         pitchPdfUrl == other.pitchPdfUrl &&
         state == other.state &&
         country == other.country &&
         employeeCount == other.employeeCount &&
         foundationYear == other.foundationYear &&
         site == other.site &&
-        sectorsOfActivity == other.sectorsOfActivity &&
         lastYearRevenue == other.lastYearRevenue &&
         maturity == other.maturity &&
+        clientsCount == other.clientsCount &&
+        comercialName == other.comercialName &&
+        linkedinUrlCompany == other.linkedinUrlCompany &&
+        sectorsOfActivity == other.sectorsOfActivity &&
+        feedNews == other.feedNews &&
         ffRef == other.ffRef;
   }
 
@@ -464,25 +477,25 @@ class _$StartupsRecord extends StartupsRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc(0, name.hashCode), category.hashCode), city.hashCode), valueProposalText.hashCode), problemResolutionText.hashCode), customerNiche.hashCode),
-                                                                                businessModel.hashCode),
-                                                                            logo.hashCode),
-                                                                        facebookUrl.hashCode),
-                                                                    instagramUrl.hashCode),
-                                                                linkedinUrl.hashCode),
-                                                            pitchYoutubeUrl.hashCode),
-                                                        clientsCount.hashCode),
-                                                    lastYearGrowth.hashCode),
-                                                lastInvestmentReceived.hashCode),
-                                            pitchPdfUrl.hashCode),
-                                        state.hashCode),
-                                    country.hashCode),
-                                employeeCount.hashCode),
-                            foundationYear.hashCode),
-                        site.hashCode),
-                    sectorsOfActivity.hashCode),
-                lastYearRevenue.hashCode),
-            maturity.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc(0, name.hashCode), category.hashCode), city.hashCode), valueProposalText.hashCode), problemResolutionText.hashCode), customerNiche.hashCode), businessModel.hashCode),
+                                                                                logo.hashCode),
+                                                                            instagramUrl.hashCode),
+                                                                        linkedinUrl.hashCode),
+                                                                    pitchYoutubeUrl.hashCode),
+                                                                lastYearGrowth.hashCode),
+                                                            pitchPdfUrl.hashCode),
+                                                        state.hashCode),
+                                                    country.hashCode),
+                                                employeeCount.hashCode),
+                                            foundationYear.hashCode),
+                                        site.hashCode),
+                                    lastYearRevenue.hashCode),
+                                maturity.hashCode),
+                            clientsCount.hashCode),
+                        comercialName.hashCode),
+                    linkedinUrlCompany.hashCode),
+                sectorsOfActivity.hashCode),
+            feedNews.hashCode),
         ffRef.hashCode));
   }
 
@@ -497,22 +510,23 @@ class _$StartupsRecord extends StartupsRecord {
           ..add('customerNiche', customerNiche)
           ..add('businessModel', businessModel)
           ..add('logo', logo)
-          ..add('facebookUrl', facebookUrl)
           ..add('instagramUrl', instagramUrl)
           ..add('linkedinUrl', linkedinUrl)
           ..add('pitchYoutubeUrl', pitchYoutubeUrl)
-          ..add('clientsCount', clientsCount)
           ..add('lastYearGrowth', lastYearGrowth)
-          ..add('lastInvestmentReceived', lastInvestmentReceived)
           ..add('pitchPdfUrl', pitchPdfUrl)
           ..add('state', state)
           ..add('country', country)
           ..add('employeeCount', employeeCount)
           ..add('foundationYear', foundationYear)
           ..add('site', site)
-          ..add('sectorsOfActivity', sectorsOfActivity)
           ..add('lastYearRevenue', lastYearRevenue)
           ..add('maturity', maturity)
+          ..add('clientsCount', clientsCount)
+          ..add('comercialName', comercialName)
+          ..add('linkedinUrlCompany', linkedinUrlCompany)
+          ..add('sectorsOfActivity', sectorsOfActivity)
+          ..add('feedNews', feedNews)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -558,10 +572,6 @@ class StartupsRecordBuilder
   String? get logo => _$this._logo;
   set logo(String? logo) => _$this._logo = logo;
 
-  String? _facebookUrl;
-  String? get facebookUrl => _$this._facebookUrl;
-  set facebookUrl(String? facebookUrl) => _$this._facebookUrl = facebookUrl;
-
   String? _instagramUrl;
   String? get instagramUrl => _$this._instagramUrl;
   set instagramUrl(String? instagramUrl) => _$this._instagramUrl = instagramUrl;
@@ -575,19 +585,10 @@ class StartupsRecordBuilder
   set pitchYoutubeUrl(String? pitchYoutubeUrl) =>
       _$this._pitchYoutubeUrl = pitchYoutubeUrl;
 
-  int? _clientsCount;
-  int? get clientsCount => _$this._clientsCount;
-  set clientsCount(int? clientsCount) => _$this._clientsCount = clientsCount;
-
   String? _lastYearGrowth;
   String? get lastYearGrowth => _$this._lastYearGrowth;
   set lastYearGrowth(String? lastYearGrowth) =>
       _$this._lastYearGrowth = lastYearGrowth;
-
-  String? _lastInvestmentReceived;
-  String? get lastInvestmentReceived => _$this._lastInvestmentReceived;
-  set lastInvestmentReceived(String? lastInvestmentReceived) =>
-      _$this._lastInvestmentReceived = lastInvestmentReceived;
 
   String? _pitchPdfUrl;
   String? get pitchPdfUrl => _$this._pitchPdfUrl;
@@ -615,12 +616,6 @@ class StartupsRecordBuilder
   String? get site => _$this._site;
   set site(String? site) => _$this._site = site;
 
-  ListBuilder<String>? _sectorsOfActivity;
-  ListBuilder<String> get sectorsOfActivity =>
-      _$this._sectorsOfActivity ??= new ListBuilder<String>();
-  set sectorsOfActivity(ListBuilder<String>? sectorsOfActivity) =>
-      _$this._sectorsOfActivity = sectorsOfActivity;
-
   String? _lastYearRevenue;
   String? get lastYearRevenue => _$this._lastYearRevenue;
   set lastYearRevenue(String? lastYearRevenue) =>
@@ -629,6 +624,29 @@ class StartupsRecordBuilder
   String? _maturity;
   String? get maturity => _$this._maturity;
   set maturity(String? maturity) => _$this._maturity = maturity;
+
+  String? _clientsCount;
+  String? get clientsCount => _$this._clientsCount;
+  set clientsCount(String? clientsCount) => _$this._clientsCount = clientsCount;
+
+  String? _comercialName;
+  String? get comercialName => _$this._comercialName;
+  set comercialName(String? comercialName) =>
+      _$this._comercialName = comercialName;
+
+  String? _linkedinUrlCompany;
+  String? get linkedinUrlCompany => _$this._linkedinUrlCompany;
+  set linkedinUrlCompany(String? linkedinUrlCompany) =>
+      _$this._linkedinUrlCompany = linkedinUrlCompany;
+
+  String? _sectorsOfActivity;
+  String? get sectorsOfActivity => _$this._sectorsOfActivity;
+  set sectorsOfActivity(String? sectorsOfActivity) =>
+      _$this._sectorsOfActivity = sectorsOfActivity;
+
+  String? _feedNews;
+  String? get feedNews => _$this._feedNews;
+  set feedNews(String? feedNews) => _$this._feedNews = feedNews;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -649,22 +667,23 @@ class StartupsRecordBuilder
       _customerNiche = $v.customerNiche;
       _businessModel = $v.businessModel;
       _logo = $v.logo;
-      _facebookUrl = $v.facebookUrl;
       _instagramUrl = $v.instagramUrl;
       _linkedinUrl = $v.linkedinUrl;
       _pitchYoutubeUrl = $v.pitchYoutubeUrl;
-      _clientsCount = $v.clientsCount;
       _lastYearGrowth = $v.lastYearGrowth;
-      _lastInvestmentReceived = $v.lastInvestmentReceived;
       _pitchPdfUrl = $v.pitchPdfUrl;
       _state = $v.state;
       _country = $v.country;
       _employeeCount = $v.employeeCount;
       _foundationYear = $v.foundationYear;
       _site = $v.site;
-      _sectorsOfActivity = $v.sectorsOfActivity?.toBuilder();
       _lastYearRevenue = $v.lastYearRevenue;
       _maturity = $v.maturity;
+      _clientsCount = $v.clientsCount;
+      _comercialName = $v.comercialName;
+      _linkedinUrlCompany = $v.linkedinUrlCompany;
+      _sectorsOfActivity = $v.sectorsOfActivity;
+      _feedNews = $v.feedNews;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -684,46 +703,34 @@ class StartupsRecordBuilder
 
   @override
   _$StartupsRecord build() {
-    _$StartupsRecord _$result;
-    try {
-      _$result = _$v ??
-          new _$StartupsRecord._(
-              name: name,
-              category: category,
-              city: city,
-              valueProposalText: valueProposalText,
-              problemResolutionText: problemResolutionText,
-              customerNiche: customerNiche,
-              businessModel: businessModel,
-              logo: logo,
-              facebookUrl: facebookUrl,
-              instagramUrl: instagramUrl,
-              linkedinUrl: linkedinUrl,
-              pitchYoutubeUrl: pitchYoutubeUrl,
-              clientsCount: clientsCount,
-              lastYearGrowth: lastYearGrowth,
-              lastInvestmentReceived: lastInvestmentReceived,
-              pitchPdfUrl: pitchPdfUrl,
-              state: state,
-              country: country,
-              employeeCount: employeeCount,
-              foundationYear: foundationYear,
-              site: site,
-              sectorsOfActivity: _sectorsOfActivity?.build(),
-              lastYearRevenue: lastYearRevenue,
-              maturity: maturity,
-              ffRef: ffRef);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'sectorsOfActivity';
-        _sectorsOfActivity?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'StartupsRecord', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$StartupsRecord._(
+            name: name,
+            category: category,
+            city: city,
+            valueProposalText: valueProposalText,
+            problemResolutionText: problemResolutionText,
+            customerNiche: customerNiche,
+            businessModel: businessModel,
+            logo: logo,
+            instagramUrl: instagramUrl,
+            linkedinUrl: linkedinUrl,
+            pitchYoutubeUrl: pitchYoutubeUrl,
+            lastYearGrowth: lastYearGrowth,
+            pitchPdfUrl: pitchPdfUrl,
+            state: state,
+            country: country,
+            employeeCount: employeeCount,
+            foundationYear: foundationYear,
+            site: site,
+            lastYearRevenue: lastYearRevenue,
+            maturity: maturity,
+            clientsCount: clientsCount,
+            comercialName: comercialName,
+            linkedinUrlCompany: linkedinUrlCompany,
+            sectorsOfActivity: sectorsOfActivity,
+            feedNews: feedNews,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

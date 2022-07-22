@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../components/favorite_toggle_widget.dart';
 import '../components/startup_detail_info_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -327,20 +328,8 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           'vitrineagro://vitrineagro.com${GoRouter.of(context).location}');
                                     },
                                   ),
-                                  FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 45,
-                                    icon: Icon(
-                                      Icons.star_border,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      size: 30,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
+                                  FavoriteToggleWidget(
+                                    startup: startupDetailStartupsRecord,
                                   ),
                                 ],
                               ),
@@ -385,20 +374,8 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                     height: 34,
                                     fit: BoxFit.cover,
                                   ),
-                                  FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 45,
-                                    icon: Icon(
-                                      Icons.star_border,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      size: 30,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
+                                  FavoriteToggleWidget(
+                                    startup: startupDetailStartupsRecord,
                                   ),
                                 ],
                               ),

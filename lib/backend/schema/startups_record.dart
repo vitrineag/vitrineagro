@@ -27,19 +27,13 @@ abstract class StartupsRecord
 
   String? get logo;
 
-  String? get facebookUrl;
-
   String? get instagramUrl;
 
   String? get linkedinUrl;
 
   String? get pitchYoutubeUrl;
 
-  int? get clientsCount;
-
   String? get lastYearGrowth;
-
-  String? get lastInvestmentReceived;
 
   String? get pitchPdfUrl;
 
@@ -53,11 +47,19 @@ abstract class StartupsRecord
 
   String? get site;
 
-  BuiltList<String>? get sectorsOfActivity;
-
   String? get lastYearRevenue;
 
   String? get maturity;
+
+  String? get clientsCount;
+
+  String? get comercialName;
+
+  String? get linkedinUrlCompany;
+
+  String? get sectorsOfActivity;
+
+  String? get feedNews;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -72,22 +74,23 @@ abstract class StartupsRecord
     ..customerNiche = ''
     ..businessModel = ''
     ..logo = ''
-    ..facebookUrl = ''
     ..instagramUrl = ''
     ..linkedinUrl = ''
     ..pitchYoutubeUrl = ''
-    ..clientsCount = 0
     ..lastYearGrowth = ''
-    ..lastInvestmentReceived = ''
     ..pitchPdfUrl = ''
     ..state = ''
     ..country = ''
     ..employeeCount = ''
     ..foundationYear = 0
     ..site = ''
-    ..sectorsOfActivity = ListBuilder()
     ..lastYearRevenue = ''
-    ..maturity = '';
+    ..maturity = ''
+    ..clientsCount = ''
+    ..comercialName = ''
+    ..linkedinUrlCompany = ''
+    ..sectorsOfActivity = ''
+    ..feedNews = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('startups');
@@ -111,23 +114,23 @@ abstract class StartupsRecord
           ..customerNiche = snapshot.data['customerNiche']
           ..businessModel = snapshot.data['businessModel']
           ..logo = snapshot.data['logo']
-          ..facebookUrl = snapshot.data['facebookUrl']
           ..instagramUrl = snapshot.data['instagramUrl']
           ..linkedinUrl = snapshot.data['linkedinUrl']
           ..pitchYoutubeUrl = snapshot.data['pitchYoutubeUrl']
-          ..clientsCount = snapshot.data['clientsCount']?.round()
           ..lastYearGrowth = snapshot.data['lastYearGrowth']
-          ..lastInvestmentReceived = snapshot.data['lastInvestmentReceived']
           ..pitchPdfUrl = snapshot.data['pitchPdfUrl']
           ..state = snapshot.data['state']
           ..country = snapshot.data['country']
           ..employeeCount = snapshot.data['employeeCount']
           ..foundationYear = snapshot.data['foundationYear']?.round()
           ..site = snapshot.data['site']
-          ..sectorsOfActivity =
-              safeGet(() => ListBuilder(snapshot.data['sectorsOfActivity']))
           ..lastYearRevenue = snapshot.data['lastYearRevenue']
           ..maturity = snapshot.data['maturity']
+          ..clientsCount = snapshot.data['clientsCount']
+          ..comercialName = snapshot.data['comercialName']
+          ..linkedinUrlCompany = snapshot.data['linkedinUrlCompany']
+          ..sectorsOfActivity = snapshot.data['sectorsOfActivity']
+          ..feedNews = snapshot.data['feedNews']
           ..ffRef = StartupsRecord.collection.doc(snapshot.objectID),
       );
 
@@ -165,13 +168,10 @@ Map<String, dynamic> createStartupsRecordData({
   String? customerNiche,
   String? businessModel,
   String? logo,
-  String? facebookUrl,
   String? instagramUrl,
   String? linkedinUrl,
   String? pitchYoutubeUrl,
-  int? clientsCount,
   String? lastYearGrowth,
-  String? lastInvestmentReceived,
   String? pitchPdfUrl,
   String? state,
   String? country,
@@ -180,6 +180,11 @@ Map<String, dynamic> createStartupsRecordData({
   String? site,
   String? lastYearRevenue,
   String? maturity,
+  String? clientsCount,
+  String? comercialName,
+  String? linkedinUrlCompany,
+  String? sectorsOfActivity,
+  String? feedNews,
 }) {
   final firestoreData = serializers.toFirestore(
     StartupsRecord.serializer,
@@ -193,22 +198,23 @@ Map<String, dynamic> createStartupsRecordData({
         ..customerNiche = customerNiche
         ..businessModel = businessModel
         ..logo = logo
-        ..facebookUrl = facebookUrl
         ..instagramUrl = instagramUrl
         ..linkedinUrl = linkedinUrl
         ..pitchYoutubeUrl = pitchYoutubeUrl
-        ..clientsCount = clientsCount
         ..lastYearGrowth = lastYearGrowth
-        ..lastInvestmentReceived = lastInvestmentReceived
         ..pitchPdfUrl = pitchPdfUrl
         ..state = state
         ..country = country
         ..employeeCount = employeeCount
         ..foundationYear = foundationYear
         ..site = site
-        ..sectorsOfActivity = null
         ..lastYearRevenue = lastYearRevenue
-        ..maturity = maturity,
+        ..maturity = maturity
+        ..clientsCount = clientsCount
+        ..comercialName = comercialName
+        ..linkedinUrlCompany = linkedinUrlCompany
+        ..sectorsOfActivity = sectorsOfActivity
+        ..feedNews = feedNews,
     ),
   );
 
