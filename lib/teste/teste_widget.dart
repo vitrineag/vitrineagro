@@ -1,3 +1,4 @@
+import '../flutter_flow/flutter_flow_pdf_viewer.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,17 @@ class _TesteWidgetState extends State<TesteWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: FlutterFlowPdfViewer(
+            networkPath:
+                'https://drive.google.com/file/d/1t7gGlcdTrJk6wm42KrIYR--RInVUSYjv/view?usp=sharing',
+            height: 300,
+            horizontalScroll: false,
+          ),
+        ),
+      ),
     );
   }
 }

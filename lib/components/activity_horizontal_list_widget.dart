@@ -68,6 +68,14 @@ class _ActivityHorizontalListWidgetState
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                          child: Image.network(
+                            rowSectorsOfActivityRecord!.icone!,
+                            height: 18,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         Text(
                           rowSectorsOfActivityRecord!.description!,
                           style: FlutterFlowTheme.of(context).bodyText1,
