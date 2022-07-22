@@ -438,6 +438,16 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     );
                                     await currentUserReference!
                                         .update(usersUpdateData);
+                                    logFirebaseEvent('MoreInfo_Backend-Call');
+
+                                    final userIsLoggedCreateData =
+                                        createUserIsLoggedRecordData(
+                                      user: currentUserReference,
+                                      uid: currentUserUid,
+                                    );
+                                    await UserIsLoggedRecord.collection
+                                        .doc()
+                                        .set(userIsLoggedCreateData);
                                     logFirebaseEvent('MoreInfo_Navigate-To');
                                     context.pushNamed(
                                       'StartupList',

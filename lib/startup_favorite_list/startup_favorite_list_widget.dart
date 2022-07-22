@@ -229,13 +229,13 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                             FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent(
-                                    'STARTUP_FAVORITE_LIST_FAVORITOS_BTN_ON_T');
+                                    'STARTUP_FAVORITE_LIST_VITRINE_BTN_ON_TAP');
                                 logFirebaseEvent('Button_Navigate-To');
                                 context.pushNamed('StartupList');
                               },
-                              text: 'favoritos',
+                              text: 'Vitrine',
                               icon: Icon(
-                                Icons.star_sharp,
+                                Icons.assignment_outlined,
                                 color: Color(0xFFFCC800),
                                 size: 15,
                               ),

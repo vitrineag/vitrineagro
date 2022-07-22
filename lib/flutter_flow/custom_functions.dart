@@ -10,10 +10,6 @@ import '../backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../auth/auth_util.dart';
 
-int getMoreActivitiesCount(List<String> activitiesList) {
-  return activitiesList.length - 2;
-}
-
 UserFavoritiesStartupsRecord getFirstFavoritiesStartups(
     List<UserFavoritiesStartupsRecord> favoriteStartupUsers) {
   return favoriteStartupUsers.first;

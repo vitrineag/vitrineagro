@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../custom_code/widgets/index.dart' as custom_widgets;
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_search/text_search.dart';
 
 class LoadingWidget extends StatefulWidget {
   const LoadingWidget({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class LoadingWidget extends StatefulWidget {
 }
 
 class _LoadingWidgetState extends State<LoadingWidget> {
+  List<UserIsLoggedRecord> simpleSearchResults = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -23,9 +26,21 @@ class _LoadingWidgetState extends State<LoadingWidget> {
     // On page load action.
     SchedulerBinding.instance?.addPostFrameCallback((_) async {
       logFirebaseEvent('LOADING_PAGE_Loading_ON_PAGE_LOAD');
-      logFirebaseEvent('Loading_Wait-Delay');
-      await Future.delayed(const Duration(milliseconds: 1000));
-      if ((currentUserDisplayName) != '') {
+      logFirebaseEvent('Loading_Simple-Search');
+      await queryUserIsLoggedRecordOnce()
+          .then(
+            (records) => simpleSearchResults = TextSearch(
+              records
+                  .map(
+                    (record) => TextSearchItem(record, [record.uid!]),
+                  )
+                  .toList(),
+            ).search(currentUserUid).map((r) => r.object).take(1).toList(),
+          )
+          .onError((_, __) => simpleSearchResults = [])
+          .whenComplete(() => setState(() {}));
+
+      if ((simpleSearchResults.length) > 0) {
         logFirebaseEvent('Loading_Navigate-To');
         context.pushNamed('StartupList');
       } else {

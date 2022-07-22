@@ -9,7 +9,9 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SectorsOfActivityRecord.serializer)
       ..add(StartupsRecord.serializer)
+      ..add(UserContactRecord.serializer)
       ..add(UserFavoritiesStartupsRecord.serializer)
+      ..add(UserIsLoggedRecord.serializer)
       ..add(UserTypeRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(

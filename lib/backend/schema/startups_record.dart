@@ -61,6 +61,8 @@ abstract class StartupsRecord
 
   String? get feedNews;
 
+  int? get comercialContact;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -90,7 +92,8 @@ abstract class StartupsRecord
     ..comercialName = ''
     ..linkedinUrlCompany = ''
     ..sectorsOfActivity = ''
-    ..feedNews = '';
+    ..feedNews = ''
+    ..comercialContact = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('startups');
@@ -131,6 +134,7 @@ abstract class StartupsRecord
           ..linkedinUrlCompany = snapshot.data['linkedinUrlCompany']
           ..sectorsOfActivity = snapshot.data['sectorsOfActivity']
           ..feedNews = snapshot.data['feedNews']
+          ..comercialContact = snapshot.data['comercialContact']?.round()
           ..ffRef = StartupsRecord.collection.doc(snapshot.objectID),
       );
 
@@ -185,6 +189,7 @@ Map<String, dynamic> createStartupsRecordData({
   String? linkedinUrlCompany,
   String? sectorsOfActivity,
   String? feedNews,
+  int? comercialContact,
 }) {
   final firestoreData = serializers.toFirestore(
     StartupsRecord.serializer,
@@ -214,7 +219,8 @@ Map<String, dynamic> createStartupsRecordData({
         ..comercialName = comercialName
         ..linkedinUrlCompany = linkedinUrlCompany
         ..sectorsOfActivity = sectorsOfActivity
-        ..feedNews = feedNews,
+        ..feedNews = feedNews
+        ..comercialContact = comercialContact,
     ),
   );
 

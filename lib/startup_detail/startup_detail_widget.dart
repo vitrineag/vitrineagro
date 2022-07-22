@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/favorite_toggle_widget.dart';
 import '../components/startup_detail_info_widget.dart';
@@ -5,6 +6,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -173,9 +175,61 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Button pressed ...');
+                                                    onPressed: () async {
+                                                      logFirebaseEvent(
+                                                          'STARTUP_DETAIL_ENTRAR_EM_CONTATO_BTN_ON_');
+                                                      logFirebaseEvent(
+                                                          'Button_Backend-Call');
+
+                                                      final userContactCreateData =
+                                                          createUserContactRecordData(
+                                                        createdDate:
+                                                            getCurrentTimestamp,
+                                                        startup:
+                                                            startupDetailStartupsRecord!
+                                                                .reference,
+                                                        startupContact:
+                                                            startupDetailStartupsRecord!
+                                                                .comercialContact
+                                                                ?.toString(),
+                                                        startupName:
+                                                            startupDetailStartupsRecord!
+                                                                .name,
+                                                        user:
+                                                            currentUserReference,
+                                                        userEmail:
+                                                            currentUserEmail,
+                                                        userName:
+                                                            currentUserDisplayName,
+                                                      );
+                                                      await UserContactRecord
+                                                          .collection
+                                                          .doc()
+                                                          .set(
+                                                              userContactCreateData);
+                                                      logFirebaseEvent(
+                                                          'Button_Alert-Dialog');
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Parabéns você vai contactar uma startup'),
+                                                            content: Text(
+                                                                'Agora é só aguardar que vamos te conectar com essa empresa'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
                                                     },
                                                     text: 'entrar em contato',
                                                     options: FFButtonOptions(
@@ -286,8 +340,48 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                     },
                                   ),
                                   FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
+                                    onPressed: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_DETAIL_ENTRAR_EM_CONTATO_BTN_ON_');
+                                      logFirebaseEvent('Button_Backend-Call');
+
+                                      final userContactCreateData =
+                                          createUserContactRecordData(
+                                        createdDate: getCurrentTimestamp,
+                                        startup: startupDetailStartupsRecord!
+                                            .reference,
+                                        startupContact:
+                                            startupDetailStartupsRecord!
+                                                .comercialContact
+                                                ?.toString(),
+                                        startupName:
+                                            startupDetailStartupsRecord!.name,
+                                        user: currentUserReference,
+                                        userEmail: currentUserEmail,
+                                        userName: currentUserDisplayName,
+                                      );
+                                      await UserContactRecord.collection
+                                          .doc()
+                                          .set(userContactCreateData);
+                                      logFirebaseEvent('Button_Alert-Dialog');
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                'Parabéns você vai contactar uma startup'),
+                                            content: Text(
+                                                'Agora é só aguardar que vamos te conectar com essa empresa'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
                                     },
                                     text: 'entrar em contato',
                                     options: FFButtonOptions(
