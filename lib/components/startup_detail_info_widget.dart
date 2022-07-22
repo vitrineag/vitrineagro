@@ -9,6 +9,7 @@ import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -1038,36 +1039,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           maxWidth: 356,
                         ),
                         decoration: BoxDecoration(),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Text(
-                                  'Apresentação',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Rubik',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                              FlutterFlowPdfViewer(
-                                networkPath: widget.startup!.pitchPdfUrl!,
-                                height: 180,
-                                horizontalScroll: true,
-                              ),
-                            ],
-                          ),
+                        child: Html(
+                          data: widget.startup!.pitchPdfUrl!,
                         ),
                       ),
                       Padding(
