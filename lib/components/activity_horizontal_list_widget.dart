@@ -26,9 +26,7 @@ class _ActivityHorizontalListWidgetState
       stream: querySectorsOfActivityRecord(
         queryBuilder: (sectorsOfActivityRecord) =>
             sectorsOfActivityRecord.where('description',
-                whereIn: functions.splitByChar(
-                    widget.startup!.sectorsOfActivity!, ', \\n')),
-        limit: 2,
+                whereIn: functions.getSectorsOfActivity(widget.startup!)),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -45,39 +43,42 @@ class _ActivityHorizontalListWidgetState
         }
         List<SectorsOfActivityRecord> rowSectorsOfActivityRecordList =
             snapshot.data!;
-        return Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children:
-              List.generate(rowSectorsOfActivityRecordList.length, (rowIndex) {
-            final rowSectorsOfActivityRecord =
-                rowSectorsOfActivityRecordList[rowIndex];
-            return Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-              child: Container(
-                height: 32,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBtnText,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Color(0xFF707070),
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: List.generate(rowSectorsOfActivityRecordList.length,
+                (rowIndex) {
+              final rowSectorsOfActivityRecord =
+                  rowSectorsOfActivityRecordList[rowIndex];
+              return Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                child: Container(
+                  height: 32,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBtnText,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: Color(0xFF707070),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          rowSectorsOfActivityRecord!.description!,
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        rowSectorsOfActivityRecord!.description!,
-                        style: FlutterFlowTheme.of(context).bodyText1,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }),
+              );
+            }),
+          ),
         );
       },
     );

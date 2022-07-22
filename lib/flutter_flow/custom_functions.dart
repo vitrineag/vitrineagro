@@ -33,3 +33,7 @@ List<String> splitByChar(
 String getCategory(StartupsRecord startup) {
   return splitByChar(startup.category ?? '', ';').first;
 }
+
+List<String> getSectorsOfActivity(StartupsRecord startup) {
+  return splitByChar(startup!.sectorsOfActivity!, ', \n');
+}

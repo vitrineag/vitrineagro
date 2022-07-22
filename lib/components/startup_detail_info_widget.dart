@@ -234,7 +234,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                   0, 0, 0, 12),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              color: Color(0xFFD6EFE8),
+                                              color: Color(0xFFFFEBB5),
                                               borderRadius:
                                                   BorderRadius.circular(20),
                                             ),
@@ -242,14 +242,16 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(12, 4, 12, 4),
                                               child: Text(
-                                                widget.startup!.category!,
+                                                functions.getCategory(
+                                                    widget.startup!),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily: 'Rubik',
-                                                          color:
-                                                              Color(0xFF12654E),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -952,15 +954,21 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                     ),
                               ),
                             ),
-                            if (responsiveVisibility(
-                              context: context,
-                              tablet: false,
-                              tabletLandscape: false,
-                              desktop: false,
-                            ))
-                              ActivityHorizontalListWidget(
-                                startup: widget.startup,
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(),
+                              child: Visibility(
+                                visible: responsiveVisibility(
+                                  context: context,
+                                  tablet: false,
+                                  tabletLandscape: false,
+                                  desktop: false,
+                                ),
+                                child: ActivityHorizontalListWidget(
+                                  startup: widget.startup,
+                                ),
                               ),
+                            ),
                           ],
                         ),
                       ),

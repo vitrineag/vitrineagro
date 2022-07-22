@@ -258,10 +258,14 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                         ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 24),
-                  child: ActivityHorizontalListWidget(
-                    startup: widget.startup,
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 24),
+                    child: ActivityHorizontalListWidget(
+                      startup: widget.startup,
+                    ),
                   ),
                 ),
                 Row(
