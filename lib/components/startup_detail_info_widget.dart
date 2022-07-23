@@ -1,7 +1,6 @@
 import '../backend/backend.dart';
 import '../components/activity_horizontal_list_widget.dart';
 import '../components/startup_milestones_widget.dart';
-import '../flutter_flow/flutter_flow_pdf_viewer.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_youtube_player.dart';
@@ -527,10 +526,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       ),
                                 ),
                               ),
-                              FlutterFlowPdfViewer(
-                                networkPath: widget.startup!.pitchPdfUrl!,
-                                height: 180,
-                                horizontalScroll: true,
+                              Html(
+                                data: widget.startup!.pitchPdfUrl!,
                               ),
                             ],
                           ),
@@ -1039,8 +1036,24 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           maxWidth: 356,
                         ),
                         decoration: BoxDecoration(),
-                        child: Html(
-                          data: widget.startup!.pitchPdfUrl!,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Apresentação',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                            Html(
+                              data: widget.startup!.pitchPdfUrl!,
+                            ),
+                          ],
                         ),
                       ),
                       Padding(

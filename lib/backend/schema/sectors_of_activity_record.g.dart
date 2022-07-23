@@ -32,10 +32,10 @@ class _$SectorsOfActivityRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.icone;
+    value = object.icon;
     if (value != null) {
       result
-        ..add('icone')
+        ..add('icon')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -66,8 +66,8 @@ class _$SectorsOfActivityRecordSerializer
           result.description = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'icone':
-          result.icone = serializers.deserialize(value,
+        case 'icon':
+          result.icon = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -87,7 +87,7 @@ class _$SectorsOfActivityRecord extends SectorsOfActivityRecord {
   @override
   final String? description;
   @override
-  final String? icone;
+  final String? icon;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -95,7 +95,7 @@ class _$SectorsOfActivityRecord extends SectorsOfActivityRecord {
           [void Function(SectorsOfActivityRecordBuilder)? updates]) =>
       (new SectorsOfActivityRecordBuilder()..update(updates)).build();
 
-  _$SectorsOfActivityRecord._({this.description, this.icone, this.ffRef})
+  _$SectorsOfActivityRecord._({this.description, this.icon, this.ffRef})
       : super._();
 
   @override
@@ -112,21 +112,21 @@ class _$SectorsOfActivityRecord extends SectorsOfActivityRecord {
     if (identical(other, this)) return true;
     return other is SectorsOfActivityRecord &&
         description == other.description &&
-        icone == other.icone &&
+        icon == other.icon &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf(
-        $jc($jc($jc(0, description.hashCode), icone.hashCode), ffRef.hashCode));
+        $jc($jc($jc(0, description.hashCode), icon.hashCode), ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('SectorsOfActivityRecord')
           ..add('description', description)
-          ..add('icone', icone)
+          ..add('icon', icon)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -141,9 +141,9 @@ class SectorsOfActivityRecordBuilder
   String? get description => _$this._description;
   set description(String? description) => _$this._description = description;
 
-  String? _icone;
-  String? get icone => _$this._icone;
-  set icone(String? icone) => _$this._icone = icone;
+  String? _icon;
+  String? get icon => _$this._icon;
+  set icon(String? icon) => _$this._icon = icon;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -157,7 +157,7 @@ class SectorsOfActivityRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _description = $v.description;
-      _icone = $v.icone;
+      _icon = $v.icon;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -179,7 +179,7 @@ class SectorsOfActivityRecordBuilder
   _$SectorsOfActivityRecord build() {
     final _$result = _$v ??
         new _$SectorsOfActivityRecord._(
-            description: description, icone: icone, ffRef: ffRef);
+            description: description, icon: icon, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

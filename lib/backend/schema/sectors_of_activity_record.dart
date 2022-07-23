@@ -13,7 +13,7 @@ abstract class SectorsOfActivityRecord
 
   String? get description;
 
-  String? get icone;
+  String? get icon;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -22,7 +22,7 @@ abstract class SectorsOfActivityRecord
   static void _initializeBuilder(SectorsOfActivityRecordBuilder builder) =>
       builder
         ..description = ''
-        ..icone = '';
+        ..icon = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('sectorsOfActivity');
@@ -49,14 +49,14 @@ abstract class SectorsOfActivityRecord
 
 Map<String, dynamic> createSectorsOfActivityRecordData({
   String? description,
-  String? icone,
+  String? icon,
 }) {
   final firestoreData = serializers.toFirestore(
     SectorsOfActivityRecord.serializer,
     SectorsOfActivityRecord(
       (s) => s
         ..description = description
-        ..icone = icone,
+        ..icon = icon,
     ),
   );
 

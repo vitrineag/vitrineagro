@@ -71,7 +71,7 @@ class _ActivityHorizontalListWidgetState
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                           child: Image.network(
-                            rowSectorsOfActivityRecord!.icone!,
+                            rowSectorsOfActivityRecord!.icon!,
                             height: 18,
                             fit: BoxFit.cover,
                           ),
