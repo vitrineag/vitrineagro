@@ -11,6 +11,7 @@ import 'schema/user_type_record.dart';
 import 'schema/sectors_of_activity_record.dart';
 import 'schema/user_contact_record.dart';
 import 'schema/user_is_logged_record.dart';
+import 'schema/startup_news_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -25,6 +26,7 @@ export 'schema/user_type_record.dart';
 export 'schema/sectors_of_activity_record.dart';
 export 'schema/user_contact_record.dart';
 export 'schema/user_is_logged_record.dart';
+export 'schema/startup_news_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -317,6 +319,48 @@ Future<FFFirestorePage<UserIsLoggedRecord>> queryUserIsLoggedRecordPage({
     queryCollectionPage(
       UserIsLoggedRecord.collection,
       UserIsLoggedRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query StartupNewsRecords (as a Stream and as a Future).
+Stream<List<StartupNewsRecord>> queryStartupNewsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      StartupNewsRecord.collection,
+      StartupNewsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<StartupNewsRecord>> queryStartupNewsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      StartupNewsRecord.collection,
+      StartupNewsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<StartupNewsRecord>> queryStartupNewsRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      StartupNewsRecord.collection,
+      StartupNewsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
