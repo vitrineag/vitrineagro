@@ -53,90 +53,99 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                       );
                     }
                     final containerCallFeedNewsResponse = snapshot.data!;
-                    return Material(
-                      color: Colors.transparent,
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(9),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                    return InkWell(
+                      onTap: () async {
+                        logFirebaseEvent(
+                            'STARTUP_FEED_Container_8m2tfls1_ON_TAP');
+                        logFirebaseEvent('Container_Launch-U-R-L');
+                        await launchURL(feedNewsUrlItem);
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(9),
                         ),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(14, 12, 14, 12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 121,
-                                height: 48,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(14, 12, 14, 12),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 121,
+                                  height: 48,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Text(
+                                    getJsonField(
+                                      (containerCallFeedNewsResponse
+                                              ?.jsonBody ??
+                                          ''),
+                                      r'''$.meta.title''',
+                                    ).toString(),
+                                    maxLines: 3,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: Color(0xFF032B44),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
                                 ),
-                                child: Text(
-                                  getJsonField(
-                                    (containerCallFeedNewsResponse?.jsonBody ??
-                                        ''),
-                                    r'''$.meta.title''',
-                                  ).toString(),
-                                  maxLines: 3,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Rubik',
-                                        color: Color(0xFF032B44),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 6, 0),
+                                      child: FaIcon(
+                                        FontAwesomeIcons.solidNewspaper,
+                                        color: FlutterFlowTheme.of(context)
+                                            .backgroundComponents,
+                                        size: 16,
                                       ),
+                                    ),
+                                    Container(
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Text(
+                                        getJsonField(
+                                          (containerCallFeedNewsResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.meta.site.name''',
+                                        ).toString(),
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              color: Color(0xFF909090),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.normal,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 6, 0),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.solidNewspaper,
-                                      color: FlutterFlowTheme.of(context)
-                                          .backgroundComponents,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    child: Text(
-                                      getJsonField(
-                                        (containerCallFeedNewsResponse
-                                                ?.jsonBody ??
-                                            ''),
-                                        r'''$.meta.site.name''',
-                                      ).toString(),
-                                      maxLines: 1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Rubik',
-                                            color: Color(0xFF909090),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle: FontStyle.italic,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
