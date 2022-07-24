@@ -1,5 +1,6 @@
 import '../backend/backend.dart';
 import '../components/activity_horizontal_list_widget.dart';
+import '../components/startup_feed_widget.dart';
 import '../components/startup_milestones_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -538,7 +539,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                         thickness: 2,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 13, 0, 23),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -564,6 +565,12 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                               startup: widget.startup,
                             ),
                           ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(),
+                        child: StartupFeedWidget(
+                          startup: widget.startup,
                         ),
                       ),
                       Container(
@@ -1085,134 +1092,134 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 22, 0, 0),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFEEEEEE),
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 19, 16, 19),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 18),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'STARTUP_DETAIL_INFO_Row_5qf2x0nl_ON_TAP');
-                                      logFirebaseEvent('Row_Launch-U-R-L');
-                                      await launchURL(
-                                          widget.startup!.linkedinUrl!);
-                                    },
-                                    child: Row(
+                      Container(
+                        decoration: BoxDecoration(),
+                        child: StartupFeedWidget(
+                          startup: widget.startup,
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEEEEEE),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 19, 16, 19),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+                                child: InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'STARTUP_DETAIL_INFO_Row_5qf2x0nl_ON_TAP');
+                                    logFirebaseEvent('Row_Launch-U-R-L');
+                                    await launchURL(
+                                        widget.startup!.linkedinUrl!);
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 12, 0),
+                                        child: Container(
+                                          width: 42,
+                                          height: 42,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/42/42',
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        widget.startup!.comercialName!,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                height: 2,
+                                thickness: 2,
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 14, 0, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'STARTUP_DETAIL_INFO_Text_254tugoj_ON_TAP');
+                                        logFirebaseEvent('Text_Launch-U-R-L');
+                                        await launchURL(widget.startup!.site!);
+                                      },
+                                      child: Text(
+                                        widget.startup!.site!,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
+                                      ),
+                                    ),
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 12, 0),
-                                          child: Container(
-                                            width: 42,
-                                            height: 42,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/42/42',
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          widget.startup!.comercialName!,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  height: 2,
-                                  thickness: 2,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 14, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'STARTUP_DETAIL_INFO_Text_254tugoj_ON_TAP');
-                                          logFirebaseEvent('Text_Launch-U-R-L');
-                                          await launchURL(
-                                              widget.startup!.site!);
-                                        },
-                                        child: Text(
-                                          widget.startup!.site!,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 8, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                logFirebaseEvent(
-                                                    'STARTUP_DETAIL_INFO_Image_59lh9irz_ON_TA');
-                                                logFirebaseEvent(
-                                                    'Image_Launch-U-R-L');
-                                                await launchURL(widget
-                                                    .startup!.instagramUrl!);
-                                              },
-                                              child: SvgPicture.asset(
-                                                'assets/images/instagram.svg',
-                                                width: 25,
-                                                height: 25,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          InkWell(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'STARTUP_DETAIL_INFO_Image_v20yk5wd_ON_TA');
+                                                  'STARTUP_DETAIL_INFO_Image_59lh9irz_ON_TA');
                                               logFirebaseEvent(
                                                   'Image_Launch-U-R-L');
-                                              await launchURL(widget.startup!
-                                                  .linkedinUrlCompany!);
+                                              await launchURL(widget
+                                                  .startup!.instagramUrl!);
                                             },
                                             child: SvgPicture.asset(
-                                              'assets/images/linkedin.svg',
+                                              'assets/images/instagram.svg',
                                               width: 25,
                                               height: 25,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                        InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'STARTUP_DETAIL_INFO_Image_v20yk5wd_ON_TA');
+                                            logFirebaseEvent(
+                                                'Image_Launch-U-R-L');
+                                            await launchURL(widget
+                                                .startup!.linkedinUrlCompany!);
+                                          },
+                                          child: SvgPicture.asset(
+                                            'assets/images/linkedin.svg',
+                                            width: 25,
+                                            height: 25,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

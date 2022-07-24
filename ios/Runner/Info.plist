@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>vitrineagro.com</string>
+        <string>app.vitrine.ag</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>vitrineagro</string>
+        <string>vitrineag</string>
         </array>
         </dict>
     </array>
