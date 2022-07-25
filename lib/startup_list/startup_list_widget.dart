@@ -12,7 +12,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartupListWidget extends StatefulWidget {
-  const StartupListWidget({Key? key}) : super(key: key);
+  const StartupListWidget({
+    Key? key,
+    this.redirectStartupSite,
+  }) : super(key: key);
+
+  final String? redirectStartupSite;
 
   @override
   _StartupListWidgetState createState() => _StartupListWidgetState();
@@ -29,18 +34,16 @@ class _StartupListWidgetState extends State<StartupListWidget> {
     // On page load action.
     SchedulerBinding.instance?.addPostFrameCallback((_) async {
       logFirebaseEvent('STARTUP_LIST_StartupList_ON_LOAD');
-      if ((FFAppState().redirectStartupSite != null &&
-          FFAppState().redirectStartupSite != '')) {
+      if ((widget.redirectStartupSite != null &&
+          widget.redirectStartupSite != '')) {
         logFirebaseEvent('StartupList_Navigate-To');
         context.pushNamed(
           'StartupDetail',
           params: {
-            'startupSite': serializeParam(
-                FFAppState().redirectStartupSite, ParamType.String),
+            'startupSite':
+                serializeParam(widget.redirectStartupSite, ParamType.String),
           }.withoutNulls,
         );
-        logFirebaseEvent('StartupList_Update-Local-State');
-        setState(() => FFAppState().redirectStartupSite = '');
       }
     });
 

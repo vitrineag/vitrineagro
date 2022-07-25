@@ -388,7 +388,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                     'STARTUP_CARD_COMP_Share_ON_TAP');
                                 logFirebaseEvent('Share_Share');
                                 await Share.share(
-                                    'https://app.vitrine.ag/#/startupDetail/${widget.startup!.site}');
+                                    'https://app.vitrine.ag/#/startupList/${widget.startup!.site}');
                               },
                             ),
                           ),
