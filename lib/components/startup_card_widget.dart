@@ -13,7 +13,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:share_plus/share_plus.dart';
 
 class StartupCardWidget extends StatefulWidget {
   const StartupCardWidget({
@@ -237,7 +236,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
                   child: Text(
                     widget.startup!.valueProposalText!,
-                    maxLines: 2,
+                    maxLines: 1,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Rubik',
                           color: Color(0xFF032B44),
@@ -246,8 +245,11 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                         ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                Container(
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
                   child: Text(
                     widget.startup!.problemResolutionText!,
                     maxLines: 3,
@@ -383,12 +385,8 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24,
                               ),
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'STARTUP_CARD_COMP_Share_ON_TAP');
-                                logFirebaseEvent('Share_Share');
-                                await Share.share(
-                                    'https://app.vitrine.ag/#/startupList/${widget.startup!.site}');
+                              onPressed: () {
+                                print('Share pressed ...');
                               },
                             ),
                           ),

@@ -419,7 +419,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           'STARTUP_DETAIL_share_sharp_ICN_ON_TAP');
                                       logFirebaseEvent('IconButton_Share');
                                       await Share.share(
-                                          'https://app.vitrine.ag/#/startupList/${widget.startupSite}');
+                                          'vitrineag://app.vitrine.ag${GoRouter.of(context).location}');
                                     },
                                   ),
                                   FavoriteToggleWidget(

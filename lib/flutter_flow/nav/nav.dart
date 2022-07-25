@@ -114,12 +114,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'StartupList',
-              path: 'startupList/:redirectStartupSite',
+              path: 'startupList',
               requireAuth: true,
-              builder: (context, params) => StartupListWidget(
-                redirectStartupSite:
-                    params.getParam('redirectStartupSite', ParamType.String),
-              ),
+              builder: (context, params) => StartupListWidget(),
             ),
             FFRoute(
               name: 'Loading',
