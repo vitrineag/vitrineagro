@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/startup_card_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -7,11 +8,18 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_search/text_search.dart';
 
 class StartupListWidget extends StatefulWidget {
-  const StartupListWidget({Key? key}) : super(key: key);
+  const StartupListWidget({
+    Key? key,
+    this.redirectStartupSite,
+  }) : super(key: key);
+
+  final String? redirectStartupSite;
 
   @override
   _StartupListWidgetState createState() => _StartupListWidgetState();
@@ -20,11 +28,49 @@ class StartupListWidget extends StatefulWidget {
 class _StartupListWidgetState extends State<StartupListWidget> {
   List<StartupsRecord>? algoliaSearchResults = [];
   TextEditingController? textController;
+  List<UserIsLoggedRecord> simpleSearchResults = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+      logFirebaseEvent('STARTUP_LIST_StartupList_ON_LOAD');
+      logFirebaseEvent('StartupList_Simple-Search');
+      await queryUserIsLoggedRecordOnce()
+          .then(
+            (records) => simpleSearchResults = TextSearch(
+              records
+                  .map(
+                    (record) => TextSearchItem(record, [record.uid!]),
+                  )
+                  .toList(),
+            ).search(currentUserUid).map((r) => r.object).take(1).toList(),
+          )
+          .onError((_, __) => simpleSearchResults = [])
+          .whenComplete(() => setState(() {}));
+
+      if ((simpleSearchResults.length) > 0) {
+        if ((widget.redirectStartupSite == null ||
+            widget.redirectStartupSite == '')) {
+          logFirebaseEvent('StartupList_Navigate-To');
+          context.pushNamed(
+            'StartupDetail',
+            params: {
+              'startupSite':
+                  serializeParam(widget.redirectStartupSite, ParamType.String),
+            }.withoutNulls,
+          );
+        } else {
+          return;
+        }
+      } else {
+        logFirebaseEvent('StartupList_Navigate-To');
+        context.pushNamed('IdentifyUser');
+      }
+    });
+
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'StartupList'});
     textController = TextEditingController();
   }

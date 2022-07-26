@@ -25,7 +25,6 @@ class StartupDetailWidget extends StatefulWidget {
 }
 
 class _StartupDetailWidgetState extends State<StartupDetailWidget> {
-  String _currentPageLink = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -418,13 +417,9 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                     onPressed: () async {
                                       logFirebaseEvent(
                                           'STARTUP_DETAIL_share_sharp_ICN_ON_TAP');
-                                      logFirebaseEvent(
-                                          'IconButton_Generate-Current-Page-Link');
-                                      _currentPageLink =
-                                          await generateCurrentPageLink(
-                                              context);
                                       logFirebaseEvent('IconButton_Share');
-                                      await Share.share(_currentPageLink);
+                                      await Share.share(
+                                          'vitrineag://app.vitrine.ag${GoRouter.of(context).location}');
                                     },
                                   ),
                                   FavoriteToggleWidget(

@@ -448,17 +448,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     await UserIsLoggedRecord.collection
                                         .doc()
                                         .set(userIsLoggedCreateData);
-                                    logFirebaseEvent('MoreInfo_Navigate-To');
-                                    context.pushNamed(
-                                      'StartupList',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.leftToRight,
-                                        ),
-                                      },
-                                    );
+                                    logFirebaseEvent('MoreInfo_Navigate-Back');
+                                    context.pop();
                                   },
                                   text: 'Confirmar',
                                   options: FFButtonOptions(

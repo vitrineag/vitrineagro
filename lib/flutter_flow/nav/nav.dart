@@ -7,16 +7,12 @@ import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
 
-import '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
-    show DynamicLinksHandler;
 import '../../index.dart';
 import '../../main.dart';
 import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
-export '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
-    show generateCurrentPageLink;
 
 const kTransitionInfoKey = '__transition_info__';
 
@@ -70,14 +66,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) => appStateNotifier.loggedIn
-          ? LoadingWidget()
+          ? StartupListWidget()
           : PhoneAuthenticationWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? LoadingWidget()
+              ? StartupListWidget()
               : PhoneAuthenticationWidget(),
           routes: [
             FFRoute(
@@ -118,9 +114,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'StartupList',
-              path: 'startupList',
+              path: 'startupList/:redirectStartupSite',
               requireAuth: true,
-              builder: (context, params) => StartupListWidget(),
+              builder: (context, params) => StartupListWidget(
+                redirectStartupSite:
+                    params.getParam('redirectStartupSite', ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'Loading',
@@ -301,7 +300,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : DynamicLinksHandler(child: page);
+              : page;
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition
