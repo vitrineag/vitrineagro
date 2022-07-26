@@ -246,7 +246,7 @@ class _VerifyPhoneAuthenticationWidgetState
                                 return;
                               }
 
-                              context.goNamedAuth('StartupList', mounted);
+                              context.goNamedAuth('Loading', mounted);
                             },
                             text: 'Confirmar',
                             options: FFButtonOptions(

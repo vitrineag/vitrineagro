@@ -1,5 +1,4 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
+import '../auth/firebase_user_provider.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../custom_code/widgets/index.dart' as custom_widgets;
@@ -7,17 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:text_search/text_search.dart';
 
-class LoadingWidget extends StatefulWidget {
-  const LoadingWidget({Key? key}) : super(key: key);
+class LoadingDeepLinkWidget extends StatefulWidget {
+  const LoadingDeepLinkWidget({
+    Key? key,
+    this.startupSite,
+  }) : super(key: key);
+
+  final String? startupSite;
 
   @override
-  _LoadingWidgetState createState() => _LoadingWidgetState();
+  _LoadingDeepLinkWidgetState createState() => _LoadingDeepLinkWidgetState();
 }
 
-class _LoadingWidgetState extends State<LoadingWidget> {
-  List<UserIsLoggedRecord> simpleSearchResults = [];
+class _LoadingDeepLinkWidgetState extends State<LoadingDeepLinkWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -25,45 +27,20 @@ class _LoadingWidgetState extends State<LoadingWidget> {
     super.initState();
     // On page load action.
     SchedulerBinding.instance?.addPostFrameCallback((_) async {
-      logFirebaseEvent('LOADING_PAGE_Loading_ON_PAGE_LOAD');
-      logFirebaseEvent('Loading_Simple-Search');
-      await queryUserIsLoggedRecordOnce()
-          .then(
-            (records) => simpleSearchResults = TextSearch(
-              records
-                  .map(
-                    (record) => TextSearchItem(record, [record.uid!]),
-                  )
-                  .toList(),
-            ).search(currentUserUid).map((r) => r.object).take(1).toList(),
-          )
-          .onError((_, __) => simpleSearchResults = [])
-          .whenComplete(() => setState(() {}));
-
-      if ((simpleSearchResults.length) > 0) {
-        if ((FFAppState().startupSiteRedirect != null &&
-            FFAppState().startupSiteRedirect != '')) {
-          logFirebaseEvent('Loading_Navigate-To');
-          context.pushNamed(
-            'StartupDetail',
-            params: {
-              'startupSite': serializeParam(
-                  FFAppState().startupSiteRedirect, ParamType.String),
-            }.withoutNulls,
-          );
-          logFirebaseEvent('Loading_Update-Local-State');
-          setState(() => FFAppState().startupSiteRedirect = '');
-        } else {
-          logFirebaseEvent('Loading_Navigate-To');
-          context.pushNamed('StartupList');
-        }
+      logFirebaseEvent('LOADING_DEEP_LINK_LoadingDeepLink_ON_LOA');
+      logFirebaseEvent('LoadingDeepLink_Update-Local-State');
+      setState(() => FFAppState().startupSiteRedirect = widget.startupSite!);
+      if (loggedIn) {
+        logFirebaseEvent('LoadingDeepLink_Navigate-To');
+        context.pushNamed('Loading');
       } else {
-        logFirebaseEvent('Loading_Navigate-To');
-        context.pushNamed('IdentifyUser');
+        logFirebaseEvent('LoadingDeepLink_Navigate-To');
+        context.pushNamed('PhoneAuthentication');
       }
     });
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Loading'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'LoadingDeepLink'});
   }
 
   @override

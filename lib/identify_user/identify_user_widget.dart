@@ -448,8 +448,27 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     await UserIsLoggedRecord.collection
                                         .doc()
                                         .set(userIsLoggedCreateData);
-                                    logFirebaseEvent('MoreInfo_Navigate-Back');
-                                    context.pop();
+                                    if ((FFAppState().startupSiteRedirect !=
+                                            null &&
+                                        FFAppState().startupSiteRedirect !=
+                                            '')) {
+                                      logFirebaseEvent('MoreInfo_Navigate-To');
+                                      context.pushNamed(
+                                        'StartupDetail',
+                                        params: {
+                                          'startupSite': serializeParam(
+                                              FFAppState().startupSiteRedirect,
+                                              ParamType.String),
+                                        }.withoutNulls,
+                                      );
+                                      logFirebaseEvent(
+                                          'MoreInfo_Update-Local-State');
+                                      setState(() => FFAppState()
+                                          .startupSiteRedirect = '');
+                                    } else {
+                                      logFirebaseEvent('MoreInfo_Navigate-To');
+                                      context.pushNamed('StartupList');
+                                    }
                                   },
                                   text: 'Confirmar',
                                   options: FFButtonOptions(

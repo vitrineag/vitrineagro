@@ -10,3 +10,5 @@ export 'startup_favorite_list/startup_favorite_list_widget.dart'
     show StartupFavoriteListWidget;
 export 'startup_list/startup_list_widget.dart' show StartupListWidget;
 export 'loading/loading_widget.dart' show LoadingWidget;
+export 'loading_deep_link/loading_deep_link_widget.dart'
+    show LoadingDeepLinkWidget;

@@ -66,14 +66,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) => appStateNotifier.loggedIn
-          ? StartupListWidget()
+          ? LoadingWidget()
           : PhoneAuthenticationWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? StartupListWidget()
+              ? LoadingWidget()
               : PhoneAuthenticationWidget(),
           routes: [
             FFRoute(
@@ -114,18 +114,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'StartupList',
-              path: 'startupList/:redirectStartupSite',
+              path: 'startupList',
               requireAuth: true,
-              builder: (context, params) => StartupListWidget(
-                redirectStartupSite:
-                    params.getParam('redirectStartupSite', ParamType.String),
-              ),
+              builder: (context, params) => StartupListWidget(),
             ),
             FFRoute(
               name: 'Loading',
               path: 'loading',
               requireAuth: true,
               builder: (context, params) => LoadingWidget(),
+            ),
+            FFRoute(
+              name: 'LoadingDeepLink',
+              path: 'loadingDeepLink/:startupSite',
+              builder: (context, params) => LoadingDeepLinkWidget(
+                startupSite: params.getParam('startupSite', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
