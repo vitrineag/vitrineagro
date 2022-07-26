@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
   Locale? _locale;
   ThemeMode _themeMode = ThemeMode.system;
 
-  late Stream<VitrineAgroFirebaseUser> userStream;
+  late Stream<VitrineAgFirebaseUser> userStream;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     _appStateNotifier = AppStateNotifier();
     _router = createRouter(_appStateNotifier);
-    userStream = vitrineAgroFirebaseUserStream()
+    userStream = vitrineAgFirebaseUserStream()
       ..listen((user) => _appStateNotifier.update(user));
     Future.delayed(
       Duration(seconds: 1),
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'VitrineAgro',
+      title: 'VitrineAg',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,

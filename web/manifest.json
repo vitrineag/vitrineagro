@@ -1,6 +1,6 @@
 {
-    "name": "VitrineAgro",
-    "short_name": "VitrineAgro",
+    "name": "VitrineAg",
+    "short_name": "VitrineAg",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

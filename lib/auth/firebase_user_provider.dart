@@ -1,19 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
 
-class VitrineAgroFirebaseUser {
-  VitrineAgroFirebaseUser(this.user);
+class VitrineAgFirebaseUser {
+  VitrineAgFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 }
 
-VitrineAgroFirebaseUser? currentUser;
+VitrineAgFirebaseUser? currentUser;
 bool get loggedIn => currentUser?.loggedIn ?? false;
-Stream<VitrineAgroFirebaseUser> vitrineAgroFirebaseUserStream() => FirebaseAuth
+Stream<VitrineAgFirebaseUser> vitrineAgFirebaseUserStream() => FirebaseAuth
     .instance
     .authStateChanges()
     .debounce((user) => user == null && !loggedIn
         ? TimerStream(true, const Duration(seconds: 1))
         : Stream.value(user))
-    .map<VitrineAgroFirebaseUser>(
-        (user) => currentUser = VitrineAgroFirebaseUser(user));
+    .map<VitrineAgFirebaseUser>(
+        (user) => currentUser = VitrineAgFirebaseUser(user));
