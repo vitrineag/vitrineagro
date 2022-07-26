@@ -13,6 +13,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 class StartupCardWidget extends StatefulWidget {
   const StartupCardWidget({
@@ -385,8 +386,12 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24,
                               ),
-                              onPressed: () {
-                                print('Share pressed ...');
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'STARTUP_CARD_COMP_Share_ON_TAP');
+                                logFirebaseEvent('Share_Share');
+                                await Share.share(
+                                    'https://app.vitrine.ag/#/loadingDeepLink/${widget.startup!.site}');
                               },
                             ),
                           ),

@@ -135,8 +135,19 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                               logFirebaseEvent(
                                                   'STARTUP_DETAIL_PAGE_Text_i0zx6d9j_ON_TAP');
                                               logFirebaseEvent(
-                                                  'Text_Navigate-Back');
-                                              context.pop();
+                                                  'Text_Navigate-To');
+                                              context.goNamed(
+                                                'StartupList',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .rightToLeft,
+                                                  ),
+                                                },
+                                              );
                                             },
                                             child: Text(
                                               '< voltar',
@@ -436,7 +447,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           'STARTUP_DETAIL_share_sharp_ICN_ON_TAP');
                                       logFirebaseEvent('IconButton_Share');
                                       await Share.share(
-                                          'http://localhost:5000/#/loadingDeepLink/${widget.startupSite}');
+                                          'https://app.vitrine.ag/#/loadingDeepLink/${widget.startupSite}');
                                     },
                                   ),
                                   FavoriteToggleWidget(
