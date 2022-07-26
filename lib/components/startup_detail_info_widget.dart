@@ -658,8 +658,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                             await launchURL(
                                                 widget.startup!.instagramUrl!);
                                           },
-                                          child: SvgPicture.asset(
-                                            'assets/images/instagram.svg',
+                                          child: Image.asset(
+                                            'assets/images/instagram_Small.png',
                                             width: 25,
                                             height: 25,
                                             fit: BoxFit.cover,
@@ -1190,8 +1190,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               await launchURL(widget
                                                   .startup!.instagramUrl!);
                                             },
-                                            child: SvgPicture.asset(
-                                              'assets/images/instagram.svg',
+                                            child: Image.asset(
+                                              'assets/images/instagram_Small.png',
                                               width: 25,
                                               height: 25,
                                               fit: BoxFit.cover,
