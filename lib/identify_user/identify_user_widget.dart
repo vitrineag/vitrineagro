@@ -304,8 +304,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 12, 16, 0),
-                                child: FutureBuilder<List<UserTypeRecord>>(
-                                  future: queryUserTypeRecordOnce(
+                                child: StreamBuilder<List<UserTypeRecord>>(
+                                  stream: queryUserTypeRecord(
                                     singleRecord: true,
                                   ),
                                   builder: (context, snapshot) {
