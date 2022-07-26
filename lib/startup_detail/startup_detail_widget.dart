@@ -335,8 +335,17 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       logFirebaseEvent(
                                           'STARTUP_DETAIL_chevron_left_ICN_ON_TAP');
                                       logFirebaseEvent(
-                                          'IconButton_Navigate-Back');
-                                      context.pop();
+                                          'IconButton_Navigate-To');
+                                      context.goNamed(
+                                        'StartupList',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.rightToLeft,
+                                          ),
+                                        },
+                                      );
                                     },
                                   ),
                                   FFButtonWidget(
@@ -419,7 +428,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           'STARTUP_DETAIL_share_sharp_ICN_ON_TAP');
                                       logFirebaseEvent('IconButton_Share');
                                       await Share.share(
-                                          'vitrineag://app.vitrine.ag${GoRouter.of(context).location}');
+                                          'http://localhost:5000/#/loadingDeepLink/${widget.startupSite}');
                                     },
                                   ),
                                   FavoriteToggleWidget(
