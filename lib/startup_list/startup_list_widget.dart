@@ -52,8 +52,8 @@ class _StartupListWidgetState extends State<StartupListWidget> {
           .whenComplete(() => setState(() {}));
 
       if ((simpleSearchResults.length) > 0) {
-        if ((widget.redirectStartupSite == null ||
-            widget.redirectStartupSite == '')) {
+        if ((widget.redirectStartupSite != null &&
+            widget.redirectStartupSite != '')) {
           logFirebaseEvent('StartupList_Navigate-To');
           context.pushNamed(
             'StartupDetail',
