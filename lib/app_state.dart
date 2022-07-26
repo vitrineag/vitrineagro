@@ -14,11 +14,18 @@ class FFAppState {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
+    _startupSiteRedirect =
+        prefs.getString('ff_startupSiteRedirect') ?? _startupSiteRedirect;
   }
 
   late SharedPreferences prefs;
 
-  String startupSiteRedirect = '';
+  String _startupSiteRedirect = '';
+  String get startupSiteRedirect => _startupSiteRedirect;
+  set startupSiteRedirect(String _value) {
+    _startupSiteRedirect = _value;
+    prefs.setString('ff_startupSiteRedirect', _value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
