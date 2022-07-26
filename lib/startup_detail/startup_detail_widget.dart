@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
@@ -30,6 +31,13 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+      logFirebaseEvent('STARTUP_DETAIL_StartupDetail_ON_LOAD');
+      logFirebaseEvent('StartupDetail_Update-Local-State');
+      setState(() => FFAppState().startupSiteRedirect = '');
+    });
+
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'StartupDetail'});
   }

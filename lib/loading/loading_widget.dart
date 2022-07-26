@@ -51,8 +51,6 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                   FFAppState().startupSiteRedirect, ParamType.String),
             }.withoutNulls,
           );
-          logFirebaseEvent('Loading_Update-Local-State');
-          setState(() => FFAppState().startupSiteRedirect = '');
         } else {
           logFirebaseEvent('Loading_Navigate-To');
           context.pushNamed('StartupList');
