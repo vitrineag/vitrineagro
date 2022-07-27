@@ -93,12 +93,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => IdentifyUserWidget(),
             ),
             FFRoute(
-              name: 'teste',
-              path: 'teste',
-              requireAuth: true,
-              builder: (context, params) => TesteWidget(),
-            ),
-            FFRoute(
               name: 'StartupDetail',
               path: 'startupDetail/:startupSite',
               requireAuth: true,

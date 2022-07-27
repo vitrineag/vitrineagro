@@ -388,22 +388,30 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               ),
                               onPressed: () async {
                                 logFirebaseEvent(
-                                    'STARTUP_CARD_COMP_Share_ON_TAP');
-                                logFirebaseEvent('Share_Share');
+                                    'STARTUP_CARD_COMP_ShareStartup_ON_TAP');
+                                logFirebaseEvent('ShareStartup_Share');
                                 await Share.share(
-                                    'https://app.vitrine.ag/#/loadingDeepLink/${widget.startup!.site}');
+                                    'https://app.vitrine.ag/#/loadingDeepLink/${functions.encodeUri(widget.startup!.site!)}');
+                                logFirebaseEvent(
+                                    'ShareStartup_Google-Analytics-Event');
+                                logFirebaseEvent(
+                                  'share_startup',
+                                  parameters: {
+                                    'startup_name': widget.startup!.name,
+                                  },
+                                );
                               },
                             ),
                           ),
                           InkWell(
                             onTap: () async {
                               logFirebaseEvent(
-                                  'STARTUP_CARD_Container_aqneprpo_ON_TAP');
+                                  'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
                               if ((cardUserFavoritiesStartupsRecordList
                                       .length) >
                                   0) {
                                 logFirebaseEvent(
-                                    'ToggleIconButton_Backend-Call');
+                                    'FavoriteStartup_Backend-Call');
                                 await functions
                                     .getFirstFavoritiesStartups(
                                         cardUserFavoritiesStartupsRecordList
@@ -412,7 +420,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                     .delete();
                               } else {
                                 logFirebaseEvent(
-                                    'ToggleIconButton_Backend-Call');
+                                    'FavoriteStartup_Backend-Call');
 
                                 final userFavoritiesStartupsCreateData =
                                     createUserFavoritiesStartupsRecordData(
@@ -446,8 +454,9 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent('STARTUP_CARD_COMP_MoreInfo_ON_TAP');
-                          logFirebaseEvent('MoreInfo_Navigate-To');
+                          logFirebaseEvent(
+                              'STARTUP_CARD_COMP_SaibaMaisLista_ON_TAP');
+                          logFirebaseEvent('SaibaMaisLista_Navigate-To');
                           context.pushNamed(
                             'StartupDetail',
                             params: {

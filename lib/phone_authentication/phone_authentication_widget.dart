@@ -208,8 +208,8 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                             FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent(
-                                    'PHONE_AUTHENTICATION_MoreInfo_ON_TAP');
-                                logFirebaseEvent('MoreInfo_Auth');
+                                    'PHONE_AUTHENTICATION_SendToken_ON_TAP');
+                                logFirebaseEvent('SendToken_Auth');
                                 final phoneNumberVal =
                                     phoneNumberController!.text;
                                 if (phoneNumberVal == null ||

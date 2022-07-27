@@ -417,14 +417,16 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     logFirebaseEvent(
-                                        'IDENTIFY_USER_PAGE_MoreInfo_ON_TAP');
-                                    logFirebaseEvent('MoreInfo_Validate-Form');
+                                        'IDENTIFY_USER_PAGE_SetUserType_ON_TAP');
+                                    logFirebaseEvent(
+                                        'SetUserType_Validate-Form');
                                     if (formKey.currentState == null ||
                                         !formKey.currentState!.validate()) {
                                       return;
                                     }
 
-                                    logFirebaseEvent('MoreInfo_Backend-Call');
+                                    logFirebaseEvent(
+                                        'SetUserType_Backend-Call');
 
                                     final usersUpdateData =
                                         createUsersRecordData(
@@ -438,7 +440,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     );
                                     await currentUserReference!
                                         .update(usersUpdateData);
-                                    logFirebaseEvent('MoreInfo_Backend-Call');
+                                    logFirebaseEvent(
+                                        'SetUserType_Backend-Call');
 
                                     final userIsLoggedCreateData =
                                         createUserIsLoggedRecordData(
@@ -452,7 +455,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                             null &&
                                         FFAppState().startupSiteRedirect !=
                                             '')) {
-                                      logFirebaseEvent('MoreInfo_Navigate-To');
+                                      logFirebaseEvent(
+                                          'SetUserType_Navigate-To');
                                       context.pushNamed(
                                         'StartupDetail',
                                         params: {
@@ -462,11 +466,12 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         }.withoutNulls,
                                       );
                                       logFirebaseEvent(
-                                          'MoreInfo_Update-Local-State');
+                                          'SetUserType_Update-Local-State');
                                       setState(() => FFAppState()
                                           .startupSiteRedirect = '');
                                     } else {
-                                      logFirebaseEvent('MoreInfo_Navigate-To');
+                                      logFirebaseEvent(
+                                          'SetUserType_Navigate-To');
                                       context.pushNamed('StartupList');
                                     }
                                   },

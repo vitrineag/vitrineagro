@@ -225,8 +225,8 @@ class _VerifyPhoneAuthenticationWidgetState
                           FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
-                                  'VERIFY_PHONE_AUTHENTICATION_MoreInfo_ON_');
-                              logFirebaseEvent('MoreInfo_Auth');
+                                  'VERIFY_PHONE_AUTHENTICATION_VerifyPasswo');
+                              logFirebaseEvent('VerifyPassword_Auth');
                               GoRouter.of(context).prepareAuthEvent();
                               final smsCodeVal = verifyCodeController!.text;
                               if (smsCodeVal == null || smsCodeVal.isEmpty) {

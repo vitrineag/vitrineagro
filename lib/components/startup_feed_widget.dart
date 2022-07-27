@@ -51,8 +51,8 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(4, 20, 4, 20),
                 child: InkWell(
                   onTap: () async {
-                    logFirebaseEvent('STARTUP_FEED_Container_8m2tfls1_ON_TAP');
-                    logFirebaseEvent('Container_Launch-U-R-L');
+                    logFirebaseEvent('STARTUP_FEED_COMP_StartupNews_ON_TAP');
+                    logFirebaseEvent('StartupNews_Launch-U-R-L');
                     await launchURL(rowStartupNewsRecord!.newsUrl!);
                   },
                   child: Material(

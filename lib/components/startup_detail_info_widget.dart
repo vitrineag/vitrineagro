@@ -438,13 +438,27 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                               flex: 1,
                               child: Container(
                                 decoration: BoxDecoration(),
-                                child: FlutterFlowYoutubePlayer(
-                                  url: widget.startup!.pitchYoutubeUrl!,
-                                  autoPlay: false,
-                                  looping: false,
-                                  mute: false,
-                                  showControls: true,
-                                  showFullScreen: true,
+                                child: InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'STARTUP_DETAIL_INFO_COMP_Pitch_ON_TAP');
+                                    logFirebaseEvent(
+                                        'Pitch_Google-Analytics-Event');
+                                    logFirebaseEvent(
+                                      'play_video',
+                                      parameters: {
+                                        'startup_name': widget.startup!.name,
+                                      },
+                                    );
+                                  },
+                                  child: FlutterFlowYoutubePlayer(
+                                    url: widget.startup!.pitchYoutubeUrl!,
+                                    autoPlay: false,
+                                    looping: false,
+                                    mute: false,
+                                    showControls: true,
+                                    showFullScreen: true,
+                                  ),
                                 ),
                               ),
                             ),
@@ -527,8 +541,22 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       ),
                                 ),
                               ),
-                              Html(
-                                data: widget.startup!.pitchPdfUrl!,
+                              InkWell(
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'STARTUP_DETAIL_INFO_HtmlView_ehk02egv_ON');
+                                  logFirebaseEvent(
+                                      'HtmlView_Google-Analytics-Event');
+                                  logFirebaseEvent(
+                                    'presentation_interation',
+                                    parameters: {
+                                      'startup_name': widget.startup!.name,
+                                    },
+                                  );
+                                },
+                                child: Html(
+                                  data: widget.startup!.pitchPdfUrl!,
+                                ),
                               ),
                             ],
                           ),
@@ -590,8 +618,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                               InkWell(
                                 onTap: () async {
                                   logFirebaseEvent(
-                                      'STARTUP_DETAIL_INFO_Row_l3nryrp1_ON_TAP');
-                                  logFirebaseEvent('Row_Launch-U-R-L');
+                                      'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
+                                  logFirebaseEvent('CEOLinkedin_Launch-U-R-L');
                                   await launchURL(widget.startup!.linkedinUrl!);
                                 },
                                 child: Row(
@@ -631,8 +659,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'STARTUP_DETAIL_INFO_Text_b9c8jpuc_ON_TAP');
-                                        logFirebaseEvent('Text_Launch-U-R-L');
+                                            'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
+                                        logFirebaseEvent(
+                                            'StartupSite_Launch-U-R-L');
                                         await launchURL(widget.startup!.site!);
                                       },
                                       child: Text(
@@ -652,9 +681,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         child: InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'STARTUP_DETAIL_INFO_Image_gklylnqk_ON_TA');
+                                                'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
                                             logFirebaseEvent(
-                                                'Image_Launch-U-R-L');
+                                                'StartupInstagram_Launch-U-R-L');
                                             await launchURL(
                                                 widget.startup!.instagramUrl!);
                                           },
@@ -669,9 +698,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       InkWell(
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'STARTUP_DETAIL_INFO_Image_e1351n2m_ON_TA');
+                                              'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
                                           logFirebaseEvent(
-                                              'Image_Launch-U-R-L');
+                                              'StartupLinkedin_Launch-U-R-L');
                                           await launchURL(widget
                                               .startup!.linkedinUrlCompany!);
                                         },
@@ -984,13 +1013,26 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                         decoration: BoxDecoration(),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                          child: FlutterFlowYoutubePlayer(
-                            url: widget.startup!.pitchYoutubeUrl!,
-                            autoPlay: false,
-                            looping: false,
-                            mute: false,
-                            showControls: true,
-                            showFullScreen: true,
+                          child: InkWell(
+                            onTap: () async {
+                              logFirebaseEvent(
+                                  'STARTUP_DETAIL_INFO_COMP_Pitch_ON_TAP');
+                              logFirebaseEvent('Pitch_Google-Analytics-Event');
+                              logFirebaseEvent(
+                                'play_video',
+                                parameters: {
+                                  'startup_name': widget.startup!.name,
+                                },
+                              );
+                            },
+                            child: FlutterFlowYoutubePlayer(
+                              url: widget.startup!.pitchYoutubeUrl!,
+                              autoPlay: false,
+                              looping: false,
+                              mute: false,
+                              showControls: true,
+                              showFullScreen: true,
+                            ),
                           ),
                         ),
                       ),
@@ -1057,8 +1099,22 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                     fontWeight: FontWeight.w500,
                                   ),
                             ),
-                            Html(
-                              data: widget.startup!.pitchPdfUrl!,
+                            InkWell(
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'STARTUP_DETAIL_INFO_HtmlView_1hn0it4f_ON');
+                                logFirebaseEvent(
+                                    'HtmlView_Google-Analytics-Event');
+                                logFirebaseEvent(
+                                  'presentation_interation',
+                                  parameters: {
+                                    'startup_name': widget.startup!.name,
+                                  },
+                                );
+                              },
+                              child: Html(
+                                data: widget.startup!.pitchPdfUrl!,
+                              ),
                             ),
                           ],
                         ),
@@ -1116,8 +1172,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'STARTUP_DETAIL_INFO_Row_5qf2x0nl_ON_TAP');
-                                    logFirebaseEvent('Row_Launch-U-R-L');
+                                        'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
+                                    logFirebaseEvent(
+                                        'CEOLinkedin_Launch-U-R-L');
                                     await launchURL(
                                         widget.startup!.linkedinUrl!);
                                   },
@@ -1163,8 +1220,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                     InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'STARTUP_DETAIL_INFO_Text_254tugoj_ON_TAP');
-                                        logFirebaseEvent('Text_Launch-U-R-L');
+                                            'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
+                                        logFirebaseEvent(
+                                            'StartupSite_Launch-U-R-L');
                                         await launchURL(widget.startup!.site!);
                                       },
                                       child: Text(
@@ -1184,9 +1242,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                           child: InkWell(
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'STARTUP_DETAIL_INFO_Image_59lh9irz_ON_TA');
+                                                  'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
                                               logFirebaseEvent(
-                                                  'Image_Launch-U-R-L');
+                                                  'StartupInstagram_Launch-U-R-L');
                                               await launchURL(widget
                                                   .startup!.instagramUrl!);
                                             },
@@ -1201,9 +1259,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'STARTUP_DETAIL_INFO_Image_v20yk5wd_ON_TA');
+                                                'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
                                             logFirebaseEvent(
-                                                'Image_Launch-U-R-L');
+                                                'StartupLinkedin_Launch-U-R-L');
                                             await launchURL(widget
                                                 .startup!.linkedinUrlCompany!);
                                           },

@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/mobile_drawer_widget.dart';
 import '../components/startup_card_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -32,6 +33,10 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFFFEEC9),
+      drawer: Drawer(
+        elevation: 16,
+        child: MobileDrawerWidget(),
+      ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -222,8 +227,11 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                 color: Color(0xFF0F0F0F),
                                 size: 32,
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'STARTUP_FAVORITE_LIST_menu_ICN_ON_TAP');
+                                logFirebaseEvent('IconButton_Drawer');
+                                scaffoldKey.currentState!.openDrawer();
                               },
                             ),
                             FFButtonWidget(
@@ -294,14 +302,89 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                              child: SvgPicture.asset(
-                                'assets/images/logo.svg',
-                                height: 31,
-                                fit: BoxFit.cover,
-                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 36, 0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/logo.svg',
+                                    height: 31,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 36, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_FAVORITE_LIST_Text_z4pjtsdx_ON_T');
+                                      logFirebaseEvent('Text_Launch-U-R-L');
+                                      await launchURL(
+                                          'https://www.vitrine.ag/');
+                                    },
+                                    child: Text(
+                                      'Home',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 36, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_FAVORITE_LIST_Text_535hdwcb_ON_T');
+                                      logFirebaseEvent('Text_Launch-U-R-L');
+                                      await launchURL(
+                                          'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
+                                    },
+                                    child: Text(
+                                      'Cadastre sua Startup',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'STARTUP_FAVORITE_LIST_Text_mhwo5b0y_ON_T');
+                                    logFirebaseEvent('Text_Auth');
+                                    GoRouter.of(context).prepareAuthEvent();
+                                    await signOut();
+                                    context.goNamedAuth(
+                                        'PhoneAuthentication', mounted);
+                                  },
+                                  child: Text(
+                                    'Sair',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
                             FFButtonWidget(
                               onPressed: () async {

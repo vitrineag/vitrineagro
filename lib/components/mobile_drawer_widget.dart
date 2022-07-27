@@ -39,9 +39,8 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
                   child: InkWell(
                     onTap: () async {
-                      logFirebaseEvent(
-                          'MOBILE_DRAWER_COMP_Text_3bcq9bah_ON_TAP');
-                      logFirebaseEvent('Text_Launch-U-R-L');
+                      logFirebaseEvent('MOBILE_DRAWER_COMP_Home_ON_TAP');
+                      logFirebaseEvent('Home_Launch-U-R-L');
                       await launchURL('https://www.vitrine.ag/');
                     },
                     child: Text(
@@ -58,9 +57,8 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
                   child: InkWell(
                     onTap: () async {
-                      logFirebaseEvent(
-                          'MOBILE_DRAWER_COMP_Text_f6jjd7lc_ON_TAP');
-                      logFirebaseEvent('Text_Launch-U-R-L');
+                      logFirebaseEvent('MOBILE_DRAWER_StartupRegister_ON_TAP');
+                      logFirebaseEvent('StartupRegister_Launch-U-R-L');
                       await launchURL(
                           'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
                     },
@@ -76,8 +74,8 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                 ),
                 InkWell(
                   onTap: () async {
-                    logFirebaseEvent('MOBILE_DRAWER_COMP_Text_amqevyvj_ON_TAP');
-                    logFirebaseEvent('Text_Auth');
+                    logFirebaseEvent('MOBILE_DRAWER_COMP_Logout_ON_TAP');
+                    logFirebaseEvent('Logout_Auth');
                     GoRouter.of(context).prepareAuthEvent();
                     await signOut();
                     context.goNamedAuth('PhoneAuthentication', mounted);

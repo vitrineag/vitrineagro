@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -447,7 +448,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           'STARTUP_DETAIL_share_sharp_ICN_ON_TAP');
                                       logFirebaseEvent('IconButton_Share');
                                       await Share.share(
-                                          'https://app.vitrine.ag/#/loadingDeepLink/${widget.startupSite}');
+                                          'https://app.vitrine.ag/#/loadingDeepLink/${functions.encodeUri(widget.startupSite!)}');
                                     },
                                   ),
                                   FavoriteToggleWidget(
@@ -491,10 +492,94 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SvgPicture.asset(
-                                    'assets/images/logo.svg',
-                                    height: 34,
-                                    fit: BoxFit.cover,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 36, 0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/logo.svg',
+                                          height: 31,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 36, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'STARTUP_DETAIL_PAGE_Text_gae9gwne_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Text_Launch-U-R-L');
+                                            await launchURL(
+                                                'https://www.vitrine.ag/');
+                                          },
+                                          child: Text(
+                                            'Home',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 36, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'STARTUP_DETAIL_PAGE_Text_lehdgjf1_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Text_Launch-U-R-L');
+                                            await launchURL(
+                                                'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
+                                          },
+                                          child: Text(
+                                            'Cadastre sua Startup',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'STARTUP_DETAIL_PAGE_Text_fxc5aw6i_ON_TAP');
+                                          logFirebaseEvent('Text_Auth');
+                                          GoRouter.of(context)
+                                              .prepareAuthEvent();
+                                          await signOut();
+                                          context.goNamedAuth(
+                                              'PhoneAuthentication', mounted);
+                                        },
+                                        child: Text(
+                                          'Sair',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   FavoriteToggleWidget(
                                     startup: startupDetailStartupsRecord,

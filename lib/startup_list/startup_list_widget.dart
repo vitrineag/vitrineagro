@@ -1,4 +1,6 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/mobile_drawer_widget.dart';
 import '../components/startup_card_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -34,6 +36,10 @@ class _StartupListWidgetState extends State<StartupListWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+      drawer: Drawer(
+        elevation: 16,
+        child: MobileDrawerWidget(),
+      ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -151,6 +157,15 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                           .onError((_, __) =>
                                               algoliaSearchResults = [])
                                           .whenComplete(() => setState(() {}));
+
+                                      logFirebaseEvent(
+                                          'TextField_Google-Analytics-Event');
+                                      logFirebaseEvent(
+                                        'filter',
+                                        parameters: {
+                                          'term': textController!.text,
+                                        },
+                                      );
                                     },
                                   ),
                                   obscureText: false,
@@ -350,8 +365,11 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 color: Color(0xFF0F0F0F),
                                 size: 32,
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'STARTUP_LIST_PAGE_menu_ICN_ON_TAP');
+                                logFirebaseEvent('IconButton_Drawer');
+                                scaffoldKey.currentState!.openDrawer();
                               },
                             ),
                             FFButtonWidget(
@@ -421,14 +439,89 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                              child: SvgPicture.asset(
-                                'assets/images/logo.svg',
-                                height: 31,
-                                fit: BoxFit.cover,
-                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 36, 0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/logo.svg',
+                                    height: 31,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 36, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_LIST_PAGE_Text_6nyvee0k_ON_TAP');
+                                      logFirebaseEvent('Text_Launch-U-R-L');
+                                      await launchURL(
+                                          'https://www.vitrine.ag/');
+                                    },
+                                    child: Text(
+                                      'Home',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 36, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_LIST_PAGE_Text_vx2w7quj_ON_TAP');
+                                      logFirebaseEvent('Text_Launch-U-R-L');
+                                      await launchURL(
+                                          'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
+                                    },
+                                    child: Text(
+                                      'Cadastre sua Startup',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'STARTUP_LIST_PAGE_Text_l9uj8asi_ON_TAP');
+                                    logFirebaseEvent('Text_Auth');
+                                    GoRouter.of(context).prepareAuthEvent();
+                                    await signOut();
+                                    context.goNamedAuth(
+                                        'PhoneAuthentication', mounted);
+                                  },
+                                  child: Text(
+                                    'Sair',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
                             FFButtonWidget(
                               onPressed: () async {

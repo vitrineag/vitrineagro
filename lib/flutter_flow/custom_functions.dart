@@ -33,3 +33,9 @@ String getCategory(StartupsRecord startup) {
 List<String> getSectorsOfActivity(StartupsRecord startup) {
   return splitByChar(startup!.sectorsOfActivity!, ', \n');
 }
+
+String encodeUri(String uri) {
+  // encode string uri
+  final encodedUri = Uri.encodeFull(uri);
+  return '$encodedUri';
+}
