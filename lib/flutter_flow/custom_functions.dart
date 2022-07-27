@@ -36,6 +36,6 @@ List<String> getSectorsOfActivity(StartupsRecord startup) {
 
 String encodeUri(String uri) {
   // encode string uri
-  final encodedUri = Uri.encodeFull(uri);
-  return '$encodedUri';
+  final encodedUri = Uri.encodeComponent(uri);
+  return encodedUri;
 }
