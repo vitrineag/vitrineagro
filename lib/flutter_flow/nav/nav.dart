@@ -124,6 +124,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LoadingDeepLinkWidget(
                 startupSite: params.getParam('startupSite', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'teste',
+              path: 'teste',
+              requireAuth: true,
+              builder: (context, params) => TesteWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

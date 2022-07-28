@@ -4,12 +4,12 @@ import '../components/startup_feed_widget.dart';
 import '../components/startup_milestones_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_web_view.dart';
 import '../flutter_flow/flutter_flow_youtube_player.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -545,22 +545,12 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       ),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'STARTUP_DETAIL_INFO_HtmlView_ehk02egv_ON');
-                                  logFirebaseEvent(
-                                      'HtmlView_Google-Analytics-Event');
-                                  logFirebaseEvent(
-                                    'presentation_interation',
-                                    parameters: {
-                                      'startup_name': widget.startup!.name,
-                                    },
-                                  );
-                                },
-                                child: Html(
-                                  data: widget.startup!.pitchPdfUrl!,
-                                ),
+                              FlutterFlowWebView(
+                                url: widget.startup!.pitchPdfUrl!,
+                                bypass: false,
+                                height: 500,
+                                verticalScroll: false,
+                                horizontalScroll: false,
                               ),
                             ],
                           ),
@@ -1097,32 +1087,26 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Apresentação',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'STARTUP_DETAIL_INFO_HtmlView_1hn0it4f_ON');
-                                logFirebaseEvent(
-                                    'HtmlView_Google-Analytics-Event');
-                                logFirebaseEvent(
-                                  'presentation_interation',
-                                  parameters: {
-                                    'startup_name': widget.startup!.name,
-                                  },
-                                );
-                              },
-                              child: Html(
-                                data: widget.startup!.pitchPdfUrl!,
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              child: Text(
+                                'Apresentação',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
+                            ),
+                            FlutterFlowWebView(
+                              url: widget.startup!.pitchPdfUrl!,
+                              bypass: false,
+                              height: 500,
+                              verticalScroll: false,
+                              horizontalScroll: false,
                             ),
                           ],
                         ),
