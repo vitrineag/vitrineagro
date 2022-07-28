@@ -332,8 +332,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     final typeSelectUserTypeRecord =
                                         typeSelectUserTypeRecordList.first;
                                     return FlutterFlowDropDown(
-                                      options: typeSelectUserTypeRecord!.type!
-                                          .toList()!
+                                      options: typeSelectUserTypeRecord.type!
+                                          .toList()
                                           .toList(),
                                       onChanged: (val) =>
                                           setState(() => typeSelectValue = val),
@@ -365,7 +365,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                   },
                                 ),
                               ),
-                              if ((typeSelectValue) == 'Outros')
+                              if ((typeSelectValue == 'Outros'))
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 16, 16, 0),
@@ -451,10 +451,10 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     await UserIsLoggedRecord.collection
                                         .doc()
                                         .set(userIsLoggedCreateData);
-                                    if ((FFAppState().startupSiteRedirect !=
+                                    if (FFAppState().startupSiteRedirect !=
                                             null &&
                                         FFAppState().startupSiteRedirect !=
-                                            '')) {
+                                            '') {
                                       logFirebaseEvent(
                                           'SetUserType_Navigate-To');
                                       context.pushNamed(

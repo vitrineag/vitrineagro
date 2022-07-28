@@ -281,8 +281,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 ),
                               );
                             }
-                            final startup =
-                                algoliaSearchResults!?.toList() ?? [];
+                            final startup = algoliaSearchResults!.toList();
                             return Wrap(
                               spacing: 20,
                               runSpacing: 20,

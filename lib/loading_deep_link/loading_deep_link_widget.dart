@@ -26,7 +26,7 @@ class _LoadingDeepLinkWidgetState extends State<LoadingDeepLinkWidget> {
   void initState() {
     super.initState();
     // On page load action.
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('LOADING_DEEP_LINK_LoadingDeepLink_ON_LOA');
       logFirebaseEvent('LoadingDeepLink_Update-Local-State');
       setState(() => FFAppState().startupSiteRedirect = widget.startupSite!);

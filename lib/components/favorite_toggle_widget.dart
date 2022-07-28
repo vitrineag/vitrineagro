@@ -50,7 +50,7 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
           decoration: BoxDecoration(),
           child: Stack(
             children: [
-              if ((containerUserFavoritiesStartupsRecordList?.length) == 0)
+              if ((containerUserFavoritiesStartupsRecordList.length == 0))
                 FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30,
@@ -78,7 +78,7 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
                         .set(userFavoritiesStartupsCreateData);
                   },
                 ),
-              if ((containerUserFavoritiesStartupsRecordList.length) > 0)
+              if ((containerUserFavoritiesStartupsRecordList.length > 0))
                 FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30,
@@ -95,7 +95,7 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
                     logFirebaseEvent('FavoriteFill_Backend-Call');
                     await functions
                         .getFirstFavoritiesStartups(
-                            containerUserFavoritiesStartupsRecordList.toList())!
+                            containerUserFavoritiesStartupsRecordList.toList())
                         .reference
                         .delete();
                   },

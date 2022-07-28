@@ -39,7 +39,7 @@ class _ToggleIconButtonWidgetState extends State<ToggleIconButtonWidget> {
             ),
             child: widget.activeIcon!,
           ),
-        if ((widget.isActive) == false)
+        if ((widget.isActive == false))
           Container(
             width: widget.size,
             height: 100,

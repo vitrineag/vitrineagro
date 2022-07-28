@@ -33,7 +33,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
   void initState() {
     super.initState();
     // On page load action.
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('STARTUP_DETAIL_StartupDetail_ON_LOAD');
       logFirebaseEvent('StartupDetail_Update-Local-State');
       setState(() => FFAppState().startupSiteRedirect = '');
@@ -206,14 +206,14 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                         createdDate:
                                                             getCurrentTimestamp,
                                                         startup:
-                                                            startupDetailStartupsRecord!
+                                                            startupDetailStartupsRecord
                                                                 .reference,
                                                         startupContact:
-                                                            startupDetailStartupsRecord!
+                                                            startupDetailStartupsRecord
                                                                 .comercialContact
                                                                 ?.toString(),
                                                         startupName:
-                                                            startupDetailStartupsRecord!
+                                                            startupDetailStartupsRecord
                                                                 .name,
                                                         user:
                                                             currentUserReference,
@@ -377,14 +377,14 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       final userContactCreateData =
                                           createUserContactRecordData(
                                         createdDate: getCurrentTimestamp,
-                                        startup: startupDetailStartupsRecord!
+                                        startup: startupDetailStartupsRecord
                                             .reference,
                                         startupContact:
-                                            startupDetailStartupsRecord!
+                                            startupDetailStartupsRecord
                                                 .comercialContact
                                                 ?.toString(),
                                         startupName:
-                                            startupDetailStartupsRecord!.name,
+                                            startupDetailStartupsRecord.name,
                                         user: currentUserReference,
                                         userEmail: currentUserEmail,
                                         userName: currentUserDisplayName,

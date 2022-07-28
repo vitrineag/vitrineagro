@@ -140,7 +140,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    if ((widget.startup!.country) == 'Brasil')
+                                    if ((widget.startup!.country == 'Brasil'))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 4, 0),
@@ -236,8 +236,10 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
                   child: Text(
-                    widget.startup!.valueProposalText!,
-                    maxLines: 1,
+                    widget.startup!.valueProposalText!.maybeHandleOverflow(
+                      maxChars: 100,
+                      replacement: '…',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Rubik',
                           color: Color(0xFF032B44),
@@ -252,7 +254,10 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Text(
-                    widget.startup!.problemResolutionText!,
+                    widget.startup!.problemResolutionText!.maybeHandleOverflow(
+                      maxChars: 300,
+                      replacement: '…',
+                    ),
                     maxLines: 3,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Rubik',
@@ -407,15 +412,14 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                             onTap: () async {
                               logFirebaseEvent(
                                   'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
-                              if ((cardUserFavoritiesStartupsRecordList
-                                      .length) >
+                              if (cardUserFavoritiesStartupsRecordList.length >
                                   0) {
                                 logFirebaseEvent(
                                     'FavoriteStartup_Backend-Call');
                                 await functions
                                     .getFirstFavoritiesStartups(
                                         cardUserFavoritiesStartupsRecordList
-                                            .toList())!
+                                            .toList())
                                     .reference
                                     .delete();
                               } else {
@@ -444,9 +448,9 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               inactiveIcon: Icon(
                                 Icons.star_outline,
                               ),
-                              isActive: (cardUserFavoritiesStartupsRecordList
-                                      .length) >
-                                  0,
+                              isActive:
+                                  cardUserFavoritiesStartupsRecordList.length >
+                                      0,
                               size: 44.0,
                             ),
                           ),

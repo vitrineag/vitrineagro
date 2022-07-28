@@ -24,7 +24,7 @@ class _LoadingWidgetState extends State<LoadingWidget> {
   void initState() {
     super.initState();
     // On page load action.
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('LOADING_PAGE_Loading_ON_PAGE_LOAD');
       logFirebaseEvent('Loading_Simple-Search');
       await queryUserIsLoggedRecordOnce()
@@ -40,9 +40,9 @@ class _LoadingWidgetState extends State<LoadingWidget> {
           .onError((_, __) => simpleSearchResults = [])
           .whenComplete(() => setState(() {}));
 
-      if ((simpleSearchResults.length) > 0) {
-        if ((FFAppState().startupSiteRedirect != null &&
-            FFAppState().startupSiteRedirect != '')) {
+      if (simpleSearchResults.length > 0) {
+        if (FFAppState().startupSiteRedirect != null &&
+            FFAppState().startupSiteRedirect != '') {
           logFirebaseEvent('Loading_Navigate-To');
           context.pushNamed(
             'StartupDetail',

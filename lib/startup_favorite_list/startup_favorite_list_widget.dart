@@ -143,7 +143,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                         wrapIndex];
                                 return StreamBuilder<StartupsRecord>(
                                   stream: StartupsRecord.getDocument(
-                                      wrapUserFavoritiesStartupsRecord!
+                                      wrapUserFavoritiesStartupsRecord
                                           .startup!),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.

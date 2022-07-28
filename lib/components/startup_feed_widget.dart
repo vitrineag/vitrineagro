@@ -53,7 +53,7 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                   onTap: () async {
                     logFirebaseEvent('STARTUP_FEED_COMP_StartupNews_ON_TAP');
                     logFirebaseEvent('StartupNews_Launch-U-R-L');
-                    await launchURL(rowStartupNewsRecord!.newsUrl!);
+                    await launchURL(rowStartupNewsRecord.newsUrl!);
                   },
                   child: Material(
                     color: Colors.transparent,
@@ -80,7 +80,7 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                                     .secondaryBackground,
                               ),
                               child: Text(
-                                rowStartupNewsRecord!.title!,
+                                rowStartupNewsRecord.title!,
                                 maxLines: 3,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -112,7 +112,7 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                                         .secondaryBackground,
                                   ),
                                   child: Text(
-                                    rowStartupNewsRecord!.siteName!,
+                                    rowStartupNewsRecord.siteName!,
                                     maxLines: 1,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
