@@ -89,6 +89,8 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                             width: 128,
                             height: 128,
                             decoration: BoxDecoration(
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
                               boxShadow: [
                                 BoxShadow(
                                   blurRadius: 8,
@@ -103,7 +105,9 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               borderRadius: BorderRadius.circular(24),
                               child: Image.network(
                                 widget.startup!.logo!,
-                                fit: BoxFit.cover,
+                                width: 128,
+                                height: 128,
+                                fit: BoxFit.contain,
                               ),
                             ),
                           ),
