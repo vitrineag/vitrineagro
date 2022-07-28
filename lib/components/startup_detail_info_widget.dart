@@ -182,6 +182,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         width: 128,
                                         height: 128,
                                         decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
                                           boxShadow: [
                                             BoxShadow(
                                               blurRadius: 8,
@@ -198,7 +200,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               BorderRadius.circular(24),
                                           child: Image.network(
                                             widget.startup!.logo!,
-                                            fit: BoxFit.cover,
+                                            width: 128,
+                                            height: 128,
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
                                       ),
@@ -761,6 +765,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                   width: 128,
                                   height: 128,
                                   decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
                                     boxShadow: [
                                       BoxShadow(
                                         blurRadius: 8,
@@ -775,6 +781,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                     borderRadius: BorderRadius.circular(24),
                                     child: Image.network(
                                       widget.startup!.logo!,
+                                      width: 128,
+                                      height: 128,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
