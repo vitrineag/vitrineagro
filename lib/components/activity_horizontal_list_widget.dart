@@ -24,10 +24,10 @@ class _ActivityHorizontalListWidgetState
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      height: 100,
+      height: 50,
       child: custom_widgets.ActivityHorizontalListCustom(
         width: 100,
-        height: 100,
+        height: 50,
         startup: widget.startup!,
       ),
     );

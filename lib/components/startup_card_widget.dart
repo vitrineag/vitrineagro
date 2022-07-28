@@ -235,36 +235,63 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
-                  child: Text(
-                    widget.startup!.valueProposalText!.maybeHandleOverflow(
-                      maxChars: 100,
-                      replacement: '…',
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Rubik',
-                          color: Color(0xFF032B44),
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.startup!.valueProposalText!
+                                .maybeHandleOverflow(
+                              maxChars: 100,
+                              replacement: '…',
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Rubik',
+                                      color: Color(0xFF032B44),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Container(
-                  height: 60,
+                  width: MediaQuery.of(context).size.width,
+                  height: 80,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  child: Text(
-                    widget.startup!.problemResolutionText!.maybeHandleOverflow(
-                      maxChars: 300,
-                      replacement: '…',
-                    ),
-                    maxLines: 3,
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Rubik',
-                          color: Color(0xFF032B44),
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.startup!.problemResolutionText!
+                              .maybeHandleOverflow(
+                            maxChars: 300,
+                            replacement: '…',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Rubik',
+                                    color: Color(0xFF032B44),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                         ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
