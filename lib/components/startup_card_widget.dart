@@ -107,7 +107,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 widget.startup!.logo!,
                                 width: 128,
                                 height: 128,
-                                fit: BoxFit.contain,
+                                fit: BoxFit.fitWidth,
                               ),
                             ),
                           ),

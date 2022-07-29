@@ -197,9 +197,9 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                   FFButtonWidget(
                                                     onPressed: () async {
                                                       logFirebaseEvent(
-                                                          'STARTUP_DETAIL_ENTRAR_EM_CONTATO_BTN_ON_');
+                                                          'STARTUP_DETAIL_EnterInContact_ON_TAP');
                                                       logFirebaseEvent(
-                                                          'Button_Backend-Call');
+                                                          'EnterInContact_Backend-Call');
 
                                                       final userContactCreateData =
                                                           createUserContactRecordData(
@@ -228,7 +228,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                           .set(
                                                               userContactCreateData);
                                                       logFirebaseEvent(
-                                                          'Button_Alert-Dialog');
+                                                          'EnterInContact_Alert-Dialog');
                                                       await showDialog(
                                                         context: context,
                                                         builder:
@@ -371,8 +371,9 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                   FFButtonWidget(
                                     onPressed: () async {
                                       logFirebaseEvent(
-                                          'STARTUP_DETAIL_ENTRAR_EM_CONTATO_BTN_ON_');
-                                      logFirebaseEvent('Button_Backend-Call');
+                                          'STARTUP_DETAIL_EnterInContact_ON_TAP');
+                                      logFirebaseEvent(
+                                          'EnterInContact_Backend-Call');
 
                                       final userContactCreateData =
                                           createUserContactRecordData(
@@ -392,7 +393,8 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       await UserContactRecord.collection
                                           .doc()
                                           .set(userContactCreateData);
-                                      logFirebaseEvent('Button_Alert-Dialog');
+                                      logFirebaseEvent(
+                                          'EnterInContact_Alert-Dialog');
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
