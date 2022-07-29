@@ -44,143 +44,153 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
             children: [
               Align(
                 alignment: AlignmentDirectional(0, -1),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (responsiveVisibility(
-                        context: context,
-                        phone: false,
-                      ))
-                        Container(
-                          height: 122,
-                          decoration: BoxDecoration(),
-                        ),
-                      if (responsiveVisibility(
-                        context: context,
-                        tablet: false,
-                        tabletLandscape: false,
-                        desktop: false,
-                      ))
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 1,
+                  constraints: BoxConstraints(
+                    maxWidth: 1100,
+                  ),
+                  decoration: BoxDecoration(),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (responsiveVisibility(
+                          context: context,
+                          phone: false,
+                        ))
+                          Container(
+                            height: 122,
                             decoration: BoxDecoration(),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  30, 16, 30, 16),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/logo.svg',
-                                    width: 114,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ],
+                          ),
+                        if (responsiveVisibility(
+                          context: context,
+                          tablet: false,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    30, 16, 30, 16),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/images/logo.svg',
+                                      width: 114,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 12),
-                        child: Text(
-                          'Favoritos',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Rubik',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                fontSize: 24,
-                              ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 0),
-                        child:
-                            StreamBuilder<List<UserFavoritiesStartupsRecord>>(
-                          stream: queryUserFavoritiesStartupsRecord(
-                            queryBuilder: (userFavoritiesStartupsRecord) =>
-                                userFavoritiesStartupsRecord.where('user',
-                                    isEqualTo: currentUserReference),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                  ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 12),
+                          child: Text(
+                            'Favoritos',
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  fontSize: 24,
                                 ),
-                              );
-                            }
-                            List<UserFavoritiesStartupsRecord>
-                                wrapUserFavoritiesStartupsRecordList =
-                                snapshot.data!;
-                            return Wrap(
-                              spacing: 24,
-                              runSpacing: 16,
-                              alignment: WrapAlignment.start,
-                              crossAxisAlignment: WrapCrossAlignment.start,
-                              direction: Axis.horizontal,
-                              runAlignment: WrapAlignment.start,
-                              verticalDirection: VerticalDirection.down,
-                              clipBehavior: Clip.none,
-                              children: List.generate(
-                                  wrapUserFavoritiesStartupsRecordList.length,
-                                  (wrapIndex) {
-                                final wrapUserFavoritiesStartupsRecord =
-                                    wrapUserFavoritiesStartupsRecordList[
-                                        wrapIndex];
-                                return StreamBuilder<StartupsRecord>(
-                                  stream: StartupsRecord.getDocument(
-                                      wrapUserFavoritiesStartupsRecord
-                                          .startup!),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: CircularProgressIndicator(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child:
+                              StreamBuilder<List<UserFavoritiesStartupsRecord>>(
+                            stream: queryUserFavoritiesStartupsRecord(
+                              queryBuilder: (userFavoritiesStartupsRecord) =>
+                                  userFavoritiesStartupsRecord.where('user',
+                                      isEqualTo: currentUserReference),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<UserFavoritiesStartupsRecord>
+                                  wrapUserFavoritiesStartupsRecordList =
+                                  snapshot.data!;
+                              return Wrap(
+                                spacing: 24,
+                                runSpacing: 16,
+                                alignment: WrapAlignment.start,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                direction: Axis.horizontal,
+                                runAlignment: WrapAlignment.start,
+                                verticalDirection: VerticalDirection.down,
+                                clipBehavior: Clip.none,
+                                children: List.generate(
+                                    wrapUserFavoritiesStartupsRecordList.length,
+                                    (wrapIndex) {
+                                  final wrapUserFavoritiesStartupsRecord =
+                                      wrapUserFavoritiesStartupsRecordList[
+                                          wrapIndex];
+                                  return StreamBuilder<StartupsRecord>(
+                                    stream: StartupsRecord.getDocument(
+                                        wrapUserFavoritiesStartupsRecord
+                                            .startup!),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                            ),
                                           ),
+                                        );
+                                      }
+                                      final containerStartupsRecord =
+                                          snapshot.data!;
+                                      return Container(
+                                        width: 336,
+                                        decoration: BoxDecoration(),
+                                        child: StartupCardWidget(
+                                          startup: containerStartupsRecord,
                                         ),
                                       );
-                                    }
-                                    final containerStartupsRecord =
-                                        snapshot.data!;
-                                    return Container(
-                                      width: 336,
-                                      decoration: BoxDecoration(),
-                                      child: StartupCardWidget(
-                                        startup: containerStartupsRecord,
-                                      ),
-                                    );
-                                  },
-                                );
-                              }),
-                            );
-                          },
+                                    },
+                                  );
+                                }),
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                      Container(
-                        width: 0,
-                        height: 90,
-                        decoration: BoxDecoration(),
-                      ),
-                    ],
+                        Container(
+                          width: 0,
+                          height: 90,
+                          decoration: BoxDecoration(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

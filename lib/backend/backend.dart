@@ -12,6 +12,7 @@ import 'schema/sectors_of_activity_record.dart';
 import 'schema/user_contact_record.dart';
 import 'schema/user_is_logged_record.dart';
 import 'schema/startup_news_record.dart';
+import 'schema/startup_tracking_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -27,6 +28,7 @@ export 'schema/sectors_of_activity_record.dart';
 export 'schema/user_contact_record.dart';
 export 'schema/user_is_logged_record.dart';
 export 'schema/startup_news_record.dart';
+export 'schema/startup_tracking_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -361,6 +363,48 @@ Future<FFFirestorePage<StartupNewsRecord>> queryStartupNewsRecordPage({
     queryCollectionPage(
       StartupNewsRecord.collection,
       StartupNewsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query StartupTrackingRecords (as a Stream and as a Future).
+Stream<List<StartupTrackingRecord>> queryStartupTrackingRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      StartupTrackingRecord.collection,
+      StartupTrackingRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<StartupTrackingRecord>> queryStartupTrackingRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      StartupTrackingRecord.collection,
+      StartupTrackingRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<StartupTrackingRecord>> queryStartupTrackingRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      StartupTrackingRecord.collection,
+      StartupTrackingRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

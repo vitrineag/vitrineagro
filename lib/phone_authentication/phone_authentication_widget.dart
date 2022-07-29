@@ -23,7 +23,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
     super.initState();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'PhoneAuthentication'});
-    phoneNumberController = TextEditingController();
+    phoneNumberController = TextEditingController(text: '+55');
   }
 
   @override

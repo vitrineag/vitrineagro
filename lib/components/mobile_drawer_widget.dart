@@ -72,6 +72,25 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
+                  child: InkWell(
+                    onTap: () async {
+                      logFirebaseEvent('MOBILE_DRAWER_CompanyRegister_ON_TAP');
+                      logFirebaseEvent('CompanyRegister_Launch-U-R-L');
+                      await launchURL(
+                          'https://zl4i46dyz9l.typeform.com/to/xlokvahD');
+                    },
+                    child: Text(
+                      'Cadastre sua Empresa',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Rubik',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                ),
                 InkWell(
                   onTap: () async {
                     logFirebaseEvent('MOBILE_DRAWER_COMP_Logout_ON_TAP');

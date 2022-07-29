@@ -58,7 +58,7 @@ class _$SectorsOfActivityRecordSerializer
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -93,7 +93,7 @@ class _$SectorsOfActivityRecord extends SectorsOfActivityRecord {
 
   factory _$SectorsOfActivityRecord(
           [void Function(SectorsOfActivityRecordBuilder)? updates]) =>
-      (new SectorsOfActivityRecordBuilder()..update(updates)).build();
+      (new SectorsOfActivityRecordBuilder()..update(updates))._build();
 
   _$SectorsOfActivityRecord._({this.description, this.icon, this.ffRef})
       : super._();
@@ -124,7 +124,7 @@ class _$SectorsOfActivityRecord extends SectorsOfActivityRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('SectorsOfActivityRecord')
+    return (newBuiltValueToStringHelper(r'SectorsOfActivityRecord')
           ..add('description', description)
           ..add('icon', icon)
           ..add('ffRef', ffRef))
@@ -176,7 +176,9 @@ class SectorsOfActivityRecordBuilder
   }
 
   @override
-  _$SectorsOfActivityRecord build() {
+  SectorsOfActivityRecord build() => _build();
+
+  _$SectorsOfActivityRecord _build() {
     final _$result = _$v ??
         new _$SectorsOfActivityRecord._(
             description: description, icon: icon, ffRef: ffRef);
@@ -185,4 +187,4 @@ class SectorsOfActivityRecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

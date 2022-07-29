@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/activity_horizontal_list_widget.dart';
 import '../components/startup_feed_widget.dart';
@@ -9,9 +10,11 @@ import '../flutter_flow/flutter_flow_youtube_player.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_search/text_search.dart';
 
 class StartupDetailInfoWidget extends StatefulWidget {
   const StartupDetailInfoWidget({
@@ -27,6 +30,13 @@ class StartupDetailInfoWidget extends StatefulWidget {
 }
 
 class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
+  List<StartupTrackingRecord> simpleSearchResults1 = [];
+  List<StartupTrackingRecord> simpleSearchResults2 = [];
+  List<StartupTrackingRecord> simpleSearchResults3 = [];
+  List<StartupTrackingRecord> simpleSearchResults4 = [];
+  List<StartupTrackingRecord> simpleSearchResults5 = [];
+  List<StartupTrackingRecord> simpleSearchResults6 = [];
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -433,88 +443,70 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                         height: 2,
                         thickness: 2,
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 38, 0, 32),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                decoration: BoxDecoration(),
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'STARTUP_DETAIL_INFO_COMP_Pitch_ON_TAP');
-                                    logFirebaseEvent(
-                                        'Pitch_Google-Analytics-Event');
-                                    logFirebaseEvent(
-                                      'play_video',
-                                      parameters: {
-                                        'startup_name': widget.startup!.name,
-                                      },
-                                    );
-                                  },
-                                  child: FlutterFlowYoutubePlayer(
-                                    url: widget.startup!.pitchYoutubeUrl!,
-                                    autoPlay: false,
-                                    looping: false,
-                                    mute: false,
-                                    showControls: true,
-                                    showFullScreen: true,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 28, 0, 22),
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 8),
-                                        child: Text(
-                                          'Estágio do produto',
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      ),
-                                      Text(
-                                        widget.startup!.maturity!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Rubik',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                      InkWell(
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'STARTUP_DETAIL_INFO_COMP_Pitch_ON_TAP');
+                          logFirebaseEvent('Pitch_Google-Analytics-Event');
+                          logFirebaseEvent(
+                            'play_video',
+                            parameters: {
+                              'startup_name': widget.startup!.name,
+                            },
+                          );
+                        },
+                        child: FlutterFlowYoutubePlayer(
+                          url: widget.startup!.pitchYoutubeUrl!,
+                          autoPlay: false,
+                          looping: false,
+                          mute: false,
+                          showControls: true,
+                          showFullScreen: true,
                         ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    'Estágio do produto',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                                Text(
+                                  widget.startup!.maturity!,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       Divider(
                         height: 2,
@@ -615,6 +607,39 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
                                   logFirebaseEvent('CEOLinkedin_Launch-U-R-L');
                                   await launchURL(widget.startup!.linkedinUrl!);
+                                  logFirebaseEvent('CEOLinkedin_Simple-Search');
+                                  await queryStartupTrackingRecordOnce()
+                                      .then(
+                                        (records) => simpleSearchResults1 =
+                                            TextSearch(
+                                          records
+                                              .map(
+                                                (record) => TextSearchItem(
+                                                    record,
+                                                    [record.startupSite!]),
+                                              )
+                                              .toList(),
+                                        )
+                                                .search(widget.startup!.site!)
+                                                .map((r) => r.object)
+                                                .take(1)
+                                                .toList(),
+                                      )
+                                      .onError(
+                                          (_, __) => simpleSearchResults1 = [])
+                                      .whenComplete(() => setState(() {}));
+
+                                  logFirebaseEvent('CEOLinkedin_Backend-Call');
+
+                                  final startupTrackingUpdateData = {
+                                    'accessLinkedinCeo':
+                                        FieldValue.increment(1),
+                                  };
+                                  await functions
+                                      .getFirstStartupTracking(
+                                          simpleSearchResults1.toList())
+                                      .reference
+                                      .update(startupTrackingUpdateData);
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -657,6 +682,45 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         logFirebaseEvent(
                                             'StartupSite_Launch-U-R-L');
                                         await launchURL(widget.startup!.site!);
+                                        logFirebaseEvent(
+                                            'StartupSite_Simple-Search');
+                                        await queryStartupTrackingRecordOnce()
+                                            .then(
+                                              (records) =>
+                                                  simpleSearchResults2 =
+                                                      TextSearch(
+                                                records
+                                                    .map(
+                                                      (record) =>
+                                                          TextSearchItem(
+                                                              record, [
+                                                        record.startupSite!
+                                                      ]),
+                                                    )
+                                                    .toList(),
+                                              )
+                                                          .search(widget
+                                                              .startup!.site!)
+                                                          .map((r) => r.object)
+                                                          .take(1)
+                                                          .toList(),
+                                            )
+                                            .onError((_, __) =>
+                                                simpleSearchResults2 = [])
+                                            .whenComplete(
+                                                () => setState(() {}));
+
+                                        logFirebaseEvent(
+                                            'StartupSite_Backend-Call');
+
+                                        final startupTrackingUpdateData = {
+                                          'accessSite': FieldValue.increment(1),
+                                        };
+                                        await functions
+                                            .getFirstStartupTracking(
+                                                simpleSearchResults1.toList())
+                                            .reference
+                                            .update(startupTrackingUpdateData);
                                       },
                                       child: Text(
                                         widget.startup!.site!,
@@ -697,6 +761,48 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               'StartupLinkedin_Launch-U-R-L');
                                           await launchURL(widget
                                               .startup!.linkedinUrlCompany!);
+                                          logFirebaseEvent(
+                                              'StartupLinkedin_Simple-Search');
+                                          await queryStartupTrackingRecordOnce()
+                                              .then(
+                                                (records) =>
+                                                    simpleSearchResults3 =
+                                                        TextSearch(
+                                                  records
+                                                      .map(
+                                                        (record) =>
+                                                            TextSearchItem(
+                                                                record, [
+                                                          record.startupSite!
+                                                        ]),
+                                                      )
+                                                      .toList(),
+                                                )
+                                                            .search(widget
+                                                                .startup!.site!)
+                                                            .map(
+                                                                (r) => r.object)
+                                                            .take(1)
+                                                            .toList(),
+                                              )
+                                              .onError((_, __) =>
+                                                  simpleSearchResults3 = [])
+                                              .whenComplete(
+                                                  () => setState(() {}));
+
+                                          logFirebaseEvent(
+                                              'StartupLinkedin_Backend-Call');
+
+                                          final startupTrackingUpdateData = {
+                                            'accessLinkedin':
+                                                FieldValue.increment(1),
+                                          };
+                                          await functions
+                                              .getFirstStartupTracking(
+                                                  simpleSearchResults1.toList())
+                                              .reference
+                                              .update(
+                                                  startupTrackingUpdateData);
                                         },
                                         child: SvgPicture.asset(
                                           'assets/images/linkedin.svg',
@@ -1169,6 +1275,41 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         'CEOLinkedin_Launch-U-R-L');
                                     await launchURL(
                                         widget.startup!.linkedinUrl!);
+                                    logFirebaseEvent(
+                                        'CEOLinkedin_Simple-Search');
+                                    await queryStartupTrackingRecordOnce()
+                                        .then(
+                                          (records) => simpleSearchResults4 =
+                                              TextSearch(
+                                            records
+                                                .map(
+                                                  (record) => TextSearchItem(
+                                                      record,
+                                                      [record.startupSite!]),
+                                                )
+                                                .toList(),
+                                          )
+                                                  .search(widget.startup!.site!)
+                                                  .map((r) => r.object)
+                                                  .take(1)
+                                                  .toList(),
+                                        )
+                                        .onError((_, __) =>
+                                            simpleSearchResults4 = [])
+                                        .whenComplete(() => setState(() {}));
+
+                                    logFirebaseEvent(
+                                        'CEOLinkedin_Backend-Call');
+
+                                    final startupTrackingUpdateData = {
+                                      'accessLinkedinCeo':
+                                          FieldValue.increment(1),
+                                    };
+                                    await functions
+                                        .getFirstStartupTracking(
+                                            simpleSearchResults1.toList())
+                                        .reference
+                                        .update(startupTrackingUpdateData);
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1216,6 +1357,45 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         logFirebaseEvent(
                                             'StartupSite_Launch-U-R-L');
                                         await launchURL(widget.startup!.site!);
+                                        logFirebaseEvent(
+                                            'StartupSite_Simple-Search');
+                                        await queryStartupTrackingRecordOnce()
+                                            .then(
+                                              (records) =>
+                                                  simpleSearchResults5 =
+                                                      TextSearch(
+                                                records
+                                                    .map(
+                                                      (record) =>
+                                                          TextSearchItem(
+                                                              record, [
+                                                        record.startupSite!
+                                                      ]),
+                                                    )
+                                                    .toList(),
+                                              )
+                                                          .search(widget
+                                                              .startup!.site!)
+                                                          .map((r) => r.object)
+                                                          .take(1)
+                                                          .toList(),
+                                            )
+                                            .onError((_, __) =>
+                                                simpleSearchResults5 = [])
+                                            .whenComplete(
+                                                () => setState(() {}));
+
+                                        logFirebaseEvent(
+                                            'StartupSite_Backend-Call');
+
+                                        final startupTrackingUpdateData = {
+                                          'accessSite': FieldValue.increment(1),
+                                        };
+                                        await functions
+                                            .getFirstStartupTracking(
+                                                simpleSearchResults1.toList())
+                                            .reference
+                                            .update(startupTrackingUpdateData);
                                       },
                                       child: Text(
                                         widget.startup!.site!,
@@ -1256,6 +1436,50 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 'StartupLinkedin_Launch-U-R-L');
                                             await launchURL(widget
                                                 .startup!.linkedinUrlCompany!);
+                                            logFirebaseEvent(
+                                                'StartupLinkedin_Simple-Search');
+                                            await queryStartupTrackingRecordOnce()
+                                                .then(
+                                                  (records) =>
+                                                      simpleSearchResults6 =
+                                                          TextSearch(
+                                                    records
+                                                        .map(
+                                                          (record) =>
+                                                              TextSearchItem(
+                                                                  record, [
+                                                            record.startupSite!
+                                                          ]),
+                                                        )
+                                                        .toList(),
+                                                  )
+                                                              .search(widget
+                                                                  .startup!
+                                                                  .site!)
+                                                              .map((r) =>
+                                                                  r.object)
+                                                              .take(1)
+                                                              .toList(),
+                                                )
+                                                .onError((_, __) =>
+                                                    simpleSearchResults6 = [])
+                                                .whenComplete(
+                                                    () => setState(() {}));
+
+                                            logFirebaseEvent(
+                                                'StartupLinkedin_Backend-Call');
+
+                                            final startupTrackingUpdateData = {
+                                              'accessLinkedin':
+                                                  FieldValue.increment(1),
+                                            };
+                                            await functions
+                                                .getFirstStartupTracking(
+                                                    simpleSearchResults1
+                                                        .toList())
+                                                .reference
+                                                .update(
+                                                    startupTrackingUpdateData);
                                           },
                                           child: SvgPicture.asset(
                                             'assets/images/linkedin.svg',

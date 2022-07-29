@@ -39,3 +39,8 @@ String encodeUri(String uri) {
   final encodedUri = Uri.encodeComponent(uri);
   return encodedUri;
 }
+
+StartupTrackingRecord getFirstStartupTracking(
+    List<StartupTrackingRecord> startupTrackings) {
+  return startupTrackings.first;
+}

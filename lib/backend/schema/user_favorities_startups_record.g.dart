@@ -82,7 +82,7 @@ class _$UserFavoritiesStartupsRecordSerializer
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -139,7 +139,7 @@ class _$UserFavoritiesStartupsRecord extends UserFavoritiesStartupsRecord {
 
   factory _$UserFavoritiesStartupsRecord(
           [void Function(UserFavoritiesStartupsRecordBuilder)? updates]) =>
-      (new UserFavoritiesStartupsRecordBuilder()..update(updates)).build();
+      (new UserFavoritiesStartupsRecordBuilder()..update(updates))._build();
 
   _$UserFavoritiesStartupsRecord._(
       {this.createDate,
@@ -185,7 +185,7 @@ class _$UserFavoritiesStartupsRecord extends UserFavoritiesStartupsRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('UserFavoritiesStartupsRecord')
+    return (newBuiltValueToStringHelper(r'UserFavoritiesStartupsRecord')
           ..add('createDate', createDate)
           ..add('startup', startup)
           ..add('user', user)
@@ -256,7 +256,9 @@ class UserFavoritiesStartupsRecordBuilder
   }
 
   @override
-  _$UserFavoritiesStartupsRecord build() {
+  UserFavoritiesStartupsRecord build() => _build();
+
+  _$UserFavoritiesStartupsRecord _build() {
     final _$result = _$v ??
         new _$UserFavoritiesStartupsRecord._(
             createDate: createDate,
@@ -270,4 +272,4 @@ class UserFavoritiesStartupsRecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

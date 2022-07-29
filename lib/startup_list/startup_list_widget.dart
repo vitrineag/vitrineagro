@@ -63,261 +63,274 @@ class _StartupListWidgetState extends State<StartupListWidget> {
               ),
               Align(
                 alignment: AlignmentDirectional(0, -1),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (responsiveVisibility(
-                        context: context,
-                        phone: false,
-                      ))
-                        Container(
-                          height: 122,
-                          decoration: BoxDecoration(),
-                        ),
-                      if (responsiveVisibility(
-                        context: context,
-                        tablet: false,
-                        tabletLandscape: false,
-                        desktop: false,
-                      ))
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  30, 16, 30, 16),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/logo.svg',
-                                    width: 114,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ],
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 1,
+                  constraints: BoxConstraints(
+                    maxWidth: 1100,
+                  ),
+                  decoration: BoxDecoration(),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (responsiveVisibility(
+                          context: context,
+                          phone: false,
+                        ))
+                          Container(
+                            height: 122,
+                            decoration: BoxDecoration(),
+                          ),
+                        if (responsiveVisibility(
+                          context: context,
+                          tablet: false,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    30, 16, 30, 16),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/images/logo.svg',
+                                      width: 114,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 20),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          constraints: BoxConstraints(
-                            maxWidth: 1000,
-                          ),
-                          decoration: BoxDecoration(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                                child: Text(
-                                  'Encontre sua startup',
-                                  textAlign: TextAlign.start,
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(30, 0, 30, 20),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            constraints: BoxConstraints(
+                              maxWidth: 1000,
+                            ),
+                            decoration: BoxDecoration(),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 12),
+                                  child: Text(
+                                    'Encontre sua startup',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontSize: 24,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: TextFormField(
+                                    controller: textController,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      'textController',
+                                      Duration(milliseconds: 1000),
+                                      () async {
+                                        logFirebaseEvent(
+                                            'STARTUP_LIST_TextField_rfxzfyij_ON_TEXTF');
+                                        logFirebaseEvent(
+                                            'TextField_Algolia-Search');
+                                        setState(
+                                            () => algoliaSearchResults = null);
+                                        await StartupsRecord.search(
+                                          term: functions.replaceCommaToSpace(
+                                              textController!.text),
+                                        )
+                                            .then(
+                                                (r) => algoliaSearchResults = r)
+                                            .onError((_, __) =>
+                                                algoliaSearchResults = [])
+                                            .whenComplete(
+                                                () => setState(() {}));
+
+                                        logFirebaseEvent(
+                                            'TextField_Google-Analytics-Event');
+                                        logFirebaseEvent(
+                                          'filter',
+                                          parameters: {
+                                            'term': textController!.text,
+                                          },
+                                        );
+                                      },
+                                    ),
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: 'Digite a busca',
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      filled: true,
+                                      fillColor: Color(0xFFEAEAEA),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              17, 13, 25, 8),
+                                      suffixIcon: Icon(
+                                        Icons.filter_alt_outlined,
+                                        color: Colors.black,
+                                        size: 24,
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                          color: Color(0xFF0F0F0F),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Text(
+                                  'Filtre startups por nome, segmento ou qualquer preferência desejada (para separar os temas utilize vírgula)',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Rubik',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        fontSize: 24,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: TextFormField(
-                                  controller: textController,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    'textController',
-                                    Duration(milliseconds: 1000),
-                                    () async {
-                                      logFirebaseEvent(
-                                          'STARTUP_LIST_TextField_rfxzfyij_ON_TEXTF');
-                                      logFirebaseEvent(
-                                          'TextField_Algolia-Search');
-                                      setState(
-                                          () => algoliaSearchResults = null);
-                                      await StartupsRecord.search(
-                                        term: functions.replaceCommaToSpace(
-                                            textController!.text),
-                                      )
-                                          .then((r) => algoliaSearchResults = r)
-                                          .onError((_, __) =>
-                                              algoliaSearchResults = [])
-                                          .whenComplete(() => setState(() {}));
-
-                                      logFirebaseEvent(
-                                          'TextField_Google-Analytics-Event');
-                                      logFirebaseEvent(
-                                        'filter',
-                                        parameters: {
-                                          'term': textController!.text,
-                                        },
-                                      );
-                                    },
-                                  ),
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    hintText: 'Digite a busca',
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    filled: true,
-                                    fillColor: Color(0xFFEAEAEA),
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            17, 13, 25, 8),
-                                    suffixIcon: Icon(
-                                      Icons.filter_alt_outlined,
-                                      color: Colors.black,
-                                      size: 24,
-                                    ),
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xFF0F0F0F),
-                                        fontSize: 16,
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
-                              ),
-                              Text(
-                                'Filtre startups por nome, segmento ou qualquer preferência desejada (para separar os temas utilize vírgula)',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      if ((textController!.text == null ||
-                          textController!.text == ''))
-                        StreamBuilder<List<StartupsRecord>>(
-                          stream: queryStartupsRecord(),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                  ),
-                                ),
-                              );
-                            }
-                            List<StartupsRecord>
-                                firebaseListStartupsRecordList = snapshot.data!;
-                            return Wrap(
-                              spacing: 20,
-                              runSpacing: 20,
-                              alignment: WrapAlignment.start,
-                              crossAxisAlignment: WrapCrossAlignment.start,
-                              direction: Axis.horizontal,
-                              runAlignment: WrapAlignment.start,
-                              verticalDirection: VerticalDirection.down,
-                              clipBehavior: Clip.none,
-                              children: List.generate(
-                                  firebaseListStartupsRecordList.length,
-                                  (firebaseListIndex) {
-                                final firebaseListStartupsRecord =
-                                    firebaseListStartupsRecordList[
-                                        firebaseListIndex];
-                                return Container(
-                                  width: 336,
-                                  decoration: BoxDecoration(),
-                                  child: StartupCardWidget(
-                                    startup: firebaseListStartupsRecord,
+                        if ((textController!.text == null ||
+                            textController!.text == ''))
+                          StreamBuilder<List<StartupsRecord>>(
+                            stream: queryStartupsRecord(),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                    ),
                                   ),
                                 );
-                              }),
-                            );
-                          },
-                        ),
-                      if ((textController!.text != null &&
-                          textController!.text != ''))
-                        Builder(
-                          builder: (context) {
-                            if (algoliaSearchResults! == null) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                  ),
-                                ),
+                              }
+                              List<StartupsRecord>
+                                  firebaseListStartupsRecordList =
+                                  snapshot.data!;
+                              return Wrap(
+                                spacing: 20,
+                                runSpacing: 20,
+                                alignment: WrapAlignment.start,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                direction: Axis.horizontal,
+                                runAlignment: WrapAlignment.start,
+                                verticalDirection: VerticalDirection.down,
+                                clipBehavior: Clip.none,
+                                children: List.generate(
+                                    firebaseListStartupsRecordList.length,
+                                    (firebaseListIndex) {
+                                  final firebaseListStartupsRecord =
+                                      firebaseListStartupsRecordList[
+                                          firebaseListIndex];
+                                  return Container(
+                                    width: 336,
+                                    decoration: BoxDecoration(),
+                                    child: StartupCardWidget(
+                                      startup: firebaseListStartupsRecord,
+                                    ),
+                                  );
+                                }),
                               );
-                            }
-                            final startup = algoliaSearchResults!.toList();
-                            return Wrap(
-                              spacing: 20,
-                              runSpacing: 20,
-                              alignment: WrapAlignment.start,
-                              crossAxisAlignment: WrapCrossAlignment.start,
-                              direction: Axis.horizontal,
-                              runAlignment: WrapAlignment.start,
-                              verticalDirection: VerticalDirection.down,
-                              clipBehavior: Clip.none,
-                              children:
-                                  List.generate(startup.length, (startupIndex) {
-                                final startupItem = startup[startupIndex];
-                                return Container(
-                                  width: 336,
-                                  decoration: BoxDecoration(),
-                                  child: StartupCardWidget(
-                                    startup: startupItem,
+                            },
+                          ),
+                        if ((textController!.text != null &&
+                            textController!.text != ''))
+                          Builder(
+                            builder: (context) {
+                              if (algoliaSearchResults! == null) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                    ),
                                   ),
                                 );
-                              }),
-                            );
-                          },
-                        ),
-                      Container(
-                        width: 0,
-                        height: 90,
-                        decoration: BoxDecoration(),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                        child: Container(
-                          width: 311,
+                              }
+                              final startup = algoliaSearchResults!.toList();
+                              return Wrap(
+                                spacing: 20,
+                                runSpacing: 20,
+                                alignment: WrapAlignment.start,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                direction: Axis.horizontal,
+                                runAlignment: WrapAlignment.start,
+                                verticalDirection: VerticalDirection.down,
+                                clipBehavior: Clip.none,
+                                children: List.generate(startup.length,
+                                    (startupIndex) {
+                                  final startupItem = startup[startupIndex];
+                                  return Container(
+                                    width: 336,
+                                    decoration: BoxDecoration(),
+                                    child: StartupCardWidget(
+                                      startup: startupItem,
+                                    ),
+                                  );
+                                }),
+                              );
+                            },
+                          ),
+                        Container(
+                          width: 0,
+                          height: 90,
                           decoration: BoxDecoration(),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                          child: Container(
+                            width: 311,
+                            decoration: BoxDecoration(),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

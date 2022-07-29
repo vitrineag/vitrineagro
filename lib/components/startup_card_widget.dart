@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:text_search/text_search.dart';
 
 class StartupCardWidget extends StatefulWidget {
   const StartupCardWidget({
@@ -28,6 +29,9 @@ class StartupCardWidget extends StatefulWidget {
 }
 
 class _StartupCardWidgetState extends State<StartupCardWidget> {
+  List<StartupTrackingRecord> simpleSearchResults1 = [];
+  List<StartupTrackingRecord> simpleSearchResults2 = [];
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<UserFavoritiesStartupsRecord>>(
@@ -436,6 +440,37 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                     'startup_name': widget.startup!.name,
                                   },
                                 );
+                                logFirebaseEvent('ShareStartup_Simple-Search');
+                                await queryStartupTrackingRecordOnce()
+                                    .then(
+                                      (records) => simpleSearchResults1 =
+                                          TextSearch(
+                                        records
+                                            .map(
+                                              (record) => TextSearchItem(record,
+                                                  [record.startupSite!]),
+                                            )
+                                            .toList(),
+                                      )
+                                              .search(widget.startup!.site!)
+                                              .map((r) => r.object)
+                                              .take(1)
+                                              .toList(),
+                                    )
+                                    .onError(
+                                        (_, __) => simpleSearchResults1 = [])
+                                    .whenComplete(() => setState(() {}));
+
+                                logFirebaseEvent('ShareStartup_Backend-Call');
+
+                                final startupTrackingUpdateData = {
+                                  'share': FieldValue.increment(1),
+                                };
+                                await functions
+                                    .getFirstStartupTracking(
+                                        simpleSearchResults1.toList())
+                                    .reference
+                                    .update(startupTrackingUpdateData);
                               },
                             ),
                           ),
@@ -443,6 +478,36 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                             onTap: () async {
                               logFirebaseEvent(
                                   'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
+                              logFirebaseEvent('FavoriteStartup_Simple-Search');
+                              await queryStartupTrackingRecordOnce()
+                                  .then(
+                                    (records) => simpleSearchResults2 =
+                                        TextSearch(
+                                      records
+                                          .map(
+                                            (record) => TextSearchItem(
+                                                record, [record.startupSite!]),
+                                          )
+                                          .toList(),
+                                    )
+                                            .search(widget.startup!.site!)
+                                            .map((r) => r.object)
+                                            .take(1)
+                                            .toList(),
+                                  )
+                                  .onError((_, __) => simpleSearchResults2 = [])
+                                  .whenComplete(() => setState(() {}));
+
+                              logFirebaseEvent('FavoriteStartup_Backend-Call');
+
+                              final startupTrackingUpdateData = {
+                                'favorited': FieldValue.increment(1),
+                              };
+                              await functions
+                                  .getFirstStartupTracking(
+                                      simpleSearchResults1.toList())
+                                  .reference
+                                  .update(startupTrackingUpdateData);
                               if (cardUserFavoritiesStartupsRecordList.length >
                                   0) {
                                 logFirebaseEvent(

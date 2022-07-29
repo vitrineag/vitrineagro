@@ -13,6 +13,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:text_search/text_search.dart';
 
 class StartupDetailWidget extends StatefulWidget {
   const StartupDetailWidget({
@@ -27,7 +28,11 @@ class StartupDetailWidget extends StatefulWidget {
 }
 
 class _StartupDetailWidgetState extends State<StartupDetailWidget> {
+  List<StartupTrackingRecord> simpleSearchResults1 = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  List<StartupTrackingRecord> simpleSearchResults2 = [];
+  List<StartupTrackingRecord> simpleSearchResults3 = [];
+  List<StartupTrackingRecord> simpleSearchResults4 = [];
 
   @override
   void initState() {
@@ -37,6 +42,29 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
       logFirebaseEvent('STARTUP_DETAIL_StartupDetail_ON_LOAD');
       logFirebaseEvent('StartupDetail_Update-Local-State');
       setState(() => FFAppState().startupSiteRedirect = '');
+      logFirebaseEvent('StartupDetail_Simple-Search');
+      await queryStartupTrackingRecordOnce()
+          .then(
+            (records) => simpleSearchResults1 = TextSearch(
+              records
+                  .map(
+                    (record) => TextSearchItem(record, [record.startupSite!]),
+                  )
+                  .toList(),
+            ).search(widget.startupSite!).map((r) => r.object).take(1).toList(),
+          )
+          .onError((_, __) => simpleSearchResults1 = [])
+          .whenComplete(() => setState(() {}));
+
+      logFirebaseEvent('StartupDetail_Backend-Call');
+
+      final startupTrackingUpdateData = {
+        'views': FieldValue.increment(1),
+      };
+      await functions
+          .getFirstStartupTracking(simpleSearchResults1.toList())
+          .reference
+          .update(startupTrackingUpdateData);
     });
 
     logFirebaseEvent('screen_view',
@@ -250,6 +278,53 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                           );
                                                         },
                                                       );
+                                                      logFirebaseEvent(
+                                                          'EnterInContact_Simple-Search');
+                                                      await queryStartupTrackingRecordOnce()
+                                                          .then(
+                                                            (records) => simpleSearchResults2 =
+                                                                TextSearch(
+                                                              records
+                                                                  .map(
+                                                                    (record) =>
+                                                                        TextSearchItem(
+                                                                            record,
+                                                                            [
+                                                                          record
+                                                                              .startupSite!
+                                                                        ]),
+                                                                  )
+                                                                  .toList(),
+                                                            )
+                                                                    .search(widget
+                                                                        .startupSite!)
+                                                                    .map((r) =>
+                                                                        r.object)
+                                                                    .take(1)
+                                                                    .toList(),
+                                                          )
+                                                          .onError((_, __) =>
+                                                              simpleSearchResults2 =
+                                                                  [])
+                                                          .whenComplete(() =>
+                                                              setState(() {}));
+
+                                                      logFirebaseEvent(
+                                                          'EnterInContact_Backend-Call');
+
+                                                      final startupTrackingUpdateData =
+                                                          {
+                                                        'enterInContact':
+                                                            FieldValue
+                                                                .increment(1),
+                                                      };
+                                                      await functions
+                                                          .getFirstStartupTracking(
+                                                              simpleSearchResults1
+                                                                  .toList())
+                                                          .reference
+                                                          .update(
+                                                              startupTrackingUpdateData);
                                                     },
                                                     text: 'entrar em contato',
                                                     options: FFButtonOptions(
@@ -413,6 +488,41 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           );
                                         },
                                       );
+                                      logFirebaseEvent(
+                                          'EnterInContact_Simple-Search');
+                                      await queryStartupTrackingRecordOnce()
+                                          .then(
+                                            (records) => simpleSearchResults3 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem(
+                                                        record,
+                                                        [record.startupSite!]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(widget.startupSite!)
+                                                    .map((r) => r.object)
+                                                    .take(1)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              simpleSearchResults3 = [])
+                                          .whenComplete(() => setState(() {}));
+
+                                      logFirebaseEvent(
+                                          'EnterInContact_Backend-Call');
+
+                                      final startupTrackingUpdateData = {
+                                        'enterInContact':
+                                            FieldValue.increment(1),
+                                      };
+                                      await functions
+                                          .getFirstStartupTracking(
+                                              simpleSearchResults1.toList())
+                                          .reference
+                                          .update(startupTrackingUpdateData);
                                     },
                                     text: 'entrar em contato',
                                     options: FFButtonOptions(
@@ -451,6 +561,40 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       logFirebaseEvent('IconButton_Share');
                                       await Share.share(
                                           'https://app.vitrine.ag/#/loadingDeepLink/${functions.encodeUri(widget.startupSite!)}');
+                                      logFirebaseEvent(
+                                          'IconButton_Simple-Search');
+                                      await queryStartupTrackingRecordOnce()
+                                          .then(
+                                            (records) => simpleSearchResults4 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem(
+                                                        record,
+                                                        [record.startupSite!]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(widget.startupSite!)
+                                                    .map((r) => r.object)
+                                                    .take(1)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              simpleSearchResults4 = [])
+                                          .whenComplete(() => setState(() {}));
+
+                                      logFirebaseEvent(
+                                          'IconButton_Backend-Call');
+
+                                      final startupTrackingUpdateData = {
+                                        'share': FieldValue.increment(1),
+                                      };
+                                      await functions
+                                          .getFirstStartupTracking(
+                                              simpleSearchResults1.toList())
+                                          .reference
+                                          .update(startupTrackingUpdateData);
                                     },
                                   ),
                                   FavoriteToggleWidget(

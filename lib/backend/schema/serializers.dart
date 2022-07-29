@@ -8,6 +8,7 @@ import 'sectors_of_activity_record.dart';
 import 'user_contact_record.dart';
 import 'user_is_logged_record.dart';
 import 'startup_news_record.dart';
+import 'startup_tracking_record.dart';
 
 import 'index.dart';
 
@@ -27,6 +28,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   UserContactRecord,
   UserIsLoggedRecord,
   StartupNewsRecord,
+  StartupTrackingRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())
