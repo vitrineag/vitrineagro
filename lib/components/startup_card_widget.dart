@@ -478,6 +478,33 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                             onTap: () async {
                               logFirebaseEvent(
                                   'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
+                              if (cardUserFavoritiesStartupsRecordList.length >
+                                  0) {
+                                logFirebaseEvent(
+                                    'FavoriteStartup_Backend-Call');
+                                await functions
+                                    .getFirstFavoritiesStartups(
+                                        cardUserFavoritiesStartupsRecordList
+                                            .toList())
+                                    .reference
+                                    .delete();
+                              } else {
+                                logFirebaseEvent(
+                                    'FavoriteStartup_Backend-Call');
+
+                                final userFavoritiesStartupsCreateData =
+                                    createUserFavoritiesStartupsRecordData(
+                                  createDate: getCurrentTimestamp,
+                                  startup: widget.startup!.reference,
+                                  user: currentUserReference,
+                                  userName: currentUserDisplayName,
+                                  userPhone: currentPhoneNumber,
+                                );
+                                await UserFavoritiesStartupsRecord.collection
+                                    .doc()
+                                    .set(userFavoritiesStartupsCreateData);
+                              }
+
                               logFirebaseEvent('FavoriteStartup_Simple-Search');
                               await queryStartupTrackingRecordOnce()
                                   .then(
@@ -505,36 +532,9 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               };
                               await functions
                                   .getFirstStartupTracking(
-                                      simpleSearchResults1.toList())
+                                      simpleSearchResults2.toList())
                                   .reference
                                   .update(startupTrackingUpdateData);
-                              if (cardUserFavoritiesStartupsRecordList.length >
-                                  0) {
-                                logFirebaseEvent(
-                                    'FavoriteStartup_Backend-Call');
-                                await functions
-                                    .getFirstFavoritiesStartups(
-                                        cardUserFavoritiesStartupsRecordList
-                                            .toList())
-                                    .reference
-                                    .delete();
-                              } else {
-                                logFirebaseEvent(
-                                    'FavoriteStartup_Backend-Call');
-
-                                final userFavoritiesStartupsCreateData =
-                                    createUserFavoritiesStartupsRecordData(
-                                  createDate: getCurrentTimestamp,
-                                  startup: widget.startup!.reference,
-                                  user: currentUserReference,
-                                  userName: currentUserDisplayName,
-                                  userPhone: currentPhoneNumber,
-                                );
-                                await UserFavoritiesStartupsRecord.collection
-                                    .doc()
-                                    .set(userFavoritiesStartupsCreateData);
-                                return;
-                              }
                             },
                             child: ToggleIconButtonWidget(
                               activeIcon: Icon(
