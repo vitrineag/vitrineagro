@@ -605,8 +605,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
-                                  logFirebaseEvent('CEOLinkedin_Launch-U-R-L');
-                                  await launchURL(widget.startup!.linkedinUrl!);
                                   logFirebaseEvent('CEOLinkedin_Simple-Search');
                                   await queryStartupTrackingRecordOnce()
                                       .then(
@@ -640,6 +638,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                           simpleSearchResults1.toList())
                                       .reference
                                       .update(startupTrackingUpdateData);
+                                  logFirebaseEvent('CEOLinkedin_Launch-U-R-L');
+                                  await launchURL(widget.startup!.linkedinUrl!);
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -680,9 +680,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         logFirebaseEvent(
                                             'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                         logFirebaseEvent(
-                                            'StartupSite_Launch-U-R-L');
-                                        await launchURL(widget.startup!.site!);
-                                        logFirebaseEvent(
                                             'StartupSite_Simple-Search');
                                         await queryStartupTrackingRecordOnce()
                                             .then(
@@ -721,6 +718,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 simpleSearchResults1.toList())
                                             .reference
                                             .update(startupTrackingUpdateData);
+                                        logFirebaseEvent(
+                                            'StartupSite_Launch-U-R-L');
+                                        await launchURL(widget.startup!.site!);
                                       },
                                       child: Text(
                                         widget.startup!.site!,
@@ -757,10 +757,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         onTap: () async {
                                           logFirebaseEvent(
                                               'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
-                                          logFirebaseEvent(
-                                              'StartupLinkedin_Launch-U-R-L');
-                                          await launchURL(widget
-                                              .startup!.linkedinUrlCompany!);
                                           logFirebaseEvent(
                                               'StartupLinkedin_Simple-Search');
                                           await queryStartupTrackingRecordOnce()
@@ -803,6 +799,10 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               .reference
                                               .update(
                                                   startupTrackingUpdateData);
+                                          logFirebaseEvent(
+                                              'StartupLinkedin_Launch-U-R-L');
+                                          await launchURL(widget
+                                              .startup!.linkedinUrlCompany!);
                                         },
                                         child: SvgPicture.asset(
                                           'assets/images/linkedin.svg',
@@ -1272,10 +1272,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                     logFirebaseEvent(
                                         'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
                                     logFirebaseEvent(
-                                        'CEOLinkedin_Launch-U-R-L');
-                                    await launchURL(
-                                        widget.startup!.linkedinUrl!);
-                                    logFirebaseEvent(
                                         'CEOLinkedin_Simple-Search');
                                     await queryStartupTrackingRecordOnce()
                                         .then(
@@ -1310,6 +1306,10 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                             simpleSearchResults1.toList())
                                         .reference
                                         .update(startupTrackingUpdateData);
+                                    logFirebaseEvent(
+                                        'CEOLinkedin_Launch-U-R-L');
+                                    await launchURL(
+                                        widget.startup!.linkedinUrl!);
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1355,9 +1355,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         logFirebaseEvent(
                                             'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                         logFirebaseEvent(
-                                            'StartupSite_Launch-U-R-L');
-                                        await launchURL(widget.startup!.site!);
-                                        logFirebaseEvent(
                                             'StartupSite_Simple-Search');
                                         await queryStartupTrackingRecordOnce()
                                             .then(
@@ -1396,6 +1393,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 simpleSearchResults1.toList())
                                             .reference
                                             .update(startupTrackingUpdateData);
+                                        logFirebaseEvent(
+                                            'StartupSite_Launch-U-R-L');
+                                        await launchURL(widget.startup!.site!);
                                       },
                                       child: Text(
                                         widget.startup!.site!,
@@ -1432,10 +1432,6 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                           onTap: () async {
                                             logFirebaseEvent(
                                                 'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
-                                            logFirebaseEvent(
-                                                'StartupLinkedin_Launch-U-R-L');
-                                            await launchURL(widget
-                                                .startup!.linkedinUrlCompany!);
                                             logFirebaseEvent(
                                                 'StartupLinkedin_Simple-Search');
                                             await queryStartupTrackingRecordOnce()
@@ -1480,6 +1476,10 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 .reference
                                                 .update(
                                                     startupTrackingUpdateData);
+                                            logFirebaseEvent(
+                                                'StartupLinkedin_Launch-U-R-L');
+                                            await launchURL(widget
+                                                .startup!.linkedinUrlCompany!);
                                           },
                                           child: SvgPicture.asset(
                                             'assets/images/linkedin.svg',

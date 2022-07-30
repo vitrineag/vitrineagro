@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/activity_horizontal_list_widget.dart';
+import '../components/favorite_toggle_widget.dart';
 import '../components/toggle_icon_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -29,8 +30,7 @@ class StartupCardWidget extends StatefulWidget {
 }
 
 class _StartupCardWidgetState extends State<StartupCardWidget> {
-  List<StartupTrackingRecord> simpleSearchResults1 = [];
-  List<StartupTrackingRecord> simpleSearchResults2 = [];
+  List<StartupTrackingRecord> simpleSearchResults = [];
 
   @override
   Widget build(BuildContext context) {
@@ -443,7 +443,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 logFirebaseEvent('ShareStartup_Simple-Search');
                                 await queryStartupTrackingRecordOnce()
                                     .then(
-                                      (records) => simpleSearchResults1 =
+                                      (records) => simpleSearchResults =
                                           TextSearch(
                                         records
                                             .map(
@@ -458,7 +458,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                               .toList(),
                                     )
                                     .onError(
-                                        (_, __) => simpleSearchResults1 = [])
+                                        (_, __) => simpleSearchResults = [])
                                     .whenComplete(() => setState(() {}));
 
                                 logFirebaseEvent('ShareStartup_Backend-Call');
@@ -474,81 +474,29 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               },
                             ),
                           ),
-                          InkWell(
-                            onTap: () async {
-                              logFirebaseEvent(
-                                  'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
-                              logFirebaseEvent('FavoriteStartup_Simple-Search');
-                              await queryStartupTrackingRecordOnce()
-                                  .then(
-                                    (records) => simpleSearchResults2 =
-                                        TextSearch(
-                                      records
-                                          .map(
-                                            (record) => TextSearchItem(
-                                                record, [record.startupSite!]),
-                                          )
-                                          .toList(),
-                                    )
-                                            .search(widget.startup!.site!)
-                                            .map((r) => r.object)
-                                            .take(1)
-                                            .toList(),
-                                  )
-                                  .onError((_, __) => simpleSearchResults2 = [])
-                                  .whenComplete(() => setState(() {}));
-
-                              logFirebaseEvent('FavoriteStartup_Backend-Call');
-
-                              final startupTrackingUpdateData = {
-                                'favorited': FieldValue.increment(1),
-                              };
-                              await functions
-                                  .getFirstStartupTracking(
-                                      simpleSearchResults1.toList())
-                                  .reference
-                                  .update(startupTrackingUpdateData);
-                              if (cardUserFavoritiesStartupsRecordList.length >
-                                  0) {
-                                logFirebaseEvent(
-                                    'FavoriteStartup_Backend-Call');
-                                await functions
-                                    .getFirstFavoritiesStartups(
-                                        cardUserFavoritiesStartupsRecordList
-                                            .toList())
-                                    .reference
-                                    .delete();
-                              } else {
-                                logFirebaseEvent(
-                                    'FavoriteStartup_Backend-Call');
-
-                                final userFavoritiesStartupsCreateData =
-                                    createUserFavoritiesStartupsRecordData(
-                                  createDate: getCurrentTimestamp,
-                                  startup: widget.startup!.reference,
-                                  user: currentUserReference,
-                                  userName: currentUserDisplayName,
-                                  userPhone: currentPhoneNumber,
-                                );
-                                await UserFavoritiesStartupsRecord.collection
-                                    .doc()
-                                    .set(userFavoritiesStartupsCreateData);
-                                return;
-                              }
-                            },
-                            child: ToggleIconButtonWidget(
-                              activeIcon: Icon(
-                                Icons.star_sharp,
-                                color: Color(0xFFFCC800),
-                              ),
-                              inactiveIcon: Icon(
-                                Icons.star_outline,
-                              ),
-                              isActive:
-                                  cardUserFavoritiesStartupsRecordList.length >
-                                      0,
-                              size: 44.0,
+                          ToggleIconButtonWidget(
+                            activeIcon: Icon(
+                              Icons.star_sharp,
+                              color: Color(0xFFFCC800),
                             ),
+                            inactiveIcon: Icon(
+                              Icons.star_outline,
+                            ),
+                            isActive:
+                                cardUserFavoritiesStartupsRecordList.length > 0,
+                            size: 44.0,
+                          ),
+                          Container(
+                            width: 45,
+                            height: 45,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                            child: FavoriteToggleWidget(),
                           ),
                         ],
                       ),

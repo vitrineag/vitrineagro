@@ -54,7 +54,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
           'interactMilestones': FieldValue.increment(1),
         };
         await functions
-            .getFirstStartupTracking(simpleSearchResults1.toList())
+            .getFirstStartupTracking(simpleSearchResults.toList())
             .reference
             .update(startupTrackingUpdateData);
       },

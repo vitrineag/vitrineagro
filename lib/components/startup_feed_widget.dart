@@ -1,9 +1,14 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
+import '../flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_search/text_search.dart';
 
 class StartupFeedWidget extends StatefulWidget {
   const StartupFeedWidget({
@@ -18,6 +23,8 @@ class StartupFeedWidget extends StatefulWidget {
 }
 
 class _StartupFeedWidgetState extends State<StartupFeedWidget> {
+  List<StartupTrackingRecord> simpleSearchResults = [];
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<StartupNewsRecord>>(
@@ -54,6 +61,62 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                     logFirebaseEvent('STARTUP_FEED_COMP_StartupNews_ON_TAP');
                     logFirebaseEvent('StartupNews_Launch-U-R-L');
                     await launchURL(rowStartupNewsRecord.newsUrl!);
+                    logFirebaseEvent('StartupNews_Simple-Search');
+                    await queryStartupTrackingRecordOnce()
+                        .then(
+                          (records) => simpleSearchResults = TextSearch(
+                            records
+                                .map(
+                                  (record) => TextSearchItem(
+                                      record, [record.startupSite!]),
+                                )
+                                .toList(),
+                          )
+                              .search(widget.startup!.site!)
+                              .map((r) => r.object)
+                              .take(1)
+                              .toList(),
+                        )
+                        .onError((_, __) => simpleSearchResults = [])
+                        .whenComplete(() => setState(() {}));
+
+                    if (random_data.randomInteger(0, 0) == rowIndex) {
+                      logFirebaseEvent('StartupNews_Backend-Call');
+
+                      final startupTrackingUpdateData = {
+                        'accessFeedOne': FieldValue.increment(1),
+                      };
+                      await functions
+                          .getFirstStartupTracking(simpleSearchResults.toList())
+                          .reference
+                          .update(startupTrackingUpdateData);
+                    } else {
+                      if (random_data.randomInteger(1, 1) == rowIndex) {
+                        logFirebaseEvent('StartupNews_Backend-Call');
+
+                        final startupTrackingUpdateData = {
+                          'accessFeedTwo': FieldValue.increment(1),
+                        };
+                        await functions
+                            .getFirstStartupTracking(
+                                simpleSearchResults.toList())
+                            .reference
+                            .update(startupTrackingUpdateData);
+                      } else {
+                        if (random_data.randomInteger(2, 2) == rowIndex) {
+                          logFirebaseEvent('StartupNews_Backend-Call');
+
+                          final startupTrackingUpdateData = {
+                            'accessFeedThree': FieldValue.increment(1),
+                          };
+                          await functions
+                              .getFirstStartupTracking(
+                                  simpleSearchResults.toList())
+                              .reference
+                              .update(startupTrackingUpdateData);
+                        }
+                      }
+                    }
                   },
                   child: Material(
                     color: Colors.transparent,
