@@ -37,6 +37,8 @@ abstract class StartupTrackingRecord
 
   String? get startupSite;
 
+  int? get interactVideo;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -55,7 +57,8 @@ abstract class StartupTrackingRecord
         ..accessFeedTwo = 0
         ..accessFeedThree = 0
         ..interactMilestones = 0
-        ..startupSite = '';
+        ..startupSite = ''
+        ..interactVideo = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('startupTracking');
@@ -93,6 +96,7 @@ Map<String, dynamic> createStartupTrackingRecordData({
   int? accessFeedThree,
   int? interactMilestones,
   String? startupSite,
+  int? interactVideo,
 }) {
   final firestoreData = serializers.toFirestore(
     StartupTrackingRecord.serializer,
@@ -110,7 +114,8 @@ Map<String, dynamic> createStartupTrackingRecordData({
         ..accessFeedTwo = accessFeedTwo
         ..accessFeedThree = accessFeedThree
         ..interactMilestones = interactMilestones
-        ..startupSite = startupSite,
+        ..startupSite = startupSite
+        ..interactVideo = interactVideo,
     ),
   );
 

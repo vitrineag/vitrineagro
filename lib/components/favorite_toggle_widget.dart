@@ -7,23 +7,22 @@ import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:text_search/text_search.dart';
 
 class FavoriteToggleWidget extends StatefulWidget {
   const FavoriteToggleWidget({
     Key? key,
     this.startup,
+    this.startupTracking,
   }) : super(key: key);
 
   final StartupsRecord? startup;
+  final StartupTrackingRecord? startupTracking;
 
   @override
   _FavoriteToggleWidgetState createState() => _FavoriteToggleWidgetState();
 }
 
 class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
-  List<StartupTrackingRecord> simpleSearchResults = [];
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<UserFavoritiesStartupsRecord>>(
@@ -52,33 +51,12 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
         return InkWell(
           onTap: () async {
             logFirebaseEvent('FAVORITE_TOGGLE_Container_82tpyhcc_ON_TA');
-            logFirebaseEvent('Container_Simple-Search');
-            await queryStartupTrackingRecordOnce()
-                .then(
-                  (records) => simpleSearchResults = TextSearch(
-                    records
-                        .map(
-                          (record) =>
-                              TextSearchItem(record, [record.startupSite!]),
-                        )
-                        .toList(),
-                  )
-                      .search(widget.startup!.site!)
-                      .map((r) => r.object)
-                      .take(1)
-                      .toList(),
-                )
-                .onError((_, __) => simpleSearchResults = [])
-                .whenComplete(() => setState(() {}));
-
             logFirebaseEvent('Container_Backend-Call');
 
             final startupTrackingUpdateData = {
               'favorited': FieldValue.increment(1),
             };
-            await functions
-                .getFirstStartupTracking(simpleSearchResults.toList())
-                .reference
+            await widget.startupTracking!.reference
                 .update(startupTrackingUpdateData);
           },
           child: Container(

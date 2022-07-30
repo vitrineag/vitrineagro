@@ -468,7 +468,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 };
                                 await functions
                                     .getFirstStartupTracking(
-                                        simpleSearchResults1.toList())
+                                        simpleSearchResults.toList())
                                     .reference
                                     .update(startupTrackingUpdateData);
                               },

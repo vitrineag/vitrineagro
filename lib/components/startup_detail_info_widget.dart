@@ -14,15 +14,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:text_search/text_search.dart';
 
 class StartupDetailInfoWidget extends StatefulWidget {
   const StartupDetailInfoWidget({
     Key? key,
     this.startup,
+    this.startupTracking,
   }) : super(key: key);
 
   final StartupsRecord? startup;
+  final StartupTrackingRecord? startupTracking;
 
   @override
   _StartupDetailInfoWidgetState createState() =>
@@ -30,13 +31,6 @@ class StartupDetailInfoWidget extends StatefulWidget {
 }
 
 class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
-  List<StartupTrackingRecord> simpleSearchResults1 = [];
-  List<StartupTrackingRecord> simpleSearchResults2 = [];
-  List<StartupTrackingRecord> simpleSearchResults3 = [];
-  List<StartupTrackingRecord> simpleSearchResults4 = [];
-  List<StartupTrackingRecord> simpleSearchResults5 = [];
-  List<StartupTrackingRecord> simpleSearchResults6 = [];
-
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -454,6 +448,12 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                               'startup_name': widget.startup!.name,
                             },
                           );
+                          logFirebaseEvent('Pitch_Backend-Call');
+
+                          final startupTrackingUpdateData =
+                              createStartupTrackingRecordData();
+                          await widget.startupTracking!.reference
+                              .update(startupTrackingUpdateData);
                         },
                         child: FlutterFlowYoutubePlayer(
                           url: widget.startup!.pitchYoutubeUrl!,
@@ -577,6 +577,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                             ),
                             StartupMilestonesWidget(
                               startup: widget.startup,
+                              startupTracking: widget.startupTracking,
                             ),
                           ],
                         ),
@@ -605,38 +606,13 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
-                                  logFirebaseEvent('CEOLinkedin_Simple-Search');
-                                  await queryStartupTrackingRecordOnce()
-                                      .then(
-                                        (records) => simpleSearchResults1 =
-                                            TextSearch(
-                                          records
-                                              .map(
-                                                (record) => TextSearchItem(
-                                                    record,
-                                                    [record.startupSite!]),
-                                              )
-                                              .toList(),
-                                        )
-                                                .search(widget.startup!.site!)
-                                                .map((r) => r.object)
-                                                .take(1)
-                                                .toList(),
-                                      )
-                                      .onError(
-                                          (_, __) => simpleSearchResults1 = [])
-                                      .whenComplete(() => setState(() {}));
-
                                   logFirebaseEvent('CEOLinkedin_Backend-Call');
 
                                   final startupTrackingUpdateData = {
                                     'accessLinkedinCeo':
                                         FieldValue.increment(1),
                                   };
-                                  await functions
-                                      .getFirstStartupTracking(
-                                          simpleSearchResults1.toList())
-                                      .reference
+                                  await widget.startupTracking!.reference
                                       .update(startupTrackingUpdateData);
                                   logFirebaseEvent('CEOLinkedin_Launch-U-R-L');
                                   await launchURL(widget.startup!.linkedinUrl!);
@@ -680,43 +656,12 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         logFirebaseEvent(
                                             'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                         logFirebaseEvent(
-                                            'StartupSite_Simple-Search');
-                                        await queryStartupTrackingRecordOnce()
-                                            .then(
-                                              (records) =>
-                                                  simpleSearchResults2 =
-                                                      TextSearch(
-                                                records
-                                                    .map(
-                                                      (record) =>
-                                                          TextSearchItem(
-                                                              record, [
-                                                        record.startupSite!
-                                                      ]),
-                                                    )
-                                                    .toList(),
-                                              )
-                                                          .search(widget
-                                                              .startup!.site!)
-                                                          .map((r) => r.object)
-                                                          .take(1)
-                                                          .toList(),
-                                            )
-                                            .onError((_, __) =>
-                                                simpleSearchResults2 = [])
-                                            .whenComplete(
-                                                () => setState(() {}));
-
-                                        logFirebaseEvent(
                                             'StartupSite_Backend-Call');
 
                                         final startupTrackingUpdateData = {
                                           'accessSite': FieldValue.increment(1),
                                         };
-                                        await functions
-                                            .getFirstStartupTracking(
-                                                simpleSearchResults1.toList())
-                                            .reference
+                                        await widget.startupTracking!.reference
                                             .update(startupTrackingUpdateData);
                                         logFirebaseEvent(
                                             'StartupSite_Launch-U-R-L');
@@ -758,45 +703,14 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                           logFirebaseEvent(
                                               'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
                                           logFirebaseEvent(
-                                              'StartupLinkedin_Simple-Search');
-                                          await queryStartupTrackingRecordOnce()
-                                              .then(
-                                                (records) =>
-                                                    simpleSearchResults3 =
-                                                        TextSearch(
-                                                  records
-                                                      .map(
-                                                        (record) =>
-                                                            TextSearchItem(
-                                                                record, [
-                                                          record.startupSite!
-                                                        ]),
-                                                      )
-                                                      .toList(),
-                                                )
-                                                            .search(widget
-                                                                .startup!.site!)
-                                                            .map(
-                                                                (r) => r.object)
-                                                            .take(1)
-                                                            .toList(),
-                                              )
-                                              .onError((_, __) =>
-                                                  simpleSearchResults3 = [])
-                                              .whenComplete(
-                                                  () => setState(() {}));
-
-                                          logFirebaseEvent(
                                               'StartupLinkedin_Backend-Call');
 
                                           final startupTrackingUpdateData = {
                                             'accessLinkedin':
                                                 FieldValue.increment(1),
                                           };
-                                          await functions
-                                              .getFirstStartupTracking(
-                                                  simpleSearchResults1.toList())
-                                              .reference
+                                          await widget
+                                              .startupTracking!.reference
                                               .update(
                                                   startupTrackingUpdateData);
                                           logFirebaseEvent(
@@ -1128,6 +1042,13 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                   'startup_name': widget.startup!.name,
                                 },
                               );
+                              logFirebaseEvent('Pitch_Backend-Call');
+
+                              final startupTrackingUpdateData = {
+                                'interactVideo': FieldValue.increment(1),
+                              };
+                              await widget.startupTracking!.reference
+                                  .update(startupTrackingUpdateData);
                             },
                             child: FlutterFlowYoutubePlayer(
                               url: widget.startup!.pitchYoutubeUrl!,
@@ -1242,6 +1163,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                             ),
                             StartupMilestonesWidget(
                               startup: widget.startup,
+                              startupTracking: widget.startupTracking,
                             ),
                           ],
                         ),
@@ -1272,39 +1194,13 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                     logFirebaseEvent(
                                         'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
                                     logFirebaseEvent(
-                                        'CEOLinkedin_Simple-Search');
-                                    await queryStartupTrackingRecordOnce()
-                                        .then(
-                                          (records) => simpleSearchResults4 =
-                                              TextSearch(
-                                            records
-                                                .map(
-                                                  (record) => TextSearchItem(
-                                                      record,
-                                                      [record.startupSite!]),
-                                                )
-                                                .toList(),
-                                          )
-                                                  .search(widget.startup!.site!)
-                                                  .map((r) => r.object)
-                                                  .take(1)
-                                                  .toList(),
-                                        )
-                                        .onError((_, __) =>
-                                            simpleSearchResults4 = [])
-                                        .whenComplete(() => setState(() {}));
-
-                                    logFirebaseEvent(
                                         'CEOLinkedin_Backend-Call');
 
                                     final startupTrackingUpdateData = {
                                       'accessLinkedinCeo':
                                           FieldValue.increment(1),
                                     };
-                                    await functions
-                                        .getFirstStartupTracking(
-                                            simpleSearchResults1.toList())
-                                        .reference
+                                    await widget.startupTracking!.reference
                                         .update(startupTrackingUpdateData);
                                     logFirebaseEvent(
                                         'CEOLinkedin_Launch-U-R-L');
@@ -1355,43 +1251,12 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         logFirebaseEvent(
                                             'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                         logFirebaseEvent(
-                                            'StartupSite_Simple-Search');
-                                        await queryStartupTrackingRecordOnce()
-                                            .then(
-                                              (records) =>
-                                                  simpleSearchResults5 =
-                                                      TextSearch(
-                                                records
-                                                    .map(
-                                                      (record) =>
-                                                          TextSearchItem(
-                                                              record, [
-                                                        record.startupSite!
-                                                      ]),
-                                                    )
-                                                    .toList(),
-                                              )
-                                                          .search(widget
-                                                              .startup!.site!)
-                                                          .map((r) => r.object)
-                                                          .take(1)
-                                                          .toList(),
-                                            )
-                                            .onError((_, __) =>
-                                                simpleSearchResults5 = [])
-                                            .whenComplete(
-                                                () => setState(() {}));
-
-                                        logFirebaseEvent(
                                             'StartupSite_Backend-Call');
 
                                         final startupTrackingUpdateData = {
                                           'accessSite': FieldValue.increment(1),
                                         };
-                                        await functions
-                                            .getFirstStartupTracking(
-                                                simpleSearchResults1.toList())
-                                            .reference
+                                        await widget.startupTracking!.reference
                                             .update(startupTrackingUpdateData);
                                         logFirebaseEvent(
                                             'StartupSite_Launch-U-R-L');
@@ -1433,47 +1298,14 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                             logFirebaseEvent(
                                                 'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
                                             logFirebaseEvent(
-                                                'StartupLinkedin_Simple-Search');
-                                            await queryStartupTrackingRecordOnce()
-                                                .then(
-                                                  (records) =>
-                                                      simpleSearchResults6 =
-                                                          TextSearch(
-                                                    records
-                                                        .map(
-                                                          (record) =>
-                                                              TextSearchItem(
-                                                                  record, [
-                                                            record.startupSite!
-                                                          ]),
-                                                        )
-                                                        .toList(),
-                                                  )
-                                                              .search(widget
-                                                                  .startup!
-                                                                  .site!)
-                                                              .map((r) =>
-                                                                  r.object)
-                                                              .take(1)
-                                                              .toList(),
-                                                )
-                                                .onError((_, __) =>
-                                                    simpleSearchResults6 = [])
-                                                .whenComplete(
-                                                    () => setState(() {}));
-
-                                            logFirebaseEvent(
                                                 'StartupLinkedin_Backend-Call');
 
                                             final startupTrackingUpdateData = {
                                               'accessLinkedin':
                                                   FieldValue.increment(1),
                                             };
-                                            await functions
-                                                .getFirstStartupTracking(
-                                                    simpleSearchResults1
-                                                        .toList())
-                                                .reference
+                                            await widget
+                                                .startupTracking!.reference
                                                 .update(
                                                     startupTrackingUpdateData);
                                             logFirebaseEvent(

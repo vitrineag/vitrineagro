@@ -105,6 +105,12 @@ class _$StartupTrackingRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.interactVideo;
+    if (value != null) {
+      result
+        ..add('interactVideo')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -180,6 +186,10 @@ class _$StartupTrackingRecordSerializer
           result.startupSite = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'interactVideo':
+          result.interactVideo = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -221,6 +231,8 @@ class _$StartupTrackingRecord extends StartupTrackingRecord {
   @override
   final String? startupSite;
   @override
+  final int? interactVideo;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StartupTrackingRecord(
@@ -241,6 +253,7 @@ class _$StartupTrackingRecord extends StartupTrackingRecord {
       this.accessFeedThree,
       this.interactMilestones,
       this.startupSite,
+      this.interactVideo,
       this.ffRef})
       : super._();
 
@@ -270,6 +283,7 @@ class _$StartupTrackingRecord extends StartupTrackingRecord {
         accessFeedThree == other.accessFeedThree &&
         interactMilestones == other.interactMilestones &&
         startupSite == other.startupSite &&
+        interactVideo == other.interactVideo &&
         ffRef == other.ffRef;
   }
 
@@ -289,21 +303,23 @@ class _$StartupTrackingRecord extends StartupTrackingRecord {
                                                 $jc(
                                                     $jc(
                                                         $jc(
-                                                            0,
-                                                            startupName
-                                                                .hashCode),
-                                                        views.hashCode),
-                                                    share.hashCode),
-                                                favorited.hashCode),
-                                            enterInContact.hashCode),
-                                        accessSite.hashCode),
-                                    accessLinkedin.hashCode),
-                                accessLinkedinCeo.hashCode),
-                            accessFeedOne.hashCode),
-                        accessFeedTwo.hashCode),
-                    accessFeedThree.hashCode),
-                interactMilestones.hashCode),
-            startupSite.hashCode),
+                                                            $jc(
+                                                                0,
+                                                                startupName
+                                                                    .hashCode),
+                                                            views.hashCode),
+                                                        share.hashCode),
+                                                    favorited.hashCode),
+                                                enterInContact.hashCode),
+                                            accessSite.hashCode),
+                                        accessLinkedin.hashCode),
+                                    accessLinkedinCeo.hashCode),
+                                accessFeedOne.hashCode),
+                            accessFeedTwo.hashCode),
+                        accessFeedThree.hashCode),
+                    interactMilestones.hashCode),
+                startupSite.hashCode),
+            interactVideo.hashCode),
         ffRef.hashCode));
   }
 
@@ -323,6 +339,7 @@ class _$StartupTrackingRecord extends StartupTrackingRecord {
           ..add('accessFeedThree', accessFeedThree)
           ..add('interactMilestones', interactMilestones)
           ..add('startupSite', startupSite)
+          ..add('interactVideo', interactVideo)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -391,6 +408,11 @@ class StartupTrackingRecordBuilder
   String? get startupSite => _$this._startupSite;
   set startupSite(String? startupSite) => _$this._startupSite = startupSite;
 
+  int? _interactVideo;
+  int? get interactVideo => _$this._interactVideo;
+  set interactVideo(int? interactVideo) =>
+      _$this._interactVideo = interactVideo;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -415,6 +437,7 @@ class StartupTrackingRecordBuilder
       _accessFeedThree = $v.accessFeedThree;
       _interactMilestones = $v.interactMilestones;
       _startupSite = $v.startupSite;
+      _interactVideo = $v.interactVideo;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -451,6 +474,7 @@ class StartupTrackingRecordBuilder
             accessFeedThree: accessFeedThree,
             interactMilestones: interactMilestones,
             startupSite: startupSite,
+            interactVideo: interactVideo,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

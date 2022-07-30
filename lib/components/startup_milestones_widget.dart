@@ -2,20 +2,20 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:text_search/text_search.dart';
 
 class StartupMilestonesWidget extends StatefulWidget {
   const StartupMilestonesWidget({
     Key? key,
     this.startup,
+    this.startupTracking,
   }) : super(key: key);
 
   final StartupsRecord? startup;
+  final StartupTrackingRecord? startupTracking;
 
   @override
   _StartupMilestonesWidgetState createState() =>
@@ -23,39 +23,17 @@ class StartupMilestonesWidget extends StatefulWidget {
 }
 
 class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
-  List<StartupTrackingRecord> simpleSearchResults = [];
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
         logFirebaseEvent('STARTUP_MILESTONES_Stack_sbhk7owp_ON_TAP');
-        logFirebaseEvent('Stack_Simple-Search');
-        await queryStartupTrackingRecordOnce()
-            .then(
-              (records) => simpleSearchResults = TextSearch(
-                records
-                    .map(
-                      (record) => TextSearchItem(record, [record.startupSite!]),
-                    )
-                    .toList(),
-              )
-                  .search(widget.startup!.site!)
-                  .map((r) => r.object)
-                  .take(1)
-                  .toList(),
-            )
-            .onError((_, __) => simpleSearchResults = [])
-            .whenComplete(() => setState(() {}));
-
         logFirebaseEvent('Stack_Backend-Call');
 
         final startupTrackingUpdateData = {
           'interactMilestones': FieldValue.increment(1),
         };
-        await functions
-            .getFirstStartupTracking(simpleSearchResults.toList())
-            .reference
+        await widget.startupTracking!.reference
             .update(startupTrackingUpdateData);
       },
       child: Stack(
