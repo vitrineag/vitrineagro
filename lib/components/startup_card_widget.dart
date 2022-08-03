@@ -242,52 +242,22 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 80,
+                    height: 65,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.startup!.valueProposalText!
-                                .maybeHandleOverflow(
-                              maxChars: 100,
-                              replacement: '…',
-                            ),
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Rubik',
-                                      color: Color(0xFF032B44),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: SingleChildScrollView(
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.startup!.problemResolutionText!
+                          widget.startup!.valueProposalText!
                               .maybeHandleOverflow(
-                            maxChars: 300,
+                            maxChars: 100,
                             replacement: '…',
                           ),
                           style:
@@ -300,6 +270,35 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 160,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        functions
+                            .removeAllLineBreaks(
+                                widget.startup!.problemResolutionText!)
+                            .maybeHandleOverflow(
+                              maxChars: 300,
+                              replacement: '…',
+                            ),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Rubik',
+                              color: Color(0xFF032B44),
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
@@ -344,7 +343,10 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                   ),
                         ),
                         Text(
-                          widget.startup!.businessModel!,
+                          widget.startup!.businessModel!.maybeHandleOverflow(
+                            maxChars: 30,
+                            replacement: '…',
+                          ),
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Rubik',

@@ -413,7 +413,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 32),
                                       child: Text(
-                                        widget.startup!.problemResolutionText!,
+                                        functions.removeAllLineBreaks(widget
+                                            .startup!.problemResolutionText!),
                                         textAlign: TextAlign.start,
                                         maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
@@ -466,13 +467,14 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -584,154 +586,214 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                       ),
                       Container(
                         decoration: BoxDecoration(),
-                        child: StartupFeedWidget(
-                          startup: widget.startup,
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFEEEEEE),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 19, 16, 19),
-                          child: Row(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          child: Column(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              InkWell(
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
-                                  logFirebaseEvent('CEOLinkedin_Backend-Call');
-
-                                  final startupTrackingUpdateData = {
-                                    'accessLinkedinCeo':
-                                        FieldValue.increment(1),
-                                  };
-                                  await widget.startupTracking!.reference
-                                      .update(startupTrackingUpdateData);
-                                  logFirebaseEvent('CEOLinkedin_Launch-U-R-L');
-                                  await launchURL(widget.startup!.linkedinUrl!);
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
-                                      child: Container(
-                                        width: 42,
-                                        height: 42,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/42/42',
-                                        ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                                child: Text(
+                                  'Notícias',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                    ),
-                                    Text(
-                                      widget.startup!.comercialName!,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                    ),
-                                  ],
                                 ),
                               ),
-                              Row(
+                              StartupFeedWidget(
+                                startup: widget.startup,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            child: Text(
+                              'Contato',
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEEEEEE),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16, 19, 16, 19),
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 24, 0),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
-                                        logFirebaseEvent(
-                                            'StartupSite_Backend-Call');
+                                  InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
+                                      logFirebaseEvent(
+                                          'CEOLinkedin_Backend-Call');
 
-                                        final startupTrackingUpdateData = {
-                                          'accessSite': FieldValue.increment(1),
-                                        };
-                                        await widget.startupTracking!.reference
-                                            .update(startupTrackingUpdateData);
-                                        logFirebaseEvent(
-                                            'StartupSite_Launch-U-R-L');
-                                        await launchURL(widget.startup!.site!);
-                                      },
-                                      child: Text(
-                                        widget.startup!.site!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
+                                      final startupTrackingUpdateData = {
+                                        'accessLinkedinCeo':
+                                            FieldValue.increment(1),
+                                      };
+                                      await widget.startupTracking!.reference
+                                          .update(startupTrackingUpdateData);
+                                      logFirebaseEvent(
+                                          'CEOLinkedin_Launch-U-R-L');
+                                      await launchURL(
+                                          widget.startup!.linkedinUrl!);
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 12, 0),
+                                          child: Container(
+                                            width: 42,
+                                            height: 42,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/42/42',
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          widget.startup!.ceoName!,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 8, 0),
+                                            0, 0, 24, 0),
                                         child: InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
+                                                'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                             logFirebaseEvent(
-                                                'StartupInstagram_Launch-U-R-L');
+                                                'StartupSite_Backend-Call');
+
+                                            final startupTrackingUpdateData = {
+                                              'accessSite':
+                                                  FieldValue.increment(1),
+                                            };
+                                            await widget
+                                                .startupTracking!.reference
+                                                .update(
+                                                    startupTrackingUpdateData);
+                                            logFirebaseEvent(
+                                                'StartupSite_Launch-U-R-L');
                                             await launchURL(
-                                                widget.startup!.instagramUrl!);
+                                                widget.startup!.site!);
                                           },
-                                          child: Image.asset(
-                                            'assets/images/instagram_Small.png',
-                                            width: 25,
-                                            height: 25,
-                                            fit: BoxFit.cover,
+                                          child: Text(
+                                            widget.startup!.site!,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
                                           ),
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
-                                          logFirebaseEvent(
-                                              'StartupLinkedin_Backend-Call');
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
+                                                logFirebaseEvent(
+                                                    'StartupInstagram_Launch-U-R-L');
+                                                await launchURL(widget
+                                                    .startup!.instagramUrl!);
+                                              },
+                                              child: Image.asset(
+                                                'assets/images/instagram_Small.png',
+                                                width: 25,
+                                                height: 25,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
+                                              logFirebaseEvent(
+                                                  'StartupLinkedin_Backend-Call');
 
-                                          final startupTrackingUpdateData = {
-                                            'accessLinkedin':
-                                                FieldValue.increment(1),
-                                          };
-                                          await widget
-                                              .startupTracking!.reference
-                                              .update(
-                                                  startupTrackingUpdateData);
-                                          logFirebaseEvent(
-                                              'StartupLinkedin_Launch-U-R-L');
-                                          await launchURL(widget
-                                              .startup!.linkedinUrlCompany!);
-                                        },
-                                        child: SvgPicture.asset(
-                                          'assets/images/linkedin.svg',
-                                          width: 25,
-                                          height: 25,
-                                          fit: BoxFit.cover,
-                                        ),
+                                              final startupTrackingUpdateData =
+                                                  {
+                                                'accessLinkedin':
+                                                    FieldValue.increment(1),
+                                              };
+                                              await widget
+                                                  .startupTracking!.reference
+                                                  .update(
+                                                      startupTrackingUpdateData);
+                                              logFirebaseEvent(
+                                                  'StartupLinkedin_Launch-U-R-L');
+                                              await launchURL(widget.startup!
+                                                  .linkedinUrlCompany!);
+                                            },
+                                            child: SvgPicture.asset(
+                                              'assets/images/linkedin.svg',
+                                              width: 25,
+                                              height: 25,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
@@ -993,7 +1055,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
                               child: Text(
-                                widget.startup!.problemResolutionText!,
+                                functions.removeAllLineBreaks(
+                                    widget.startup!.problemResolutionText!),
                                 textAlign: TextAlign.start,
                                 maxLines: 3,
                                 style: FlutterFlowTheme.of(context)
@@ -1071,6 +1134,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding:
@@ -1168,140 +1232,140 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           ],
                         ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(),
-                        child: StartupFeedWidget(
-                          startup: widget.startup,
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFEEEEEE),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 19, 16, 19),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        child: Container(
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
-                                    logFirebaseEvent(
-                                        'CEOLinkedin_Backend-Call');
-
-                                    final startupTrackingUpdateData = {
-                                      'accessLinkedinCeo':
-                                          FieldValue.increment(1),
-                                    };
-                                    await widget.startupTracking!.reference
-                                        .update(startupTrackingUpdateData);
-                                    logFirebaseEvent(
-                                        'CEOLinkedin_Launch-U-R-L');
-                                    await launchURL(
-                                        widget.startup!.linkedinUrl!);
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 12, 0),
-                                        child: Container(
-                                          width: 42,
-                                          height: 42,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/42/42',
-                                          ),
-                                        ),
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                                child: Text(
+                                  'Notícias',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                      Text(
-                                        widget.startup!.comercialName!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ],
-                                  ),
                                 ),
                               ),
-                              Divider(
-                                height: 2,
-                                thickness: 2,
+                              StartupFeedWidget(
+                                startup: widget.startup,
                               ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 14, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    InkWell(
+                            ],
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            child: Text(
+                              'Contato',
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEEEEEE),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16, 19, 16, 19),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 18),
+                                    child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
+                                            'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
                                         logFirebaseEvent(
-                                            'StartupSite_Backend-Call');
+                                            'CEOLinkedin_Backend-Call');
 
                                         final startupTrackingUpdateData = {
-                                          'accessSite': FieldValue.increment(1),
+                                          'accessLinkedinCeo':
+                                              FieldValue.increment(1),
                                         };
                                         await widget.startupTracking!.reference
                                             .update(startupTrackingUpdateData);
                                         logFirebaseEvent(
-                                            'StartupSite_Launch-U-R-L');
-                                        await launchURL(widget.startup!.site!);
+                                            'CEOLinkedin_Launch-U-R-L');
+                                        await launchURL(
+                                            widget.startup!.linkedinUrl!);
                                       },
-                                      child: Text(
-                                        widget.startup!.site!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 8, 0),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
-                                              logFirebaseEvent(
-                                                  'StartupInstagram_Launch-U-R-L');
-                                              await launchURL(widget
-                                                  .startup!.instagramUrl!);
-                                            },
-                                            child: Image.asset(
-                                              'assets/images/instagram_Small.png',
-                                              width: 25,
-                                              height: 25,
-                                              fit: BoxFit.cover,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 12, 0),
+                                            child: Container(
+                                              width: 42,
+                                              height: 42,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.network(
+                                                'https://picsum.photos/seed/42/42',
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          Text(
+                                            widget.startup!.ceoName!,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Divider(
+                                    height: 2,
+                                    thickness: 2,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 14, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
                                         InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
+                                                'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                             logFirebaseEvent(
-                                                'StartupLinkedin_Backend-Call');
+                                                'StartupSite_Backend-Call');
 
                                             final startupTrackingUpdateData = {
-                                              'accessLinkedin':
+                                              'accessSite':
                                                   FieldValue.increment(1),
                                             };
                                             await widget
@@ -1309,25 +1373,79 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 .update(
                                                     startupTrackingUpdateData);
                                             logFirebaseEvent(
-                                                'StartupLinkedin_Launch-U-R-L');
-                                            await launchURL(widget
-                                                .startup!.linkedinUrlCompany!);
+                                                'StartupSite_Launch-U-R-L');
+                                            await launchURL(
+                                                widget.startup!.site!);
                                           },
-                                          child: SvgPicture.asset(
-                                            'assets/images/linkedin.svg',
-                                            width: 25,
-                                            height: 25,
-                                            fit: BoxFit.cover,
+                                          child: Text(
+                                            widget.startup!.site!,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
                                           ),
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 8, 0),
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
+                                                  logFirebaseEvent(
+                                                      'StartupInstagram_Launch-U-R-L');
+                                                  await launchURL(widget
+                                                      .startup!.instagramUrl!);
+                                                },
+                                                child: Image.asset(
+                                                  'assets/images/instagram_Small.png',
+                                                  width: 25,
+                                                  height: 25,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
+                                                logFirebaseEvent(
+                                                    'StartupLinkedin_Backend-Call');
+
+                                                final startupTrackingUpdateData =
+                                                    {
+                                                  'accessLinkedin':
+                                                      FieldValue.increment(1),
+                                                };
+                                                await widget
+                                                    .startupTracking!.reference
+                                                    .update(
+                                                        startupTrackingUpdateData);
+                                                logFirebaseEvent(
+                                                    'StartupLinkedin_Launch-U-R-L');
+                                                await launchURL(widget.startup!
+                                                    .linkedinUrlCompany!);
+                                              },
+                                              child: SvgPicture.asset(
+                                                'assets/images/linkedin.svg',
+                                                width: 25,
+                                                height: 25,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),

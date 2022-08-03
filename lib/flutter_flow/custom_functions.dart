@@ -44,3 +44,8 @@ StartupTrackingRecord getFirstStartupTracking(
     List<StartupTrackingRecord> startupTrackings) {
   return startupTrackings.first;
 }
+
+String removeAllLineBreaks(String text) {
+  // remove all line breaks
+  return text.replaceAll('\n', ' ');
+}

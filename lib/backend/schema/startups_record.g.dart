@@ -201,6 +201,13 @@ class _$StartupsRecordSerializer
         ..add('comercialContact')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.ceoName;
+    if (value != null) {
+      result
+        ..add('ceoName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -328,6 +335,10 @@ class _$StartupsRecordSerializer
           result.comercialContact = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'ceoName':
+          result.ceoName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -395,6 +406,8 @@ class _$StartupsRecord extends StartupsRecord {
   @override
   final int? comercialContact;
   @override
+  final String? ceoName;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StartupsRecord([void Function(StartupsRecordBuilder)? updates]) =>
@@ -427,6 +440,7 @@ class _$StartupsRecord extends StartupsRecord {
       this.sectorsOfActivity,
       this.feedNews,
       this.comercialContact,
+      this.ceoName,
       this.ffRef})
       : super._();
 
@@ -468,6 +482,7 @@ class _$StartupsRecord extends StartupsRecord {
         sectorsOfActivity == other.sectorsOfActivity &&
         feedNews == other.feedNews &&
         comercialContact == other.comercialContact &&
+        ceoName == other.ceoName &&
         ffRef == other.ffRef;
   }
 
@@ -491,25 +506,25 @@ class _$StartupsRecord extends StartupsRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc(0, name.hashCode), category.hashCode), city.hashCode), valueProposalText.hashCode), problemResolutionText.hashCode), customerNiche.hashCode), businessModel.hashCode), logo.hashCode),
-                                                                                instagramUrl.hashCode),
-                                                                            linkedinUrl.hashCode),
-                                                                        pitchYoutubeUrl.hashCode),
-                                                                    lastYearGrowth.hashCode),
-                                                                pitchPdfUrl.hashCode),
-                                                            state.hashCode),
-                                                        country.hashCode),
-                                                    employeeCount.hashCode),
-                                                foundationYear.hashCode),
-                                            site.hashCode),
-                                        lastYearRevenue.hashCode),
-                                    maturity.hashCode),
-                                clientsCount.hashCode),
-                            comercialName.hashCode),
-                        linkedinUrlCompany.hashCode),
-                    sectorsOfActivity.hashCode),
-                feedNews.hashCode),
-            comercialContact.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, name.hashCode), category.hashCode), city.hashCode), valueProposalText.hashCode), problemResolutionText.hashCode), customerNiche.hashCode), businessModel.hashCode), logo.hashCode), instagramUrl.hashCode),
+                                                                                linkedinUrl.hashCode),
+                                                                            pitchYoutubeUrl.hashCode),
+                                                                        lastYearGrowth.hashCode),
+                                                                    pitchPdfUrl.hashCode),
+                                                                state.hashCode),
+                                                            country.hashCode),
+                                                        employeeCount.hashCode),
+                                                    foundationYear.hashCode),
+                                                site.hashCode),
+                                            lastYearRevenue.hashCode),
+                                        maturity.hashCode),
+                                    clientsCount.hashCode),
+                                comercialName.hashCode),
+                            linkedinUrlCompany.hashCode),
+                        sectorsOfActivity.hashCode),
+                    feedNews.hashCode),
+                comercialContact.hashCode),
+            ceoName.hashCode),
         ffRef.hashCode));
   }
 
@@ -542,6 +557,7 @@ class _$StartupsRecord extends StartupsRecord {
           ..add('sectorsOfActivity', sectorsOfActivity)
           ..add('feedNews', feedNews)
           ..add('comercialContact', comercialContact)
+          ..add('ceoName', ceoName)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -668,6 +684,10 @@ class StartupsRecordBuilder
   set comercialContact(int? comercialContact) =>
       _$this._comercialContact = comercialContact;
 
+  String? _ceoName;
+  String? get ceoName => _$this._ceoName;
+  set ceoName(String? ceoName) => _$this._ceoName = ceoName;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -705,6 +725,7 @@ class StartupsRecordBuilder
       _sectorsOfActivity = $v.sectorsOfActivity;
       _feedNews = $v.feedNews;
       _comercialContact = $v.comercialContact;
+      _ceoName = $v.ceoName;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -754,6 +775,7 @@ class StartupsRecordBuilder
             sectorsOfActivity: sectorsOfActivity,
             feedNews: feedNews,
             comercialContact: comercialContact,
+            ceoName: ceoName,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

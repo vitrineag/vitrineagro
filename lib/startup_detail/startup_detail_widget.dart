@@ -130,7 +130,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   constraints: BoxConstraints(
-                                    maxWidth: 768,
+                                    maxWidth: 900,
                                   ),
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -543,7 +543,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                         alignment: AlignmentDirectional(0, -1),
                         child: Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(24, 10, 24, 12),
+                              EdgeInsetsDirectional.fromSTEB(24, 8, 24, 12),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             height: 68,
@@ -587,7 +587,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                         child: InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'STARTUP_DETAIL_PAGE_Text_gae9gwne_ON_TAP');
+                                                'STARTUP_DETAIL_PAGE_Text_dtr9j1mc_ON_TAP');
                                             logFirebaseEvent(
                                                 'Text_Launch-U-R-L');
                                             await launchURL(
@@ -611,7 +611,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                         child: InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'STARTUP_DETAIL_PAGE_Text_lehdgjf1_ON_TAP');
+                                                'STARTUP_DETAIL_PAGE_Text_lck3bfvw_ON_TAP');
                                             logFirebaseEvent(
                                                 'Text_Launch-U-R-L');
                                             await launchURL(
@@ -629,10 +629,34 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           ),
                                         ),
                                       ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 36, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'STARTUP_DETAIL_CompanyRegister_ON_TAP');
+                                            logFirebaseEvent(
+                                                'CompanyRegister_Launch-U-R-L');
+                                            await launchURL(
+                                                'https://zl4i46dyz9l.typeform.com/to/xlokvahD');
+                                          },
+                                          child: Text(
+                                            'Cadastre sua Empresa',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
                                       InkWell(
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'STARTUP_DETAIL_PAGE_Text_fxc5aw6i_ON_TAP');
+                                              'STARTUP_DETAIL_PAGE_Text_ob7a6kcc_ON_TAP');
                                           logFirebaseEvent('Text_Auth');
                                           GoRouter.of(context)
                                               .prepareAuthEvent();

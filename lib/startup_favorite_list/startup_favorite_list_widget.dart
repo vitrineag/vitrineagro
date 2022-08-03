@@ -331,7 +331,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                   child: InkWell(
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'STARTUP_FAVORITE_LIST_Text_z4pjtsdx_ON_T');
+                                          'STARTUP_FAVORITE_LIST_Text_nr18wcbh_ON_T');
                                       logFirebaseEvent('Text_Launch-U-R-L');
                                       await launchURL(
                                           'https://www.vitrine.ag/');
@@ -354,7 +354,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                   child: InkWell(
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'STARTUP_FAVORITE_LIST_Text_535hdwcb_ON_T');
+                                          'STARTUP_FAVORITE_LIST_Text_moehn4ya_ON_T');
                                       logFirebaseEvent('Text_Launch-U-R-L');
                                       await launchURL(
                                           'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
@@ -371,10 +371,34 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     ),
                                   ),
                                 ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 36, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_FAVORITE_LIST_CompanyRegister_ON');
+                                      logFirebaseEvent(
+                                          'CompanyRegister_Launch-U-R-L');
+                                      await launchURL(
+                                          'https://zl4i46dyz9l.typeform.com/to/xlokvahD');
+                                    },
+                                    child: Text(
+                                      'Cadastre sua Empresa',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
                                 InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'STARTUP_FAVORITE_LIST_Text_mhwo5b0y_ON_T');
+                                        'STARTUP_FAVORITE_LIST_Text_k0gbh0d3_ON_T');
                                     logFirebaseEvent('Text_Auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await signOut();
