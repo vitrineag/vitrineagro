@@ -214,9 +214,6 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
-                                              constraints: BoxConstraints(
-                                                maxWidth: 768,
-                                              ),
                                               decoration: BoxDecoration(),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,

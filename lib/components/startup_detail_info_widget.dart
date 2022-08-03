@@ -396,9 +396,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 32),
                                       child: Text(
-                                        widget.startup!.valueProposalText!,
+                                        widget.startup!.valueProposalText!
+                                            .maybeHandleOverflow(maxChars: 100),
                                         textAlign: TextAlign.start,
-                                        maxLines: 1,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -413,10 +413,11 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 32),
                                       child: Text(
-                                        functions.removeAllLineBreaks(widget
-                                            .startup!.problemResolutionText!),
+                                        functions
+                                            .removeAllLineBreaks(widget.startup!
+                                                .problemResolutionText!)
+                                            .maybeHandleOverflow(maxChars: 300),
                                         textAlign: TextAlign.start,
-                                        maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -465,50 +466,43 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                           showFullScreen: true,
                         ),
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 8),
-                                  child: Text(
-                                    'Estágio do produto',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
-                                Text(
-                                  widget.startup!.maturity!,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Rubik',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                ),
-                              ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              child: Text(
+                                'Estágio do produto',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
                             ),
-                          ),
-                        ],
+                            Text(
+                              widget.startup!.maturity!,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                       Divider(
                         height: 2,
@@ -1038,9 +1032,9 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
                               child: Text(
-                                widget.startup!.valueProposalText!,
+                                widget.startup!.valueProposalText!
+                                    .maybeHandleOverflow(maxChars: 100),
                                 textAlign: TextAlign.start,
-                                maxLines: 2,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -1055,10 +1049,11 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
                               child: Text(
-                                functions.removeAllLineBreaks(
-                                    widget.startup!.problemResolutionText!),
+                                functions
+                                    .removeAllLineBreaks(
+                                        widget.startup!.problemResolutionText!)
+                                    .maybeHandleOverflow(maxChars: 300),
                                 textAlign: TextAlign.start,
-                                maxLines: 3,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -1153,17 +1148,20 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       ),
                                 ),
                               ),
-                              Text(
-                                widget.startup!.maturity!,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Text(
+                                  widget.startup!.maturity!,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
                               ),
                             ],
                           ),

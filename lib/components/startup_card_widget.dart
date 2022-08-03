@@ -260,6 +260,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                             maxChars: 100,
                             replacement: '…',
                           ),
+                          textAlign: TextAlign.start,
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Rubik',
@@ -291,6 +292,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               maxChars: 300,
                               replacement: '…',
                             ),
+                        textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'Rubik',
                               color: Color(0xFF032B44),
