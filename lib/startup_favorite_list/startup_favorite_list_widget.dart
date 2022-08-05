@@ -7,7 +7,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartupFavoriteListWidget extends StatefulWidget {
@@ -79,12 +78,12 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                               decoration: BoxDecoration(),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    30, 16, 30, 16),
+                                    25, 16, 25, 16),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    SvgPicture.asset(
-                                      'assets/images/logo.svg',
+                                    Image.asset(
+                                      'assets/images/vitrine-horizontal-dark.png',
                                       width: 114,
                                       fit: BoxFit.cover,
                                     ),
@@ -319,9 +318,9 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       8, 0, 36, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/logo.svg',
-                                    height: 31,
+                                  child: Image.asset(
+                                    'assets/images/vitrine-horizontal-dark.png',
+                                    height: 38,
                                     fit: BoxFit.cover,
                                   ),
                                 ),

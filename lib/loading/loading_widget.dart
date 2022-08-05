@@ -101,9 +101,9 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                         alignment: AlignmentDirectional(0, 0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-                          child: SvgPicture.asset(
-                            'assets/images/logo.svg',
-                            width: 184,
+                          child: Image.asset(
+                            'assets/images/vitrine-horizontal-dark.png',
+                            width: 200,
                             fit: BoxFit.fill,
                           ),
                         ),

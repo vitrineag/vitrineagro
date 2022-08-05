@@ -100,12 +100,12 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                               ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    30, 16, 30, 16),
+                                    25, 16, 25, 16),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    SvgPicture.asset(
-                                      'assets/images/logo.svg',
+                                    Image.asset(
+                                      'assets/images/vitrine-horizontal-dark.png',
                                       width: 114,
                                       fit: BoxFit.cover,
                                     ),
@@ -230,8 +230,8 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                             ),
                           ),
                         ),
-                        if ((textController!.text == null ||
-                            textController!.text == ''))
+                        if (textController!.text == null ||
+                            textController!.text == '')
                           StreamBuilder<List<StartupsRecord>>(
                             stream: queryStartupsRecord(),
                             builder: (context, snapshot) {
@@ -277,8 +277,8 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                               );
                             },
                           ),
-                        if ((textController!.text != null &&
-                            textController!.text != ''))
+                        if (textController!.text != null &&
+                            textController!.text != '')
                           Builder(
                             builder: (context) {
                               if (algoliaSearchResults! == null) {
@@ -458,9 +458,9 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       8, 0, 36, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/logo.svg',
-                                    height: 31,
+                                  child: Image.asset(
+                                    'assets/images/vitrine-horizontal-dark.png',
+                                    height: 38,
                                     fit: BoxFit.cover,
                                   ),
                                 ),

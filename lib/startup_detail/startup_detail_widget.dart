@@ -10,7 +10,6 @@ import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:text_search/text_search.dart';
@@ -572,9 +571,9 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 0, 36, 0),
-                                        child: SvgPicture.asset(
-                                          'assets/images/logo.svg',
-                                          height: 31,
+                                        child: Image.asset(
+                                          'assets/images/vitrine-horizontal-dark.png',
+                                          height: 38,
                                           fit: BoxFit.cover,
                                         ),
                                       ),

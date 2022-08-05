@@ -148,7 +148,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    if ((widget.startup!.country == 'Brasil'))
+                                    if (widget.startup!.country == 'Brasil')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 4, 0),

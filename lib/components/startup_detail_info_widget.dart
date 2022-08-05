@@ -271,8 +271,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            if ((widget.startup!.country ==
-                                                'Brasil'))
+                                            if (widget.startup!.country ==
+                                                'Brasil')
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 4, 0),
@@ -886,8 +886,8 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if ((widget.startup!.country ==
-                                              'Brasil'))
+                                          if (widget.startup!.country ==
+                                              'Brasil')
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 4, 0),

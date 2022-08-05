@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MobileDrawerWidget extends StatefulWidget {
@@ -26,9 +25,9 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              'assets/images/logo.svg',
-              height: 31,
+            Image.asset(
+              'assets/images/vitrine-horizontal-dark.png',
+              height: 46,
               fit: BoxFit.cover,
             ),
             Column(

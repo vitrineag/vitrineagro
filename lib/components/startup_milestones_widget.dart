@@ -49,8 +49,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if ((widget.startup!.clientsCount != null &&
-                      widget.startup!.clientsCount != ''))
+                  if (widget.startup!.clientsCount != null &&
+                      widget.startup!.clientsCount != '')
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                       child: Container(
@@ -114,8 +114,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                         ),
                       ),
                     ),
-                  if ((widget.startup!.lastYearRevenue != null &&
-                      widget.startup!.lastYearRevenue != ''))
+                  if (widget.startup!.lastYearRevenue != null &&
+                      widget.startup!.lastYearRevenue != '')
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                       child: Container(
@@ -179,8 +179,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                         ),
                       ),
                     ),
-                  if ((widget.startup!.lastYearGrowth != null &&
-                      widget.startup!.lastYearGrowth != ''))
+                  if (widget.startup!.lastYearGrowth != null &&
+                      widget.startup!.lastYearGrowth != '')
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                       child: Container(
@@ -231,8 +231,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                         ),
                       ),
                     ),
-                  if ((widget.startup!.clientsCount != null &&
-                      widget.startup!.clientsCount != ''))
+                  if (widget.startup!.clientsCount != null &&
+                      widget.startup!.clientsCount != '')
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                       child: Container(
@@ -296,8 +296,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
               clipBehavior: Clip.none,
               children: [
                 Visibility(
-                  visible: (widget.startup!.clientsCount != null &&
-                      widget.startup!.clientsCount != ''),
+                  visible: widget.startup!.clientsCount != null &&
+                      widget.startup!.clientsCount != '',
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                     child: Container(
@@ -363,8 +363,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                   ),
                 ),
                 Visibility(
-                  visible: (widget.startup!.lastYearRevenue != null &&
-                      widget.startup!.lastYearRevenue != ''),
+                  visible: widget.startup!.lastYearRevenue != null &&
+                      widget.startup!.lastYearRevenue != '',
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                     child: Container(
@@ -430,8 +430,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                   ),
                 ),
                 Visibility(
-                  visible: (widget.startup!.lastYearGrowth != null &&
-                      widget.startup!.lastYearGrowth != ''),
+                  visible: widget.startup!.lastYearGrowth != null &&
+                      widget.startup!.lastYearGrowth != '',
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                     child: Container(
@@ -484,8 +484,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                   ),
                 ),
                 Visibility(
-                  visible: (widget.startup!.employeeCount != null &&
-                      widget.startup!.employeeCount != ''),
+                  visible: widget.startup!.employeeCount != null &&
+                      widget.startup!.employeeCount != '',
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                     child: Container(

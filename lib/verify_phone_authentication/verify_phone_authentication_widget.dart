@@ -72,9 +72,9 @@ class _VerifyPhoneAuthenticationWidgetState
                           child: Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 0, 60),
-                            child: SvgPicture.asset(
-                              'assets/images/logo.svg',
-                              width: 121,
+                            child: Image.asset(
+                              'assets/images/vitrine-horizontal-dark.png',
+                              width: 200,
                               fit: BoxFit.fill,
                             ),
                           ),

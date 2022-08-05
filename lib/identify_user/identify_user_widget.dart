@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IdentifyUserWidget extends StatefulWidget {
@@ -52,9 +51,9 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                 alignment: AlignmentDirectional(0, -1),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 18),
-                  child: SvgPicture.asset(
-                    'assets/images/logo.svg',
-                    width: 184,
+                  child: Image.asset(
+                    'assets/images/vitrine-horizontal-dark.png',
+                    width: 200,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -365,7 +364,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                   },
                                 ),
                               ),
-                              if ((typeSelectValue == 'Outros'))
+                              if (typeSelectValue == 'Outros')
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 16, 16, 0),
