@@ -23,6 +23,13 @@ class ToggleIconButtonWidget extends StatefulWidget {
 
 class _ToggleIconButtonWidgetState extends State<ToggleIconButtonWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [

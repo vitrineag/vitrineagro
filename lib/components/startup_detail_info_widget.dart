@@ -32,6 +32,13 @@ class StartupDetailInfoWidget extends StatefulWidget {
 
 class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Align(
       alignment: AlignmentDirectional(0, 0),

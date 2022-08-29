@@ -65,6 +65,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'StartupDetail'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -94,7 +95,9 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
           return Container();
         }
         final startupDetailStartupsRecord =
-            startupDetailStartupsRecordList.first;
+            startupDetailStartupsRecordList.isNotEmpty
+                ? startupDetailStartupsRecordList.first
+                : null;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
@@ -231,14 +234,14 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                         createdDate:
                                                             getCurrentTimestamp,
                                                         startup:
-                                                            startupDetailStartupsRecord
+                                                            startupDetailStartupsRecord!
                                                                 .reference,
                                                         startupContact:
-                                                            startupDetailStartupsRecord
+                                                            startupDetailStartupsRecord!
                                                                 .comercialContact
                                                                 ?.toString(),
                                                         startupName:
-                                                            startupDetailStartupsRecord
+                                                            startupDetailStartupsRecord!
                                                                 .name,
                                                         user:
                                                             currentUserReference,
@@ -421,14 +424,14 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       final userContactCreateData =
                                           createUserContactRecordData(
                                         createdDate: getCurrentTimestamp,
-                                        startup: startupDetailStartupsRecord
+                                        startup: startupDetailStartupsRecord!
                                             .reference,
                                         startupContact:
-                                            startupDetailStartupsRecord
+                                            startupDetailStartupsRecord!
                                                 .comercialContact
                                                 ?.toString(),
                                         startupName:
-                                            startupDetailStartupsRecord.name,
+                                            startupDetailStartupsRecord!.name,
                                         user: currentUserReference,
                                         userEmail: currentUserEmail,
                                         userName: currentUserDisplayName,

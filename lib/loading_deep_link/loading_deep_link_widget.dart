@@ -41,6 +41,7 @@ class _LoadingDeepLinkWidgetState extends State<LoadingDeepLinkWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'LoadingDeepLink'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

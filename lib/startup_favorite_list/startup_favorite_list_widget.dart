@@ -25,6 +25,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
     super.initState();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'StartupFavoriteList'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

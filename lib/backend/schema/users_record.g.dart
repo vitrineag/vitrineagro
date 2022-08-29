@@ -89,6 +89,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.isGuest;
+    if (value != null) {
+      result
+        ..add('isGuest')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -151,6 +158,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.userTypeOtherDescription = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'isGuest':
+          result.isGuest = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -186,6 +197,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? userTypeOtherDescription;
   @override
+  final bool? isGuest;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -202,6 +215,7 @@ class _$UsersRecord extends UsersRecord {
       this.role,
       this.userType,
       this.userTypeOtherDescription,
+      this.isGuest,
       this.ffRef})
       : super._();
 
@@ -226,6 +240,7 @@ class _$UsersRecord extends UsersRecord {
         role == other.role &&
         userType == other.userType &&
         userTypeOtherDescription == other.userTypeOtherDescription &&
+        isGuest == other.isGuest &&
         ffRef == other.ffRef;
   }
 
@@ -240,16 +255,18 @@ class _$UsersRecord extends UsersRecord {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, email.hashCode),
-                                            displayName.hashCode),
-                                        photoUrl.hashCode),
-                                    uid.hashCode),
-                                createdTime.hashCode),
-                            phoneNumber.hashCode),
-                        company.hashCode),
-                    role.hashCode),
-                userType.hashCode),
-            userTypeOtherDescription.hashCode),
+                                        $jc(
+                                            $jc($jc(0, email.hashCode),
+                                                displayName.hashCode),
+                                            photoUrl.hashCode),
+                                        uid.hashCode),
+                                    createdTime.hashCode),
+                                phoneNumber.hashCode),
+                            company.hashCode),
+                        role.hashCode),
+                    userType.hashCode),
+                userTypeOtherDescription.hashCode),
+            isGuest.hashCode),
         ffRef.hashCode));
   }
 
@@ -266,6 +283,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('role', role)
           ..add('userType', userType)
           ..add('userTypeOtherDescription', userTypeOtherDescription)
+          ..add('isGuest', isGuest)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -315,6 +333,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   set userTypeOtherDescription(String? userTypeOtherDescription) =>
       _$this._userTypeOtherDescription = userTypeOtherDescription;
 
+  bool? _isGuest;
+  bool? get isGuest => _$this._isGuest;
+  set isGuest(bool? isGuest) => _$this._isGuest = isGuest;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -336,6 +358,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _role = $v.role;
       _userType = $v.userType;
       _userTypeOtherDescription = $v.userTypeOtherDescription;
+      _isGuest = $v.isGuest;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -369,6 +392,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             role: role,
             userType: userType,
             userTypeOtherDescription: userTypeOtherDescription,
+            isGuest: isGuest,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

@@ -26,6 +26,13 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
   List<StartupTrackingRecord> simpleSearchResults = [];
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<StartupNewsRecord>>(
       stream: queryStartupNewsRecord(

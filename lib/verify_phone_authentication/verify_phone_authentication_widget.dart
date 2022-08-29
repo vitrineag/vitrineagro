@@ -26,6 +26,7 @@ class _VerifyPhoneAuthenticationWidgetState
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'VerifyPhoneAuthentication'});
     verifyCodeController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

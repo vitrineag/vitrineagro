@@ -13,6 +13,13 @@ class MobileDrawerWidget extends StatefulWidget {
 
 class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(

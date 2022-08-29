@@ -21,6 +21,13 @@ class ActivityHorizontalListWidget extends StatefulWidget {
 class _ActivityHorizontalListWidgetState
     extends State<ActivityHorizontalListWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 100,

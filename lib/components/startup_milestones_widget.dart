@@ -24,6 +24,13 @@ class StartupMilestonesWidget extends StatefulWidget {
 
 class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {

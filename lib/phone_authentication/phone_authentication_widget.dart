@@ -1,7 +1,9 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +26,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'PhoneAuthentication'});
     phoneNumberController = TextEditingController(text: '+55');
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -119,17 +122,12 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Text(
-                                'Login por celular',
-                                style: FlutterFlowTheme.of(context)
-                                    .title2
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                              child: Align(
+                                alignment: AlignmentDirectional(-0.8, 0),
+                                child: Text(
+                                  'Bem vindo a VITRINE!',
+                                  style: FlutterFlowTheme.of(context).title2,
+                                ),
                               ),
                             ),
                           ],
@@ -142,58 +140,62 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Expanded(
-                              child: TextFormField(
-                                controller: phoneNumberController,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Digite seu número...',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: Color(0xFF57636C),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal,
+                              child: Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: TextFormField(
+                                  controller: phoneNumberController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText:
+                                        'Precisamos do seu número de telefone para o primeiro acesso',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          color: Color(0xFF57636C),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                    hintText: '+55 99 99999-9999',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyText2
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          color: Color(0xFF57636C),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFF1F4F8),
+                                        width: 2,
                                       ),
-                                  hintText: '+55 99 99999-9999',
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: Color(0xFF57636C),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFF1F4F8),
+                                        width: 2,
                                       ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFF1F4F8),
-                                      width: 2,
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            16, 24, 0, 24),
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFF1F4F8),
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          16, 24, 0, 24),
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle1
+                                      .override(
+                                        fontFamily: 'Roboto',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                  keyboardType: TextInputType.phone,
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .subtitle1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                keyboardType: TextInputType.phone,
                               ),
                             ),
                           ],
@@ -203,8 +205,47 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 32),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'PHONE_AUTHENTICATION_EXPLORE_SEM_LOGIN_B');
+                                logFirebaseEvent('Button_Auth');
+                                GoRouter.of(context).prepareAuthEvent();
+                                final user = await signInAnonymously(context);
+                                if (user == null) {
+                                  return;
+                                }
+                                logFirebaseEvent('Button_Backend-Call');
+
+                                final usersUpdateData = createUsersRecordData(
+                                  isGuest: true,
+                                );
+                                await currentUserReference!
+                                    .update(usersUpdateData);
+                                context.goNamedAuth('Loading', mounted);
+                              },
+                              text: 'Explore sem login',
+                              options: FFButtonOptions(
+                                width: 160,
+                                height: 44,
+                                color: Color(0xFFFFCE60),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(22),
+                              ),
+                            ),
                             FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent(

@@ -35,6 +35,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
     otherFieldController = TextEditingController();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'IdentifyUser'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -329,9 +330,11 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                       return Container();
                                     }
                                     final typeSelectUserTypeRecord =
-                                        typeSelectUserTypeRecordList.first;
+                                        typeSelectUserTypeRecordList.isNotEmpty
+                                            ? typeSelectUserTypeRecordList.first
+                                            : null;
                                     return FlutterFlowDropDown(
-                                      options: typeSelectUserTypeRecord.type!
+                                      options: typeSelectUserTypeRecord!.type!
                                           .toList()
                                           .toList(),
                                       onChanged: (val) =>

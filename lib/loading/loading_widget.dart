@@ -62,6 +62,7 @@ class _LoadingWidgetState extends State<LoadingWidget> {
     });
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Loading'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
