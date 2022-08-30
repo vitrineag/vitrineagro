@@ -235,7 +235,11 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                         if (textController!.text == null ||
                             textController!.text == '')
                           StreamBuilder<List<StartupsRecord>>(
-                            stream: queryStartupsRecord(),
+                            stream: queryStartupsRecord(
+                              queryBuilder: (startupsRecord) =>
+                                  startupsRecord.orderBy('isOpenWithoutAuth',
+                                      descending: true),
+                            ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -568,8 +572,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     logFirebaseEvent('Text_Auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await signOut();
-                                    context.goNamedAuth(
-                                        'PhoneAuthentication', mounted);
+                                    context.goNamedAuth('StartupList', mounted);
                                   },
                                   child: Text(
                                     'Sair',

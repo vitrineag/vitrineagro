@@ -65,16 +65,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, _) => appStateNotifier.loggedIn
-          ? LoadingWidget()
-          : PhoneAuthenticationWidget(),
+      errorBuilder: (context, _) =>
+          appStateNotifier.loggedIn ? LoadingWidget() : StartupListWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? LoadingWidget()
-              : PhoneAuthenticationWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? LoadingWidget() : StartupListWidget(),
           routes: [
             FFRoute(
               name: 'PhoneAuthentication',
@@ -109,7 +107,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'StartupList',
               path: 'startupList',
-              requireAuth: true,
               builder: (context, params) => StartupListWidget(),
             ),
             FFRoute(
@@ -277,7 +274,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/phoneAuthentication';
+            return '/startupList';
           }
           return null;
         },

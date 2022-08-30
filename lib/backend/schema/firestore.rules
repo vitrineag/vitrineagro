@@ -10,14 +10,14 @@ service cloud.firestore {
 
     match /startups/{document} {
       allow create: if request.auth != null;
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if request.auth != null;
       allow delete: if false;
     }
 
     match /userFavoritiesStartups/{document} {
       allow create: if request.auth != null;
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if request.auth != null;
       allow delete: if false;
     }
@@ -31,7 +31,7 @@ service cloud.firestore {
 
     match /sectorsOfActivity/{document} {
       allow create: if false;
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if false;
       allow delete: if false;
     }
@@ -52,7 +52,7 @@ service cloud.firestore {
 
     match /startupNews/{document} {
       allow create: if true;
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if true;
       allow delete: if false;
     }

@@ -103,7 +103,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                     logFirebaseEvent('Logout_Auth');
                     GoRouter.of(context).prepareAuthEvent();
                     await signOut();
-                    context.goNamedAuth('PhoneAuthentication', mounted);
+                    context.goNamedAuth('StartupList', mounted);
                   },
                   child: Text(
                     'Sair',

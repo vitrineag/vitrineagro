@@ -661,7 +661,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                               .prepareAuthEvent();
                                           await signOut();
                                           context.goNamedAuth(
-                                              'PhoneAuthentication', mounted);
+                                              'StartupList', mounted);
                                         },
                                         child: Text(
                                           'Sair',

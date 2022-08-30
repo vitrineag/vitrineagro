@@ -137,7 +137,7 @@ class _SocialLoginWidgetState extends State<SocialLoginWidget> {
                   logFirebaseEvent('Container_Auth');
                   GoRouter.of(context).prepareAuthEvent();
                   await signOut();
-                  context.goNamedAuth('PhoneAuthentication', mounted);
+                  context.goNamedAuth('StartupList', mounted);
                 },
                 child: Container(
                   width: 50,

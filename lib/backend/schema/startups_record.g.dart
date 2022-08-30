@@ -208,6 +208,13 @@ class _$StartupsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.isOpenWithoutAuth;
+    if (value != null) {
+      result
+        ..add('isOpenWithoutAuth')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -339,6 +346,10 @@ class _$StartupsRecordSerializer
           result.ceoName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'isOpenWithoutAuth':
+          result.isOpenWithoutAuth = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -408,6 +419,8 @@ class _$StartupsRecord extends StartupsRecord {
   @override
   final String? ceoName;
   @override
+  final bool? isOpenWithoutAuth;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StartupsRecord([void Function(StartupsRecordBuilder)? updates]) =>
@@ -441,6 +454,7 @@ class _$StartupsRecord extends StartupsRecord {
       this.feedNews,
       this.comercialContact,
       this.ceoName,
+      this.isOpenWithoutAuth,
       this.ffRef})
       : super._();
 
@@ -483,6 +497,7 @@ class _$StartupsRecord extends StartupsRecord {
         feedNews == other.feedNews &&
         comercialContact == other.comercialContact &&
         ceoName == other.ceoName &&
+        isOpenWithoutAuth == other.isOpenWithoutAuth &&
         ffRef == other.ffRef;
   }
 
@@ -506,25 +521,25 @@ class _$StartupsRecord extends StartupsRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, name.hashCode), category.hashCode), city.hashCode), valueProposalText.hashCode), problemResolutionText.hashCode), customerNiche.hashCode), businessModel.hashCode), logo.hashCode), instagramUrl.hashCode),
-                                                                                linkedinUrl.hashCode),
-                                                                            pitchYoutubeUrl.hashCode),
-                                                                        lastYearGrowth.hashCode),
-                                                                    pitchPdfUrl.hashCode),
-                                                                state.hashCode),
-                                                            country.hashCode),
-                                                        employeeCount.hashCode),
-                                                    foundationYear.hashCode),
-                                                site.hashCode),
-                                            lastYearRevenue.hashCode),
-                                        maturity.hashCode),
-                                    clientsCount.hashCode),
-                                comercialName.hashCode),
-                            linkedinUrlCompany.hashCode),
-                        sectorsOfActivity.hashCode),
-                    feedNews.hashCode),
-                comercialContact.hashCode),
-            ceoName.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, name.hashCode), category.hashCode), city.hashCode), valueProposalText.hashCode), problemResolutionText.hashCode), customerNiche.hashCode), businessModel.hashCode), logo.hashCode), instagramUrl.hashCode), linkedinUrl.hashCode),
+                                                                                pitchYoutubeUrl.hashCode),
+                                                                            lastYearGrowth.hashCode),
+                                                                        pitchPdfUrl.hashCode),
+                                                                    state.hashCode),
+                                                                country.hashCode),
+                                                            employeeCount.hashCode),
+                                                        foundationYear.hashCode),
+                                                    site.hashCode),
+                                                lastYearRevenue.hashCode),
+                                            maturity.hashCode),
+                                        clientsCount.hashCode),
+                                    comercialName.hashCode),
+                                linkedinUrlCompany.hashCode),
+                            sectorsOfActivity.hashCode),
+                        feedNews.hashCode),
+                    comercialContact.hashCode),
+                ceoName.hashCode),
+            isOpenWithoutAuth.hashCode),
         ffRef.hashCode));
   }
 
@@ -558,6 +573,7 @@ class _$StartupsRecord extends StartupsRecord {
           ..add('feedNews', feedNews)
           ..add('comercialContact', comercialContact)
           ..add('ceoName', ceoName)
+          ..add('isOpenWithoutAuth', isOpenWithoutAuth)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -688,6 +704,11 @@ class StartupsRecordBuilder
   String? get ceoName => _$this._ceoName;
   set ceoName(String? ceoName) => _$this._ceoName = ceoName;
 
+  bool? _isOpenWithoutAuth;
+  bool? get isOpenWithoutAuth => _$this._isOpenWithoutAuth;
+  set isOpenWithoutAuth(bool? isOpenWithoutAuth) =>
+      _$this._isOpenWithoutAuth = isOpenWithoutAuth;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -726,6 +747,7 @@ class StartupsRecordBuilder
       _feedNews = $v.feedNews;
       _comercialContact = $v.comercialContact;
       _ceoName = $v.ceoName;
+      _isOpenWithoutAuth = $v.isOpenWithoutAuth;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -776,6 +798,7 @@ class StartupsRecordBuilder
             feedNews: feedNews,
             comercialContact: comercialContact,
             ceoName: ceoName,
+            isOpenWithoutAuth: isOpenWithoutAuth,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

@@ -65,6 +65,8 @@ abstract class StartupsRecord
 
   String? get ceoName;
 
+  bool? get isOpenWithoutAuth;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -96,7 +98,8 @@ abstract class StartupsRecord
     ..sectorsOfActivity = ''
     ..feedNews = ''
     ..comercialContact = 0
-    ..ceoName = '';
+    ..ceoName = ''
+    ..isOpenWithoutAuth = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('startups');
@@ -139,6 +142,7 @@ abstract class StartupsRecord
           ..feedNews = snapshot.data['feedNews']
           ..comercialContact = snapshot.data['comercialContact']?.round()
           ..ceoName = snapshot.data['ceoName']
+          ..isOpenWithoutAuth = snapshot.data['isOpenWithoutAuth']
           ..ffRef = StartupsRecord.collection.doc(snapshot.objectID),
       );
 
@@ -195,6 +199,7 @@ Map<String, dynamic> createStartupsRecordData({
   String? feedNews,
   int? comercialContact,
   String? ceoName,
+  bool? isOpenWithoutAuth,
 }) {
   final firestoreData = serializers.toFirestore(
     StartupsRecord.serializer,
@@ -226,7 +231,8 @@ Map<String, dynamic> createStartupsRecordData({
         ..sectorsOfActivity = sectorsOfActivity
         ..feedNews = feedNews
         ..comercialContact = comercialContact
-        ..ceoName = ceoName,
+        ..ceoName = ceoName
+        ..isOpenWithoutAuth = isOpenWithoutAuth,
     ),
   );
 
