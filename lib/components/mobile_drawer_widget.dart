@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -97,24 +98,25 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                     ),
                   ),
                 ),
-                InkWell(
-                  onTap: () async {
-                    logFirebaseEvent('MOBILE_DRAWER_COMP_Logout_ON_TAP');
-                    logFirebaseEvent('Logout_Auth');
-                    GoRouter.of(context).prepareAuthEvent();
-                    await signOut();
-                    context.goNamedAuth('StartupList', mounted);
-                  },
-                  child: Text(
-                    'Sair',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Rubik',
-                          color: FlutterFlowTheme.of(context).alternate,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                if (loggedIn)
+                  InkWell(
+                    onTap: () async {
+                      logFirebaseEvent('MOBILE_DRAWER_COMP_Logout_ON_TAP');
+                      logFirebaseEvent('Logout_Auth');
+                      GoRouter.of(context).prepareAuthEvent();
+                      await signOut();
+                      context.goNamedAuth('StartupList', mounted);
+                    },
+                    child: Text(
+                      'Sair',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Rubik',
+                            color: FlutterFlowTheme.of(context).alternate,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
                   ),
-                ),
               ],
             ),
             Row(

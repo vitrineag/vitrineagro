@@ -503,9 +503,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                       padding:
                                           MediaQuery.of(context).viewInsets,
                                       child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.2,
+                                        height: 300,
                                         child: SocialLoginWidget(
                                           user: currentUserReference,
                                         ),
@@ -598,15 +596,13 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               logFirebaseEvent('SaibaMaisLista_Bottom-Sheet');
                               await showModalBottomSheet(
                                 isScrollControlled: true,
-                                backgroundColor: Color(0xFFFFFEFE),
+                                backgroundColor: Color(0x00FFFFFF),
                                 context: context,
                                 builder: (context) {
                                   return Padding(
                                     padding: MediaQuery.of(context).viewInsets,
                                     child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.2,
+                                      height: 300,
                                       child: SocialLoginWidget(
                                         user: currentUserReference,
                                       ),

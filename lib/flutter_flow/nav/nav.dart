@@ -93,7 +93,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'StartupDetail',
               path: 'startupDetail/:startupSite',
-              requireAuth: true,
               builder: (context, params) => StartupDetailWidget(
                 startupSite: params.getParam('startupSite', ParamType.String),
               ),
@@ -121,6 +120,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LoadingDeepLinkWidget(
                 startupSite: params.getParam('startupSite', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'Draft',
+              path: 'draft',
+              requireAuth: true,
+              builder: (context, params) => DraftWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

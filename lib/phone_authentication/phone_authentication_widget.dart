@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/social_login_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -52,7 +53,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                       desktop: false,
                     ))
                       Align(
-                        alignment: AlignmentDirectional(0, 1),
+                        alignment: AlignmentDirectional(0, 0.3),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 60),
                           child: SvgPicture.asset(
@@ -63,27 +64,13 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                         ),
                       ),
                     Align(
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: AlignmentDirectional(0, -0.5),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-                                child: Image.asset(
-                                  'assets/images/vitrine-horizontal-dark.png',
-                                  width: 200,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                          ],
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+                        child: Image.asset(
+                          'assets/images/vitrine-horizontal-dark.png',
+                          width: 200,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
@@ -126,7 +113,12 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                 alignment: AlignmentDirectional(-0.8, 0),
                                 child: Text(
                                   'Bem vindo a VITRINE!',
-                                  style: FlutterFlowTheme.of(context).title2,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title2
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: Color(0xFF0F0F0F),
+                                      ),
                                 ),
                               ),
                             ),
@@ -152,8 +144,8 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                         .subtitle2
                                         .override(
                                           fontFamily: 'Outfit',
-                                          color: Color(0xFF57636C),
-                                          fontSize: 16,
+                                          color: Color(0xFF0F0F0F),
+                                          fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
                                     hintText: '+55 99 99999-9999',
@@ -167,17 +159,17 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0xFFF1F4F8),
+                                        color: Color(0xFF707070),
                                         width: 2,
                                       ),
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0xFFF1F4F8),
+                                        color: Color(0xFF707070),
                                         width: 2,
                                       ),
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                     filled: true,
                                     fillColor: Colors.white,
@@ -202,7 +194,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 32),
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -230,7 +222,8 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                               options: FFButtonOptions(
                                 width: 160,
                                 height: 44,
-                                color: Color(0xFFFFCE60),
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .subtitle2
                                     .override(
@@ -240,7 +233,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                 borderSide: BorderSide(
-                                  color: Colors.transparent,
+                                  color: Colors.black,
                                   width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(22),
@@ -294,6 +287,45 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                        child: Container(
+                          width: double.infinity,
+                          height: 1,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF707070),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                              child: Text(
+                                'Faça login ou cadastre-se com suas redes sociais',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                        child: SocialLoginWidget(
+                          isInLogin: false,
+                          user: currentUserReference,
                         ),
                       ),
                     ],

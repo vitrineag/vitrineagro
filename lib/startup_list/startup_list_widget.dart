@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/backend.dart';
 import '../components/mobile_drawer_widget.dart';
 import '../components/social_login_widget.dart';
@@ -361,7 +362,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 36,
-                            color: Color(0xFF557C67),
+                            color: Color(0x6E000000),
                             offset: Offset(0, 14),
                           )
                         ],
@@ -565,28 +566,30 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     ),
                                   ),
                                 ),
-                                InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'STARTUP_LIST_PAGE_Text_l9uj8asi_ON_TAP');
-                                    logFirebaseEvent('Text_Auth');
-                                    GoRouter.of(context).prepareAuthEvent();
-                                    await signOut();
-                                    context.goNamedAuth('StartupList', mounted);
-                                  },
-                                  child: Text(
-                                    'Sair',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                if (loggedIn)
+                                  InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_LIST_PAGE_Text_l9uj8asi_ON_TAP');
+                                      logFirebaseEvent('Text_Auth');
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      await signOut();
+                                      context.goNamedAuth(
+                                          'StartupList', mounted);
+                                    },
+                                    child: Text(
+                                      'Sair',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
                                   ),
-                                ),
                               ],
                             ),
                             FFButtonWidget(

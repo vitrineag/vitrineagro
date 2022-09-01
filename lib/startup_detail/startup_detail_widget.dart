@@ -1,6 +1,8 @@
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/backend.dart';
 import '../components/favorite_toggle_widget.dart';
+import '../components/social_login_widget.dart';
 import '../components/startup_detail_info_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -226,6 +228,37 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                     onPressed: () async {
                                                       logFirebaseEvent(
                                                           'STARTUP_DETAIL_EnterInContact_ON_TAP');
+                                                      if (!loggedIn) {
+                                                        logFirebaseEvent(
+                                                            'EnterInContact_Bottom-Sheet');
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Color(0xFFFFFEFE),
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child: Container(
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.2,
+                                                                child:
+                                                                    SocialLoginWidget(
+                                                                  user:
+                                                                      currentUserReference,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                        return;
+                                                      }
                                                       logFirebaseEvent(
                                                           'EnterInContact_Backend-Call');
 
@@ -418,6 +451,31 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                     onPressed: () async {
                                       logFirebaseEvent(
                                           'STARTUP_DETAIL_EnterInContact_ON_TAP');
+                                      if (!loggedIn) {
+                                        logFirebaseEvent(
+                                            'EnterInContact_Bottom-Sheet');
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Color(0xFFFFFEFE),
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                              padding: MediaQuery.of(context)
+                                                  .viewInsets,
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    3,
+                                                child: SocialLoginWidget(
+                                                  user: currentUserReference,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                        return;
+                                      }
                                       logFirebaseEvent(
                                           'EnterInContact_Backend-Call');
 
