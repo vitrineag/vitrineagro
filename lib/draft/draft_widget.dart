@@ -78,6 +78,26 @@ class _DraftWidgetState extends State<DraftWidget> {
                         fit: BoxFit.cover,
                       ),
                     ),
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 8,
+                            color: Color(0x3314181B),
+                            offset: Offset(0, 3),
+                          )
+                        ],
+                        shape: BoxShape.circle,
+                      ),
+                      alignment: AlignmentDirectional(0, 0),
+                      child: SvgPicture.asset(
+                        'assets/images/phone.svg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ],
                 ),
               ),

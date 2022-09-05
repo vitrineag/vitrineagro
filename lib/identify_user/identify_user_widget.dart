@@ -29,8 +29,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
   void initState() {
     super.initState();
     companyNameController = TextEditingController();
-    emailAddressController = TextEditingController();
-    userNameController = TextEditingController();
+    emailAddressController = TextEditingController(text: currentUserEmail);
+    userNameController = TextEditingController(text: currentUserDisplayName);
     titleRoleController = TextEditingController();
     otherFieldController = TextEditingController();
     logFirebaseEvent('screen_view',
@@ -117,49 +117,60 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 16, 16, 0),
-                                child: TextFormField(
-                                  controller: userNameController,
-                                  autofocus: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Nome',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyText2
+                                child: AuthUserStreamWidget(
+                                  child: TextFormField(
+                                    controller: userNameController,
+                                    autofocus: true,
+                                    readOnly: currentUserDisplayName != null &&
+                                        currentUserDisplayName != '',
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Nome',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .bodyText2
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: Color(0xFF57636C),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFF707070),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFF707070),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              20, 32, 20, 12),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
                                         .override(
-                                          fontFamily: 'Outfit',
-                                          color: Color(0xFF57636C),
+                                          fontFamily: 'Roboto',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
                                           fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF707070),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF707070),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            20, 32, 20, 12),
+                                    textAlign: TextAlign.start,
+                                    maxLines: 1,
+                                    validator: (val) {
+                                      if (val == null || val.isEmpty) {
+                                        return 'Campo obrigatório';
+                                      }
+
+                                      return null;
+                                    },
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                  textAlign: TextAlign.start,
-                                  maxLines: 1,
                                 ),
                               ),
                               Padding(
@@ -167,6 +178,8 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     16, 16, 16, 0),
                                 child: TextFormField(
                                   controller: emailAddressController,
+                                  readOnly: currentUserEmail != null &&
+                                      currentUserEmail != '',
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Email',
@@ -207,6 +220,17 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                   textAlign: TextAlign.start,
                                   maxLines: 1,
                                   keyboardType: TextInputType.emailAddress,
+                                  validator: (val) {
+                                    if (val == null || val.isEmpty) {
+                                      return 'Campo obrigatório';
+                                    }
+
+                                    if (!RegExp(kTextValidatorEmailRegex)
+                                        .hasMatch(val)) {
+                                      return 'Informe um email válido';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               Padding(
@@ -253,6 +277,13 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                       ),
                                   textAlign: TextAlign.start,
                                   maxLines: 1,
+                                  validator: (val) {
+                                    if (val == null || val.isEmpty) {
+                                      return 'Campo obrigatório';
+                                    }
+
+                                    return null;
+                                  },
                                 ),
                               ),
                               Padding(
@@ -299,6 +330,13 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                       ),
                                   textAlign: TextAlign.start,
                                   maxLines: 1,
+                                  validator: (val) {
+                                    if (val == null || val.isEmpty) {
+                                      return 'Campo obrigatório';
+                                    }
+
+                                    return null;
+                                  },
                                 ),
                               ),
                               Padding(
@@ -424,6 +462,10 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         'SetUserType_Validate-Form');
                                     if (formKey.currentState == null ||
                                         !formKey.currentState!.validate()) {
+                                      return;
+                                    }
+
+                                    if (typeSelectValue == null) {
                                       return;
                                     }
 

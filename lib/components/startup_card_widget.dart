@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/backend.dart';
 import '../components/activity_horizontal_list_widget.dart';
-import '../components/social_login_widget.dart';
 import '../components/toggle_icon_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -492,25 +491,8 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               logFirebaseEvent(
                                   'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
                               if (!loggedIn) {
-                                logFirebaseEvent(
-                                    'FavoriteStartup_Bottom-Sheet');
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Color(0xFFFFFEFE),
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
-                                      child: Container(
-                                        height: 300,
-                                        child: SocialLoginWidget(
-                                          user: currentUserReference,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
+                                logFirebaseEvent('FavoriteStartup_Navigate-To');
+                                context.pushNamed('PhoneAuthentication');
                                 return;
                               }
                               if (cardUserFavoritiesStartupsRecordList.length >
@@ -593,23 +575,8 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               'STARTUP_CARD_COMP_SaibaMaisLista_ON_TAP');
                           if (!widget.startup!.isOpenWithoutAuth!) {
                             if (!loggedIn) {
-                              logFirebaseEvent('SaibaMaisLista_Bottom-Sheet');
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Color(0x00FFFFFF),
-                                context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.of(context).viewInsets,
-                                    child: Container(
-                                      height: 300,
-                                      child: SocialLoginWidget(
-                                        user: currentUserReference,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
+                              logFirebaseEvent('SaibaMaisLista_Navigate-To');
+                              context.pushNamed('PhoneAuthentication');
                               return;
                             }
                           }

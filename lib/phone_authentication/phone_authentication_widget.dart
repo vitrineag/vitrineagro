@@ -1,10 +1,8 @@
 import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../components/social_login_widget.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,7 +51,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                       desktop: false,
                     ))
                       Align(
-                        alignment: AlignmentDirectional(0, 0.3),
+                        alignment: AlignmentDirectional(0, -0.4),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 60),
                           child: SvgPicture.asset(
@@ -64,7 +62,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                         ),
                       ),
                     Align(
-                      alignment: AlignmentDirectional(0, -0.5),
+                      alignment: AlignmentDirectional(0, -0.8),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
                         child: Image.asset(
@@ -103,8 +101,31 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            icon: Icon(
+                              Icons.close,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 35,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'PHONE_AUTHENTICATION_close_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_Navigate-Back');
+                              context.pop();
+                            },
+                          ),
+                        ],
+                      ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -112,7 +133,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                               child: Align(
                                 alignment: AlignmentDirectional(-0.8, 0),
                                 child: Text(
-                                  'Bem vindo a VITRINE!',
+                                  'Saiba mais sobre as Startups que revolucionam o mercado',
                                   style: FlutterFlowTheme.of(context)
                                       .title2
                                       .override(
@@ -126,7 +147,32 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(-0.8, 0),
+                                child: Text(
+                                  'Faça login ou cadastre-se para continuar acessando',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title2
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: Color(0xFF0F0F0F),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -175,7 +221,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                     fillColor: Colors.white,
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
-                                            16, 24, 0, 24),
+                                            16, 13, 0, 10),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle1
@@ -197,48 +243,8 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FFButtonWidget(
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'PHONE_AUTHENTICATION_EXPLORE_SEM_LOGIN_B');
-                                logFirebaseEvent('Button_Auth');
-                                GoRouter.of(context).prepareAuthEvent();
-                                final user = await signInAnonymously(context);
-                                if (user == null) {
-                                  return;
-                                }
-                                logFirebaseEvent('Button_Backend-Call');
-
-                                final usersUpdateData = createUsersRecordData(
-                                  isGuest: true,
-                                );
-                                await currentUserReference!
-                                    .update(usersUpdateData);
-                                context.goNamedAuth('Loading', mounted);
-                              },
-                              text: 'Explore sem login',
-                              options: FFButtonOptions(
-                                width: 160,
-                                height: 44,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(22),
-                              ),
-                            ),
                             FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent(
@@ -268,7 +274,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                               },
                               text: 'Confirmar',
                               options: FFButtonOptions(
-                                width: 160,
+                                width: 180,
                                 height: 44,
                                 color: Color(0xFFFFCE60),
                                 textStyle: FlutterFlowTheme.of(context)
@@ -305,27 +311,99 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                              child: Text(
-                                'Faça login ou cadastre-se com suas redes sociais',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
+                            Text(
+                              'Faça login ou cadastre-se com suas redes sociais',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    fontWeight: FontWeight.normal,
+                                  ),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                        child: SocialLoginWidget(
-                          isInLogin: false,
-                          user: currentUserReference,
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          constraints: BoxConstraints(
+                            maxWidth: 274,
+                          ),
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      1, 1, 1, 1),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'PHONE_AUTHENTICATION_Container_2r8atnm2_');
+                                      logFirebaseEvent('Container_Auth');
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      final user =
+                                          await signInWithGoogle(context);
+                                      if (user == null) {
+                                        return;
+                                      }
+                                      context.goNamedAuth('Loading', mounted);
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBtnText,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 8,
+                                            color: Color(0x3314181B),
+                                            offset: Offset(0, 0),
+                                          )
+                                        ],
+                                        shape: BoxShape.circle,
+                                      ),
+                                      alignment: AlignmentDirectional(0, 0),
+                                      child: Image.asset(
+                                        'assets/images/Google_Logo.png',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 22),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xFFFFF4D8),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(21, 12, 21, 12),
+                            child: Text(
+                              'Os dados do seu login serão utilizados somente para\nfins de identificação na plataforma, não enviaremos\nqualquer tipo de comunicado ou mensagem.',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.italic,
+                                    lineHeight: 1.5,
+                                  ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
