@@ -319,10 +319,19 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       8, 0, 36, 0),
-                                  child: Image.asset(
-                                    'assets/images/vitrine-horizontal-dark.png',
-                                    height: 38,
-                                    fit: BoxFit.cover,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_FAVORITE_LIST_Image_bxzl2e34_ON_');
+                                      logFirebaseEvent('Image_Launch-U-R-L');
+                                      await launchURL(
+                                          'https://www.vitrine.ag/');
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/vitrine-horizontal-dark.png',
+                                      height: 38,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -332,9 +341,8 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_FAVORITE_LIST_Text_nr18wcbh_ON_T');
-                                      logFirebaseEvent('Text_Launch-U-R-L');
-                                      await launchURL(
-                                          'https://www.vitrine.ag/');
+                                      logFirebaseEvent('Text_Navigate-To');
+                                      context.pushNamed('StartupList');
                                     },
                                     child: Text(
                                       'Home',
@@ -361,30 +369,6 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     },
                                     child: Text(
                                       'Cadastre sua Startup',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Rubik',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 36, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'STARTUP_FAVORITE_LIST_CompanyRegister_ON');
-                                      logFirebaseEvent(
-                                          'CompanyRegister_Launch-U-R-L');
-                                      await launchURL(
-                                          'https://zl4i46dyz9l.typeform.com/to/xlokvahD');
-                                    },
-                                    child: Text(
-                                      'Cadastre sua Empresa',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(

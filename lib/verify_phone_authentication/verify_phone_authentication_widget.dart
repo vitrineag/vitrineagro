@@ -247,6 +247,9 @@ class _VerifyPhoneAuthenticationWidgetState
                                 return;
                               }
 
+                              logFirebaseEvent(
+                                  'VerifyPassword_Google-Analytics-Event');
+                              logFirebaseEvent('LOGIN_PHONE');
                               context.goNamedAuth('Loading', mounted);
                             },
                             text: 'Confirmar',

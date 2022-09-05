@@ -470,10 +470,19 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       8, 0, 36, 0),
-                                  child: Image.asset(
-                                    'assets/images/vitrine-horizontal-dark.png',
-                                    height: 38,
-                                    fit: BoxFit.cover,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'STARTUP_LIST_PAGE_Image_gwplsdqh_ON_TAP');
+                                      logFirebaseEvent('Image_Launch-U-R-L');
+                                      await launchURL(
+                                          'https://www.vitrine.ag/');
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/vitrine-horizontal-dark.png',
+                                      height: 38,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -483,9 +492,8 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_LIST_PAGE_Text_6nyvee0k_ON_TAP');
-                                      logFirebaseEvent('Text_Launch-U-R-L');
-                                      await launchURL(
-                                          'https://www.vitrine.ag/');
+                                      logFirebaseEvent('Text_Navigate-To');
+                                      context.pushNamed('StartupList');
                                     },
                                     child: Text(
                                       'Home',
@@ -512,30 +520,6 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     },
                                     child: Text(
                                       'Cadastre sua Startup',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Rubik',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 36, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'STARTUP_LIST_PAGE_CompanyRegister_ON_TAP');
-                                      logFirebaseEvent(
-                                          'CompanyRegister_Launch-U-R-L');
-                                      await launchURL(
-                                          'https://zl4i46dyz9l.typeform.com/to/xlokvahD');
-                                    },
-                                    child: Text(
-                                      'Cadastre sua Empresa',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(

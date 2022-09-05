@@ -155,7 +155,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                               child: Align(
                                 alignment: AlignmentDirectional(-0.8, 0),
                                 child: Text(
-                                  'Faça login ou cadastre-se para continuar acessando',
+                                  'Continue acessando gratuitamente através de',
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .title2
@@ -184,8 +184,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                   controller: phoneNumberController,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText:
-                                        'Precisamos do seu número de telefone para o primeiro acesso',
+                                    labelText: 'Seu número de telefone',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .subtitle2
                                         .override(
@@ -312,7 +311,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Faça login ou cadastre-se com suas redes sociais',
+                              'Ou suas redes sociais',
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
@@ -351,6 +350,9 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                       if (user == null) {
                                         return;
                                       }
+                                      logFirebaseEvent(
+                                          'Container_Google-Analytics-Event');
+                                      logFirebaseEvent('LOGIN_SOCIAL_GOOGLE');
                                       context.goNamedAuth('Loading', mounted);
                                     },
                                     child: Container(

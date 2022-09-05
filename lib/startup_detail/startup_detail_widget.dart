@@ -589,10 +589,20 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 0, 36, 0),
-                                        child: Image.asset(
-                                          'assets/images/vitrine-horizontal-dark.png',
-                                          height: 38,
-                                          fit: BoxFit.cover,
+                                        child: InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'STARTUP_DETAIL_Image_vrip3o1w_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Image_Launch-U-R-L');
+                                            await launchURL(
+                                                'https://www.vitrine.ag/');
+                                          },
+                                          child: Image.asset(
+                                            'assets/images/vitrine-horizontal-dark.png',
+                                            height: 38,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Padding(
@@ -603,9 +613,8 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                             logFirebaseEvent(
                                                 'STARTUP_DETAIL_PAGE_Text_dtr9j1mc_ON_TAP');
                                             logFirebaseEvent(
-                                                'Text_Launch-U-R-L');
-                                            await launchURL(
-                                                'https://www.vitrine.ag/');
+                                                'Text_Navigate-To');
+                                            context.pushNamed('StartupList');
                                           },
                                           child: Text(
                                             'Home',
@@ -633,30 +642,6 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           },
                                           child: Text(
                                             'Cadastre sua Startup',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Rubik',
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 36, 0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'STARTUP_DETAIL_CompanyRegister_ON_TAP');
-                                            logFirebaseEvent(
-                                                'CompanyRegister_Launch-U-R-L');
-                                            await launchURL(
-                                                'https://zl4i46dyz9l.typeform.com/to/xlokvahD');
-                                          },
-                                          child: Text(
-                                            'Cadastre sua Empresa',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(

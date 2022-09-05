@@ -238,8 +238,8 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
                         ),
                       ),
                     ),
-                  if (widget.startup!.clientsCount != null &&
-                      widget.startup!.clientsCount != '')
+                  if (widget.startup!.employeeCount != null &&
+                      widget.startup!.employeeCount != '')
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                       child: Container(

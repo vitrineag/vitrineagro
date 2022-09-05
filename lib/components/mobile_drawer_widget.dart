@@ -33,10 +33,17 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/images/vitrine-horizontal-dark.png',
-              height: 46,
-              fit: BoxFit.cover,
+            InkWell(
+              onTap: () async {
+                logFirebaseEvent('MOBILE_DRAWER_COMP_Image_zovxwp8d_ON_TAP');
+                logFirebaseEvent('Image_Launch-U-R-L');
+                await launchURL('https://www.vitrine.ag/');
+              },
+              child: Image.asset(
+                'assets/images/vitrine-horizontal-dark.png',
+                height: 46,
+                fit: BoxFit.cover,
+              ),
             ),
             Column(
               mainAxisSize: MainAxisSize.max,
@@ -47,8 +54,8 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                   child: InkWell(
                     onTap: () async {
                       logFirebaseEvent('MOBILE_DRAWER_COMP_Home_ON_TAP');
-                      logFirebaseEvent('Home_Launch-U-R-L');
-                      await launchURL('https://www.vitrine.ag/');
+                      logFirebaseEvent('Home_Navigate-To');
+                      context.pushNamed('StartupList');
                     },
                     child: Text(
                       'Home',
@@ -71,25 +78,6 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                     },
                     child: Text(
                       'Cadastre sua Startup',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Rubik',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 28),
-                  child: InkWell(
-                    onTap: () async {
-                      logFirebaseEvent('MOBILE_DRAWER_CompanyRegister_ON_TAP');
-                      logFirebaseEvent('CompanyRegister_Launch-U-R-L');
-                      await launchURL(
-                          'https://zl4i46dyz9l.typeform.com/to/xlokvahD');
-                    },
-                    child: Text(
-                      'Cadastre sua Empresa',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Rubik',
                             fontSize: 16,
