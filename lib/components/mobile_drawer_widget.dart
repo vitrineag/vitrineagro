@@ -112,7 +112,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  'versão 1.0',
+                  'versão 1.1',
                   style: FlutterFlowTheme.of(context).bodyText1,
                 ),
               ],

@@ -49,3 +49,10 @@ String removeAllLineBreaks(String text) {
   // remove all line breaks
   return text.replaceAll('\n', ' ');
 }
+
+String generateLinkedinSignUrl(String redirectUri) {
+  const clientId = '77mnszxtxzw7i4';
+  const state = 'aHtDYjAeda';
+  final redirectUrlEncoded = Uri.encodeComponent(redirectUri);
+  return 'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=$clientId&redirect_uri=$redirectUrlEncoded&state=$state&scope=r_liteprofile%20r_emailaddress';
+}
