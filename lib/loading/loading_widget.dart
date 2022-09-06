@@ -41,20 +41,13 @@ class _LoadingWidgetState extends State<LoadingWidget> {
           .whenComplete(() => setState(() {}));
 
       if (simpleSearchResults.length > 0) {
-        if (FFAppState().startupSiteRedirect != null &&
-            FFAppState().startupSiteRedirect != '') {
-          logFirebaseEvent('Loading_Navigate-To');
-          context.pushNamed(
-            'StartupDetail',
-            params: {
-              'startupSite': serializeParam(
-                  FFAppState().startupSiteRedirect, ParamType.String),
-            }.withoutNulls,
-          );
-        } else {
-          logFirebaseEvent('Loading_Navigate-To');
-          context.pushNamed('StartupList');
-        }
+        logFirebaseEvent('Loading_Navigate-To');
+        context.pushNamed(
+          'StartupList',
+          params: {
+            'startupSite': serializeParam('', ParamType.String),
+          }.withoutNulls,
+        );
       } else {
         logFirebaseEvent('Loading_Navigate-To');
         context.pushNamed('IdentifyUser');

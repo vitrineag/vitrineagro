@@ -37,8 +37,6 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('STARTUP_DETAIL_StartupDetail_ON_LOAD');
-      logFirebaseEvent('StartupDetail_Update-Local-State');
-      setState(() => FFAppState().startupSiteRedirect = '');
       logFirebaseEvent('StartupDetail_Simple-Search');
       await queryStartupTrackingRecordOnce()
           .then(
