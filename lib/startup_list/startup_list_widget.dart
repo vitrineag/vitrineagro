@@ -10,11 +10,17 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartupListWidget extends StatefulWidget {
-  const StartupListWidget({Key? key}) : super(key: key);
+  const StartupListWidget({
+    Key? key,
+    this.startupSite,
+  }) : super(key: key);
+
+  final String? startupSite;
 
   @override
   _StartupListWidgetState createState() => _StartupListWidgetState();
@@ -28,6 +34,20 @@ class _StartupListWidgetState extends State<StartupListWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('STARTUP_LIST_StartupList_ON_LOAD');
+      if (widget.startupSite != null && widget.startupSite != '') {
+        logFirebaseEvent('StartupList_Navigate-To');
+        context.pushNamed(
+          'StartupDetail',
+          params: {
+            'startupSite': serializeParam(widget.startupSite, ParamType.String),
+          }.withoutNulls,
+        );
+      }
+    });
+
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'StartupList'});
     textController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
