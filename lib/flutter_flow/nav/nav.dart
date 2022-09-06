@@ -126,6 +126,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'draft',
               requireAuth: true,
               builder: (context, params) => DraftWidget(),
+            ),
+            FFRoute(
+              name: 'LoadingLinkedin',
+              path: 'linkedinSign',
+              builder: (context, params) => LoadingLinkedinWidget(
+                startupSite: params.getParam('startupSite', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

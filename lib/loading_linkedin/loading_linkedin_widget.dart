@@ -1,14 +1,12 @@
-import '../auth/firebase_user_provider.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoadingDeepLinkWidget extends StatefulWidget {
-  const LoadingDeepLinkWidget({
+class LoadingLinkedinWidget extends StatefulWidget {
+  const LoadingLinkedinWidget({
     Key? key,
     this.startupSite,
   }) : super(key: key);
@@ -16,43 +14,17 @@ class LoadingDeepLinkWidget extends StatefulWidget {
   final String? startupSite;
 
   @override
-  _LoadingDeepLinkWidgetState createState() => _LoadingDeepLinkWidgetState();
+  _LoadingLinkedinWidgetState createState() => _LoadingLinkedinWidgetState();
 }
 
-class _LoadingDeepLinkWidgetState extends State<LoadingDeepLinkWidget> {
+class _LoadingLinkedinWidgetState extends State<LoadingLinkedinWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('LOADING_DEEP_LINK_LoadingDeepLink_ON_LOA');
-      logFirebaseEvent('LoadingDeepLink_Update-Local-State');
-      setState(() => FFAppState().startupSiteRedirect = widget.startupSite!);
-      if (loggedIn) {
-        logFirebaseEvent('LoadingDeepLink_Navigate-To');
-        context.pushNamed('Loading');
-      } else {
-        if (FFAppState().startupSiteRedirect != null &&
-            FFAppState().startupSiteRedirect != '') {
-          logFirebaseEvent('LoadingDeepLink_Navigate-To');
-          context.pushNamed(
-            'StartupDetail',
-            params: {
-              'startupSite': serializeParam(
-                  FFAppState().startupSiteRedirect, ParamType.String),
-            }.withoutNulls,
-          );
-        } else {
-          logFirebaseEvent('LoadingDeepLink_Navigate-To');
-          context.pushNamed('StartupList');
-        }
-      }
-    });
-
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'LoadingDeepLink'});
+        parameters: {'screen_name': 'LoadingLinkedin'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 

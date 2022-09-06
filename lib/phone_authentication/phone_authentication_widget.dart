@@ -153,20 +153,17 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(-0.8, 0),
-                                child: Text(
-                                  'Continue acessando gratuitamente através de',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .title2
-                                      .override(
-                                        fontFamily: 'Rubik',
-                                        color: Color(0xFF0F0F0F),
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                ),
+                              child: Text(
+                                'Continue acessando gratuitamente através de',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .title2
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: Color(0xFF0F0F0F),
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                           ],
@@ -386,7 +383,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                     logFirebaseEvent('Container_Launch-U-R-L');
                                     await launchURL(
                                         functions.generateLinkedinSignUrl(
-                                            'https://app.vitrine.ag/#/linkedinSign'));
+                                            'https://app.vitrine.ag/linkedinSign'));
                                   },
                                   child: Container(
                                     width: 50,

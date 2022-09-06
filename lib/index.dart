@@ -12,3 +12,5 @@ export 'loading/loading_widget.dart' show LoadingWidget;
 export 'loading_deep_link/loading_deep_link_widget.dart'
     show LoadingDeepLinkWidget;
 export 'draft/draft_widget.dart' show DraftWidget;
+export 'loading_linkedin/loading_linkedin_widget.dart'
+    show LoadingLinkedinWidget;
