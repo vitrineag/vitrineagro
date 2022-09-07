@@ -521,7 +521,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           'STARTUP_DETAIL_share_sharp_ICN_ON_TAP');
                                       logFirebaseEvent('IconButton_Share');
                                       await Share.share(
-                                          'https://app.vitrine.ag/#/loadingDeepLink/${functions.encodeUri(widget.startupSite!)}');
+                                          'https://app.vitrine.ag/startupDetail/${functions.encodeUri(widget.startupSite!)}');
                                       logFirebaseEvent(
                                           'IconButton_Backend-Call');
 

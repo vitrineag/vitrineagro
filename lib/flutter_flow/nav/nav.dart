@@ -105,10 +105,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'StartupList',
-              path: 'startupList/:startupSite',
-              builder: (context, params) => StartupListWidget(
-                startupSite: params.getParam('startupSite', ParamType.String),
-              ),
+              path: 'startupList',
+              builder: (context, params) => StartupListWidget(),
             ),
             FFRoute(
               name: 'Loading',
@@ -293,7 +291,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/startupList/:startupSite';
+            return '/startupList';
           }
           return null;
         },

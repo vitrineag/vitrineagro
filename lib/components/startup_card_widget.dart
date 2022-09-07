@@ -443,7 +443,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                     'STARTUP_CARD_COMP_ShareStartup_ON_TAP');
                                 logFirebaseEvent('ShareStartup_Share');
                                 await Share.share(
-                                    'https://app.vitrine.ag/#/loadingDeepLink/${functions.encodeUri(widget.startup!.site!)}');
+                                    'https://app.vitrine.ag/startupDetail/${functions.encodeUri(widget.startup!.site!)}');
                                 logFirebaseEvent(
                                     'ShareStartup_Google-Analytics-Event');
                                 logFirebaseEvent(
