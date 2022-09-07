@@ -56,3 +56,7 @@ String generateLinkedinSignUrl(String redirectUri) {
   final redirectUrlEncoded = Uri.encodeComponent(redirectUri);
   return 'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=$clientId&redirect_uri=$redirectUrlEncoded&state=$state&scope=r_liteprofile%20r_emailaddress';
 }
+
+bool isDeepLinkingToDetail() {
+  return Uri.base.toString().contains('startupDetail');
+}
