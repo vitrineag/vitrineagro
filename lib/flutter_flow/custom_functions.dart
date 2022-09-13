@@ -51,7 +51,7 @@ String removeAllLineBreaks(String text) {
 }
 
 String generateLinkedinSignUrl(String redirectUri) {
-  const clientId = '77mnszxtxzw7i4';
+  const clientId = '77ji2743du3unq';
   const state = 'aHtDYjAeda';
   final redirectUrlEncoded = Uri.encodeComponent(redirectUri);
   return 'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=$clientId&redirect_uri=$redirectUrlEncoded&state=$state&scope=r_liteprofile%20r_emailaddress';

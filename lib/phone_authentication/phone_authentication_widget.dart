@@ -399,7 +399,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                     logFirebaseEvent('Container_Launch-U-R-L');
                                     await launchURL(
                                         functions.generateLinkedinSignUrl(
-                                            'https://vitrine-agro-mfma7u.flutterflow.app/linkedinSign'));
+                                            'https://app.vitrine.ag/linkedinSign'));
                                   },
                                   child: Container(
                                     width: 50,
