@@ -36,7 +36,7 @@ class _LoadingLinkedinWidgetState extends State<LoadingLinkedinWidget> {
       logFirebaseEvent('LOADING_LINKEDIN_LoadingLinkedin_ON_LOAD');
       logFirebaseEvent('LoadingLinkedin_Backend-Call');
       linkedinJwt = await GetLinkedinJwtCall.call(
-        redirectUri: 'https://vitrine-agro-mfma7u.flutterflow.app/linkedinSign',
+        redirectUri: 'https://app.vitrine.ag/linkedinSign',
         authCode: functions.getQueryParam('code'),
       );
       if ((linkedinJwt?.succeeded ?? true)) {
