@@ -115,7 +115,9 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
                           'FAVORITE_TOGGLE_COMP_FavoriteFill_ON_TAP');
                       if (!loggedIn) {
                         logFirebaseEvent('FavoriteFill_Navigate-To');
+
                         context.pushNamed('PhoneAuthentication');
+
                         return;
                       }
                       logFirebaseEvent('FavoriteFill_Backend-Call');

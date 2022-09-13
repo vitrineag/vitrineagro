@@ -18,6 +18,7 @@ class PhoneAuthenticationWidget extends StatefulWidget {
 
 class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
   TextEditingController? phoneNumberController;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -214,6 +215,20 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
                                     filled: true,
                                     fillColor: Colors.white,
                                     contentPadding:
@@ -351,6 +366,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                       logFirebaseEvent(
                                           'Container_Google-Analytics-Event');
                                       logFirebaseEvent('LOGIN_SOCIAL_GOOGLE');
+
                                       context.goNamedAuth('Loading', mounted);
                                     },
                                     child: Container(
@@ -379,11 +395,11 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                 InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'PHONE_AUTHENTICATION_Container_x1x4tmon_');
+                                        'PHONE_AUTHENTICATION_Container_evda45rc_');
                                     logFirebaseEvent('Container_Launch-U-R-L');
                                     await launchURL(
                                         functions.generateLinkedinSignUrl(
-                                            'https://app.vitrine.ag/linkedinSign'));
+                                            'https://vitrine-agro-mfma7u.flutterflow.app/linkedinSign'));
                                   },
                                   child: Container(
                                     width: 50,
@@ -401,8 +417,8 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                       shape: BoxShape.circle,
                                     ),
                                     alignment: AlignmentDirectional(0, 0),
-                                    child: SvgPicture.asset(
-                                      'assets/images/linkedin.svg',
+                                    child: Image.asset(
+                                      'assets/images/linkedinSvg.png',
                                       fit: BoxFit.cover,
                                     ),
                                   ),

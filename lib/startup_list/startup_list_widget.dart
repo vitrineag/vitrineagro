@@ -21,8 +21,9 @@ class StartupListWidget extends StatefulWidget {
 }
 
 class _StartupListWidgetState extends State<StartupListWidget> {
-  List<StartupsRecord>? algoliaSearchResults = [];
   TextEditingController? textController;
+
+  List<StartupsRecord>? algoliaSearchResults = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -192,6 +193,20 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 1,
@@ -397,10 +412,13 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 if (valueOrDefault<bool>(
                                     currentUserDocument?.isGuest, false)) {
                                   logFirebaseEvent('Button_Navigate-To');
+
                                   context.pushNamed('PhoneAuthentication');
+
                                   return;
                                 }
                                 logFirebaseEvent('Button_Navigate-To');
+
                                 context.pushNamed('StartupFavoriteList');
                               },
                               text: 'favoritos',
@@ -493,6 +511,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                       logFirebaseEvent(
                                           'STARTUP_LIST_PAGE_Text_6nyvee0k_ON_TAP');
                                       logFirebaseEvent('Text_Navigate-To');
+
                                       context.pushNamed('StartupList');
                                     },
                                     child: Text(
@@ -538,6 +557,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                       logFirebaseEvent('Text_Auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       await signOut();
+
                                       context.goNamedAuth(
                                           'StartupList', mounted);
                                     },
@@ -561,6 +581,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                 logFirebaseEvent(
                                     'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
                                 logFirebaseEvent('Button_Navigate-To');
+
                                 context.pushNamed('StartupFavoriteList');
                               },
                               text: 'favoritos',

@@ -18,6 +18,7 @@ class VerifyPhoneAuthenticationWidget extends StatefulWidget {
 class _VerifyPhoneAuthenticationWidgetState
     extends State<VerifyPhoneAuthenticationWidget> {
   TextEditingController? verifyCodeController;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -197,6 +198,20 @@ class _VerifyPhoneAuthenticationWidgetState
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 filled: true,
                                 fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
@@ -250,6 +265,7 @@ class _VerifyPhoneAuthenticationWidgetState
                               logFirebaseEvent(
                                   'VerifyPassword_Google-Analytics-Event');
                               logFirebaseEvent('LOGIN_PHONE');
+
                               context.goNamedAuth('Loading', mounted);
                             },
                             text: 'Confirmar',

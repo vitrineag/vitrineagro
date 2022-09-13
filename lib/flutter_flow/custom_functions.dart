@@ -60,3 +60,7 @@ String generateLinkedinSignUrl(String redirectUri) {
 bool isDeepLinkingToDetail() {
   return Uri.base.toString().contains('startupDetail');
 }
+
+String getQueryParam(String param) {
+  return Uri.base.queryParameters[param] ?? '';
+}

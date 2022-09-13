@@ -73,8 +73,8 @@ class _DraftWidgetState extends State<DraftWidget> {
                         shape: BoxShape.circle,
                       ),
                       alignment: AlignmentDirectional(0, 0),
-                      child: SvgPicture.asset(
-                        'assets/images/linkedin.svg',
+                      child: Image.network(
+                        '',
                         fit: BoxFit.cover,
                       ),
                     ),

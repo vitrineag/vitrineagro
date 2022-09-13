@@ -55,6 +55,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                     onTap: () async {
                       logFirebaseEvent('MOBILE_DRAWER_COMP_Home_ON_TAP');
                       logFirebaseEvent('Home_Navigate-To');
+
                       context.pushNamed('StartupList');
                     },
                     child: Text(
@@ -93,6 +94,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                       logFirebaseEvent('Logout_Auth');
                       GoRouter.of(context).prepareAuthEvent();
                       await signOut();
+
                       context.goNamedAuth('StartupList', mounted);
                     },
                     child: Text(

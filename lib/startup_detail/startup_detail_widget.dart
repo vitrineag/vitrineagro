@@ -163,6 +163,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                   'STARTUP_DETAIL_PAGE_Text_i0zx6d9j_ON_TAP');
                                               logFirebaseEvent(
                                                   'Text_Navigate-To');
+
                                               context.goNamed(
                                                 'StartupList',
                                                 extra: <String, dynamic>{
@@ -228,8 +229,10 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                       if (!loggedIn) {
                                                         logFirebaseEvent(
                                                             'EnterInContact_Navigate-To');
+
                                                         context.pushNamed(
                                                             'PhoneAuthentication');
+
                                                         return;
                                                       }
                                                       logFirebaseEvent(
@@ -408,6 +411,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                           'STARTUP_DETAIL_chevron_left_ICN_ON_TAP');
                                       logFirebaseEvent(
                                           'IconButton_Navigate-To');
+
                                       context.goNamed(
                                         'StartupList',
                                         extra: <String, dynamic>{
@@ -427,8 +431,10 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                       if (!loggedIn) {
                                         logFirebaseEvent(
                                             'EnterInContact_Navigate-To');
+
                                         context
                                             .pushNamed('PhoneAuthentication');
+
                                         return;
                                       }
                                       logFirebaseEvent(
@@ -612,6 +618,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                                 'STARTUP_DETAIL_PAGE_Text_dtr9j1mc_ON_TAP');
                                             logFirebaseEvent(
                                                 'Text_Navigate-To');
+
                                             context.pushNamed('StartupList');
                                           },
                                           child: Text(
@@ -659,6 +666,7 @@ class _StartupDetailWidgetState extends State<StartupDetailWidget> {
                                             GoRouter.of(context)
                                                 .prepareAuthEvent();
                                             await signOut();
+
                                             context.goNamedAuth(
                                                 'StartupList', mounted);
                                           },

@@ -16,12 +16,18 @@ class IdentifyUserWidget extends StatefulWidget {
 }
 
 class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
-  String? typeSelectValue;
   TextEditingController? companyNameController;
+
   TextEditingController? emailAddressController;
+
   TextEditingController? userNameController;
+
   TextEditingController? titleRoleController;
+
+  String? typeSelectValue;
+
   TextEditingController? otherFieldController;
+
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -148,6 +154,20 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         ),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               20, 32, 20, 12),
@@ -201,6 +221,20 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0xFF707070),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
                                         width: 1,
                                       ),
                                       borderRadius: BorderRadius.circular(8),
@@ -263,6 +297,20 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
                                             20, 32, 20, 12),
@@ -312,6 +360,20 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0xFF707070),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
                                         width: 1,
                                       ),
                                       borderRadius: BorderRadius.circular(8),
@@ -435,6 +497,20 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         ),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               20, 32, 20, 12),
@@ -496,6 +572,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         .doc()
                                         .set(userIsLoggedCreateData);
                                     logFirebaseEvent('SetUserType_Navigate-To');
+
                                     context.pushNamed('StartupList');
                                   },
                                   text: 'Confirmar',

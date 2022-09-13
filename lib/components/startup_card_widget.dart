@@ -492,7 +492,9 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                   'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
                               if (!loggedIn) {
                                 logFirebaseEvent('FavoriteStartup_Navigate-To');
+
                                 context.pushNamed('PhoneAuthentication');
+
                                 return;
                               }
                               if (cardUserFavoritiesStartupsRecordList.length >
@@ -576,11 +578,14 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                           if (!widget.startup!.isOpenWithoutAuth!) {
                             if (!loggedIn) {
                               logFirebaseEvent('SaibaMaisLista_Navigate-To');
+
                               context.pushNamed('PhoneAuthentication');
+
                               return;
                             }
                           }
                           logFirebaseEvent('SaibaMaisLista_Navigate-To');
+
                           context.pushNamed(
                             'StartupDetail',
                             params: {

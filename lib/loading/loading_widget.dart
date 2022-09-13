@@ -47,9 +47,11 @@ class _LoadingWidgetState extends State<LoadingWidget> {
 
       if (simpleSearchResults.length > 0) {
         logFirebaseEvent('Loading_Navigate-To');
+
         context.pushNamed('StartupList');
       } else {
         logFirebaseEvent('Loading_Navigate-To');
+
         context.pushNamed('IdentifyUser');
       }
     });

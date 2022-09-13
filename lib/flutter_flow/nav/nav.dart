@@ -109,17 +109,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => StartupListWidget(),
             ),
             FFRoute(
-              name: 'Loading',
-              path: 'loading',
-              requireAuth: true,
-              builder: (context, params) => LoadingWidget(),
-            ),
-            FFRoute(
               name: 'LoadingDeepLink',
               path: 'loadingDeepLink/:startupSite',
               builder: (context, params) => LoadingDeepLinkWidget(
                 startupSite: params.getParam('startupSite', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'Loading',
+              path: 'loading',
+              requireAuth: true,
+              builder: (context, params) => LoadingWidget(),
             ),
             FFRoute(
               name: 'Draft',
