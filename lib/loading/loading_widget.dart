@@ -31,7 +31,7 @@ class _LoadingWidgetState extends State<LoadingWidget> {
         return;
       }
 
-      logFirebaseEvent('Loading_Simple-Search');
+      logFirebaseEvent('Loading_simple_search');
       await queryUserIsLoggedRecordOnce()
           .then(
             (records) => simpleSearchResults = TextSearch(
@@ -46,11 +46,11 @@ class _LoadingWidgetState extends State<LoadingWidget> {
           .whenComplete(() => setState(() {}));
 
       if (simpleSearchResults.length > 0) {
-        logFirebaseEvent('Loading_Navigate-To');
+        logFirebaseEvent('Loading_navigate_to');
 
         context.pushNamed('StartupList');
       } else {
-        logFirebaseEvent('Loading_Navigate-To');
+        logFirebaseEvent('Loading_navigate_to');
 
         context.pushNamed('IdentifyUser');
       }

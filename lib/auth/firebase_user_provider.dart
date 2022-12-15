@@ -9,11 +9,15 @@ class VitrineAgFirebaseUser {
 
 VitrineAgFirebaseUser? currentUser;
 bool get loggedIn => currentUser?.loggedIn ?? false;
-Stream<VitrineAgFirebaseUser> vitrineAgFirebaseUserStream() => FirebaseAuth
-    .instance
-    .authStateChanges()
-    .debounce((user) => user == null && !loggedIn
-        ? TimerStream(true, const Duration(seconds: 1))
-        : Stream.value(user))
-    .map<VitrineAgFirebaseUser>(
-        (user) => currentUser = VitrineAgFirebaseUser(user));
+Stream<VitrineAgFirebaseUser> vitrineAgFirebaseUserStream() =>
+    FirebaseAuth.instance
+        .authStateChanges()
+        .debounce((user) => user == null && !loggedIn
+            ? TimerStream(true, const Duration(seconds: 1))
+            : Stream.value(user))
+        .map<VitrineAgFirebaseUser>(
+      (user) {
+        currentUser = VitrineAgFirebaseUser(user);
+        return currentUser!;
+      },
+    );

@@ -16,18 +16,12 @@ class IdentifyUserWidget extends StatefulWidget {
 }
 
 class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
-  TextEditingController? companyNameController;
-
-  TextEditingController? emailAddressController;
-
-  TextEditingController? userNameController;
-
-  TextEditingController? titleRoleController;
-
   String? typeSelectValue;
-
+  TextEditingController? companyNameController;
+  TextEditingController? emailAddressController;
+  TextEditingController? userNameController;
+  TextEditingController? titleRoleController;
   TextEditingController? otherFieldController;
-
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -42,6 +36,16 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'IdentifyUser'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    companyNameController?.dispose();
+    emailAddressController?.dispose();
+    userNameController?.dispose();
+    titleRoleController?.dispose();
+    otherFieldController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -182,7 +186,6 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     textAlign: TextAlign.start,
-                                    maxLines: 1,
                                     validator: (val) {
                                       if (val == null || val.isEmpty) {
                                         return 'Campo obrigatório';
@@ -252,7 +255,6 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                   textAlign: TextAlign.start,
-                                  maxLines: 1,
                                   keyboardType: TextInputType.emailAddress,
                                   validator: (val) {
                                     if (val == null || val.isEmpty) {
@@ -324,7 +326,6 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                   textAlign: TextAlign.start,
-                                  maxLines: 1,
                                   validator: (val) {
                                     if (val == null || val.isEmpty) {
                                       return 'Campo obrigatório';
@@ -391,7 +392,6 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                   textAlign: TextAlign.start,
-                                  maxLines: 1,
                                   validator: (val) {
                                     if (val == null || val.isEmpty) {
                                       return 'Campo obrigatório';
@@ -425,7 +425,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     List<UserTypeRecord>
                                         typeSelectUserTypeRecordList =
                                         snapshot.data!;
-                                    // Return an empty Container when the document does not exist.
+                                    // Return an empty Container when the item does not exist.
                                     if (snapshot.data!.isEmpty) {
                                       return Container();
                                     }
@@ -433,7 +433,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                         typeSelectUserTypeRecordList.isNotEmpty
                                             ? typeSelectUserTypeRecordList.first
                                             : null;
-                                    return FlutterFlowDropDown(
+                                    return FlutterFlowDropDown<String>(
                                       options: typeSelectUserTypeRecord!.type!
                                           .toList()
                                           .toList(),
@@ -524,7 +524,6 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     textAlign: TextAlign.start,
-                                    maxLines: 1,
                                   ),
                                 ),
                               Padding(
@@ -535,7 +534,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     logFirebaseEvent(
                                         'IDENTIFY_USER_PAGE_SetUserType_ON_TAP');
                                     logFirebaseEvent(
-                                        'SetUserType_Validate-Form');
+                                        'SetUserType_validate_form');
                                     if (formKey.currentState == null ||
                                         !formKey.currentState!.validate()) {
                                       return;
@@ -546,7 +545,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     }
 
                                     logFirebaseEvent(
-                                        'SetUserType_Backend-Call');
+                                        'SetUserType_backend_call');
 
                                     final usersUpdateData =
                                         createUsersRecordData(
@@ -561,7 +560,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     await currentUserReference!
                                         .update(usersUpdateData);
                                     logFirebaseEvent(
-                                        'SetUserType_Backend-Call');
+                                        'SetUserType_backend_call');
 
                                     final userIsLoggedCreateData =
                                         createUserIsLoggedRecordData(
@@ -571,7 +570,7 @@ class _IdentifyUserWidgetState extends State<IdentifyUserWidget> {
                                     await UserIsLoggedRecord.collection
                                         .doc()
                                         .set(userIsLoggedCreateData);
-                                    logFirebaseEvent('SetUserType_Navigate-To');
+                                    logFirebaseEvent('SetUserType_navigate_to');
 
                                     context.pushNamed('StartupList');
                                   },

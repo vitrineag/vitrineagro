@@ -35,7 +35,7 @@ class _StartupMilestonesWidgetState extends State<StartupMilestonesWidget> {
     return InkWell(
       onTap: () async {
         logFirebaseEvent('STARTUP_MILESTONES_Stack_sbhk7owp_ON_TAP');
-        logFirebaseEvent('Stack_Backend-Call');
+        logFirebaseEvent('Stack_backend_call');
 
         final startupTrackingUpdateData = {
           'interactMilestones': FieldValue.increment(1),

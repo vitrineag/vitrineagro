@@ -21,9 +21,8 @@ class StartupListWidget extends StatefulWidget {
 }
 
 class _StartupListWidgetState extends State<StartupListWidget> {
-  TextEditingController? textController;
-
   List<StartupsRecord>? algoliaSearchResults = [];
+  TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -32,6 +31,12 @@ class _StartupListWidgetState extends State<StartupListWidget> {
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'StartupList'});
     textController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -158,7 +163,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                         logFirebaseEvent(
                                             'STARTUP_LIST_TextField_rfxzfyij_ON_TEXTF');
                                         logFirebaseEvent(
-                                            'TextField_Algolia-Search');
+                                            'TextField_algolia_search');
                                         setState(
                                             () => algoliaSearchResults = null);
                                         await StartupsRecord.search(
@@ -173,7 +178,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                                 () => setState(() {}));
 
                                         logFirebaseEvent(
-                                            'TextField_Google-Analytics-Event');
+                                            'TextField_google_analytics_event');
                                         logFirebaseEvent(
                                           'filter',
                                           parameters: {
@@ -302,7 +307,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                             textController!.text != '')
                           Builder(
                             builder: (context) {
-                              if (algoliaSearchResults! == null) {
+                              if (algoliaSearchResults == null) {
                                 return Center(
                                   child: SizedBox(
                                     width: 50,
@@ -401,7 +406,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'STARTUP_LIST_PAGE_menu_ICN_ON_TAP');
-                                logFirebaseEvent('IconButton_Drawer');
+                                logFirebaseEvent('IconButton_drawer');
                                 scaffoldKey.currentState!.openDrawer();
                               },
                             ),
@@ -411,13 +416,13 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
                                 if (valueOrDefault<bool>(
                                     currentUserDocument?.isGuest, false)) {
-                                  logFirebaseEvent('Button_Navigate-To');
+                                  logFirebaseEvent('Button_navigate_to');
 
                                   context.pushNamed('PhoneAuthentication');
 
                                   return;
                                 }
-                                logFirebaseEvent('Button_Navigate-To');
+                                logFirebaseEvent('Button_navigate_to');
 
                                 context.pushNamed('StartupFavoriteList');
                               },
@@ -492,7 +497,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_LIST_PAGE_Image_gwplsdqh_ON_TAP');
-                                      logFirebaseEvent('Image_Launch-U-R-L');
+                                      logFirebaseEvent('Image_launch_u_r_l');
                                       await launchURL(
                                           'https://www.vitrine.ag/');
                                     },
@@ -510,7 +515,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_LIST_PAGE_Text_6nyvee0k_ON_TAP');
-                                      logFirebaseEvent('Text_Navigate-To');
+                                      logFirebaseEvent('Text_navigate_to');
 
                                       context.pushNamed('StartupList');
                                     },
@@ -533,9 +538,9 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_LIST_PAGE_Text_vx2w7quj_ON_TAP');
-                                      logFirebaseEvent('Text_Launch-U-R-L');
+                                      logFirebaseEvent('Text_launch_u_r_l');
                                       await launchURL(
-                                          'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
+                                          'https://zl4i46dyz9l.typeform.com/to/T5MCQAfS');
                                     },
                                     child: Text(
                                       'Cadastre sua Startup',
@@ -554,7 +559,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_LIST_PAGE_Text_l9uj8asi_ON_TAP');
-                                      logFirebaseEvent('Text_Auth');
+                                      logFirebaseEvent('Text_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       await signOut();
 
@@ -580,7 +585,7 @@ class _StartupListWidgetState extends State<StartupListWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'STARTUP_LIST_PAGE_FAVORITOS_BTN_ON_TAP');
-                                logFirebaseEvent('Button_Navigate-To');
+                                logFirebaseEvent('Button_navigate_to');
 
                                 context.pushNamed('StartupFavoriteList');
                               },

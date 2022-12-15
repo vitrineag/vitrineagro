@@ -59,7 +59,7 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
         return InkWell(
           onTap: () async {
             logFirebaseEvent('FAVORITE_TOGGLE_Container_82tpyhcc_ON_TA');
-            logFirebaseEvent('Container_Backend-Call');
+            logFirebaseEvent('Container_backend_call');
 
             final startupTrackingUpdateData = {
               'favorited': FieldValue.increment(1),
@@ -84,7 +84,7 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
                     ),
                     onPressed: () async {
                       logFirebaseEvent('FAVORITE_TOGGLE_COMP_Favorite_ON_TAP');
-                      logFirebaseEvent('Favorite_Backend-Call');
+                      logFirebaseEvent('Favorite_backend_call');
 
                       final userFavoritiesStartupsCreateData =
                           createUserFavoritiesStartupsRecordData(
@@ -114,13 +114,13 @@ class _FavoriteToggleWidgetState extends State<FavoriteToggleWidget> {
                       logFirebaseEvent(
                           'FAVORITE_TOGGLE_COMP_FavoriteFill_ON_TAP');
                       if (!loggedIn) {
-                        logFirebaseEvent('FavoriteFill_Navigate-To');
+                        logFirebaseEvent('FavoriteFill_navigate_to');
 
                         context.pushNamed('PhoneAuthentication');
 
                         return;
                       }
-                      logFirebaseEvent('FavoriteFill_Backend-Call');
+                      logFirebaseEvent('FavoriteFill_backend_call');
                       await functions
                           .getFirstFavoritiesStartups(
                               containerUserFavoritiesStartupsRecordList

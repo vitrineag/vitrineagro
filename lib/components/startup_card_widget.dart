@@ -441,18 +441,18 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'STARTUP_CARD_COMP_ShareStartup_ON_TAP');
-                                logFirebaseEvent('ShareStartup_Share');
+                                logFirebaseEvent('ShareStartup_share');
                                 await Share.share(
                                     'https://app.vitrine.ag/startupDetail/${functions.encodeUri(widget.startup!.site!)}');
                                 logFirebaseEvent(
-                                    'ShareStartup_Google-Analytics-Event');
+                                    'ShareStartup_google_analytics_event');
                                 logFirebaseEvent(
                                   'share_startup',
                                   parameters: {
                                     'startup_name': widget.startup!.name,
                                   },
                                 );
-                                logFirebaseEvent('ShareStartup_Simple-Search');
+                                logFirebaseEvent('ShareStartup_simple_search');
                                 await queryStartupTrackingRecordOnce()
                                     .then(
                                       (records) => simpleSearchResults1 =
@@ -473,7 +473,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                         (_, __) => simpleSearchResults1 = [])
                                     .whenComplete(() => setState(() {}));
 
-                                logFirebaseEvent('ShareStartup_Backend-Call');
+                                logFirebaseEvent('ShareStartup_backend_call');
 
                                 final startupTrackingUpdateData = {
                                   'share': FieldValue.increment(1),
@@ -491,7 +491,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               logFirebaseEvent(
                                   'STARTUP_CARD_COMP_FavoriteStartup_ON_TAP');
                               if (!loggedIn) {
-                                logFirebaseEvent('FavoriteStartup_Navigate-To');
+                                logFirebaseEvent('FavoriteStartup_navigate_to');
 
                                 context.pushNamed('PhoneAuthentication');
 
@@ -500,7 +500,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               if (cardUserFavoritiesStartupsRecordList.length >
                                   0) {
                                 logFirebaseEvent(
-                                    'FavoriteStartup_Backend-Call');
+                                    'FavoriteStartup_backend_call');
                                 await functions
                                     .getFirstFavoritiesStartups(
                                         cardUserFavoritiesStartupsRecordList
@@ -509,7 +509,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                     .delete();
                               } else {
                                 logFirebaseEvent(
-                                    'FavoriteStartup_Backend-Call');
+                                    'FavoriteStartup_backend_call');
 
                                 final userFavoritiesStartupsCreateData =
                                     createUserFavoritiesStartupsRecordData(
@@ -524,7 +524,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                     .set(userFavoritiesStartupsCreateData);
                               }
 
-                              logFirebaseEvent('FavoriteStartup_Simple-Search');
+                              logFirebaseEvent('FavoriteStartup_simple_search');
                               await queryStartupTrackingRecordOnce()
                                   .then(
                                     (records) => simpleSearchResults2 =
@@ -544,7 +544,7 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                                   .onError((_, __) => simpleSearchResults2 = [])
                                   .whenComplete(() => setState(() {}));
 
-                              logFirebaseEvent('FavoriteStartup_Backend-Call');
+                              logFirebaseEvent('FavoriteStartup_backend_call');
 
                               final startupTrackingUpdateData = {
                                 'favorited': FieldValue.increment(1),
@@ -577,20 +577,22 @@ class _StartupCardWidgetState extends State<StartupCardWidget> {
                               'STARTUP_CARD_COMP_SaibaMaisLista_ON_TAP');
                           if (!widget.startup!.isOpenWithoutAuth!) {
                             if (!loggedIn) {
-                              logFirebaseEvent('SaibaMaisLista_Navigate-To');
+                              logFirebaseEvent('SaibaMaisLista_navigate_to');
 
                               context.pushNamed('PhoneAuthentication');
 
                               return;
                             }
                           }
-                          logFirebaseEvent('SaibaMaisLista_Navigate-To');
+                          logFirebaseEvent('SaibaMaisLista_navigate_to');
 
                           context.pushNamed(
                             'StartupDetail',
                             params: {
                               'startupSite': serializeParam(
-                                  widget.startup!.site, ParamType.String),
+                                widget.startup!.site,
+                                ParamType.String,
+                              ),
                             }.withoutNulls,
                           );
                         },

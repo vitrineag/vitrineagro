@@ -66,9 +66,9 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                 child: InkWell(
                   onTap: () async {
                     logFirebaseEvent('STARTUP_FEED_COMP_StartupNews_ON_TAP');
-                    logFirebaseEvent('StartupNews_Launch-U-R-L');
+                    logFirebaseEvent('StartupNews_launch_u_r_l');
                     await launchURL(rowStartupNewsRecord.newsUrl!);
-                    logFirebaseEvent('StartupNews_Simple-Search');
+                    logFirebaseEvent('StartupNews_simple_search');
                     await queryStartupTrackingRecordOnce()
                         .then(
                           (records) => simpleSearchResults = TextSearch(
@@ -88,7 +88,7 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                         .whenComplete(() => setState(() {}));
 
                     if (random_data.randomInteger(0, 0) == rowIndex) {
-                      logFirebaseEvent('StartupNews_Backend-Call');
+                      logFirebaseEvent('StartupNews_backend_call');
 
                       final startupTrackingUpdateData = {
                         'accessFeedOne': FieldValue.increment(1),
@@ -99,7 +99,7 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                           .update(startupTrackingUpdateData);
                     } else {
                       if (random_data.randomInteger(1, 1) == rowIndex) {
-                        logFirebaseEvent('StartupNews_Backend-Call');
+                        logFirebaseEvent('StartupNews_backend_call');
 
                         final startupTrackingUpdateData = {
                           'accessFeedTwo': FieldValue.increment(1),
@@ -111,7 +111,7 @@ class _StartupFeedWidgetState extends State<StartupFeedWidget> {
                             .update(startupTrackingUpdateData);
                       } else {
                         if (random_data.randomInteger(2, 2) == rowIndex) {
-                          logFirebaseEvent('StartupNews_Backend-Call');
+                          logFirebaseEvent('StartupNews_backend_call');
 
                           final startupTrackingUpdateData = {
                             'accessFeedThree': FieldValue.increment(1),

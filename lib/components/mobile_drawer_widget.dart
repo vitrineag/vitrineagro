@@ -36,7 +36,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
             InkWell(
               onTap: () async {
                 logFirebaseEvent('MOBILE_DRAWER_COMP_Image_zovxwp8d_ON_TAP');
-                logFirebaseEvent('Image_Launch-U-R-L');
+                logFirebaseEvent('Image_launch_u_r_l');
                 await launchURL('https://www.vitrine.ag/');
               },
               child: Image.asset(
@@ -54,7 +54,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                   child: InkWell(
                     onTap: () async {
                       logFirebaseEvent('MOBILE_DRAWER_COMP_Home_ON_TAP');
-                      logFirebaseEvent('Home_Navigate-To');
+                      logFirebaseEvent('Home_navigate_to');
 
                       context.pushNamed('StartupList');
                     },
@@ -73,7 +73,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                   child: InkWell(
                     onTap: () async {
                       logFirebaseEvent('MOBILE_DRAWER_StartupRegister_ON_TAP');
-                      logFirebaseEvent('StartupRegister_Launch-U-R-L');
+                      logFirebaseEvent('StartupRegister_launch_u_r_l');
                       await launchURL(
                           'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
                     },
@@ -91,7 +91,7 @@ class _MobileDrawerWidgetState extends State<MobileDrawerWidget> {
                   InkWell(
                     onTap: () async {
                       logFirebaseEvent('MOBILE_DRAWER_COMP_Logout_ON_TAP');
-                      logFirebaseEvent('Logout_Auth');
+                      logFirebaseEvent('Logout_auth');
                       GoRouter.of(context).prepareAuthEvent();
                       await signOut();
 

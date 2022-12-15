@@ -240,7 +240,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'STARTUP_FAVORITE_LIST_menu_ICN_ON_TAP');
-                                logFirebaseEvent('IconButton_Drawer');
+                                logFirebaseEvent('IconButton_drawer');
                                 scaffoldKey.currentState!.openDrawer();
                               },
                             ),
@@ -248,7 +248,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'STARTUP_FAVORITE_LIST_VITRINE_BTN_ON_TAP');
-                                logFirebaseEvent('Button_Navigate-To');
+                                logFirebaseEvent('Button_navigate_to');
 
                                 context.pushNamed('StartupList');
                               },
@@ -324,7 +324,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_FAVORITE_LIST_Image_bxzl2e34_ON_');
-                                      logFirebaseEvent('Image_Launch-U-R-L');
+                                      logFirebaseEvent('Image_launch_u_r_l');
                                       await launchURL(
                                           'https://www.vitrine.ag/');
                                     },
@@ -342,7 +342,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_FAVORITE_LIST_Text_nr18wcbh_ON_T');
-                                      logFirebaseEvent('Text_Navigate-To');
+                                      logFirebaseEvent('Text_navigate_to');
 
                                       context.pushNamed('StartupList');
                                     },
@@ -365,9 +365,9 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'STARTUP_FAVORITE_LIST_Text_moehn4ya_ON_T');
-                                      logFirebaseEvent('Text_Launch-U-R-L');
+                                      logFirebaseEvent('Text_launch_u_r_l');
                                       await launchURL(
-                                          'https://zl4i46dyz9l.typeform.com/to/fARsydsp?typeform-source=www.vitrine.ag');
+                                          'https://zl4i46dyz9l.typeform.com/to/T5MCQAfS');
                                     },
                                     child: Text(
                                       'Cadastre sua Startup',
@@ -385,7 +385,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                                   onTap: () async {
                                     logFirebaseEvent(
                                         'STARTUP_FAVORITE_LIST_Text_k0gbh0d3_ON_T');
-                                    logFirebaseEvent('Text_Auth');
+                                    logFirebaseEvent('Text_auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await signOut();
 
@@ -410,7 +410,7 @@ class _StartupFavoriteListWidgetState extends State<StartupFavoriteListWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'STARTUP_FAVORITE_LIST_FAVORITOS_BTN_ON_T');
-                                logFirebaseEvent('Button_Navigate-To');
+                                logFirebaseEvent('Button_navigate_to');
 
                                 context.pushNamed('StartupList');
                               },

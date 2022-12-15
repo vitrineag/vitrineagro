@@ -18,7 +18,6 @@ class VerifyPhoneAuthenticationWidget extends StatefulWidget {
 class _VerifyPhoneAuthenticationWidgetState
     extends State<VerifyPhoneAuthenticationWidget> {
   TextEditingController? verifyCodeController;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -28,6 +27,12 @@ class _VerifyPhoneAuthenticationWidgetState
         parameters: {'screen_name': 'VerifyPhoneAuthentication'});
     verifyCodeController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    verifyCodeController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -242,7 +247,7 @@ class _VerifyPhoneAuthenticationWidgetState
                             onPressed: () async {
                               logFirebaseEvent(
                                   'VERIFY_PHONE_AUTHENTICATION_VerifyPasswo');
-                              logFirebaseEvent('VerifyPassword_Auth');
+                              logFirebaseEvent('VerifyPassword_auth');
                               GoRouter.of(context).prepareAuthEvent();
                               final smsCodeVal = verifyCodeController!.text;
                               if (smsCodeVal == null || smsCodeVal.isEmpty) {
@@ -263,7 +268,7 @@ class _VerifyPhoneAuthenticationWidgetState
                               }
 
                               logFirebaseEvent(
-                                  'VerifyPassword_Google-Analytics-Event');
+                                  'VerifyPassword_google_analytics_event');
                               logFirebaseEvent('LOGIN_PHONE');
 
                               context.goNamedAuth('Loading', mounted);

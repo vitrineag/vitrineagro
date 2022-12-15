@@ -450,14 +450,14 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                         onTap: () async {
                           logFirebaseEvent(
                               'STARTUP_DETAIL_INFO_COMP_Pitch_ON_TAP');
-                          logFirebaseEvent('Pitch_Google-Analytics-Event');
+                          logFirebaseEvent('Pitch_google_analytics_event');
                           logFirebaseEvent(
                             'play_video',
                             parameters: {
                               'startup_name': widget.startup!.name,
                             },
                           );
-                          logFirebaseEvent('Pitch_Backend-Call');
+                          logFirebaseEvent('Pitch_backend_call');
 
                           final startupTrackingUpdateData =
                               createStartupTrackingRecordData();
@@ -657,7 +657,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       logFirebaseEvent(
                                           'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
                                       logFirebaseEvent(
-                                          'CEOLinkedin_Backend-Call');
+                                          'CEOLinkedin_backend_call');
 
                                       final startupTrackingUpdateData = {
                                         'accessLinkedinCeo':
@@ -666,7 +666,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                       await widget.startupTracking!.reference
                                           .update(startupTrackingUpdateData);
                                       logFirebaseEvent(
-                                          'CEOLinkedin_Launch-U-R-L');
+                                          'CEOLinkedin_launch_u_r_l');
                                       await launchURL(
                                           widget.startup!.linkedinUrl!);
                                     },
@@ -710,7 +710,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                             logFirebaseEvent(
                                                 'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                             logFirebaseEvent(
-                                                'StartupSite_Backend-Call');
+                                                'StartupSite_backend_call');
 
                                             final startupTrackingUpdateData = {
                                               'accessSite':
@@ -721,7 +721,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 .update(
                                                     startupTrackingUpdateData);
                                             logFirebaseEvent(
-                                                'StartupSite_Launch-U-R-L');
+                                                'StartupSite_launch_u_r_l');
                                             await launchURL(
                                                 widget.startup!.site!);
                                           },
@@ -746,7 +746,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 logFirebaseEvent(
                                                     'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
                                                 logFirebaseEvent(
-                                                    'StartupInstagram_Launch-U-R-L');
+                                                    'StartupInstagram_launch_u_r_l');
                                                 await launchURL(widget
                                                     .startup!.instagramUrl!);
                                               },
@@ -763,7 +763,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                               logFirebaseEvent(
                                                   'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
                                               logFirebaseEvent(
-                                                  'StartupLinkedin_Backend-Call');
+                                                  'StartupLinkedin_backend_call');
 
                                               final startupTrackingUpdateData =
                                                   {
@@ -775,7 +775,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                   .update(
                                                       startupTrackingUpdateData);
                                               logFirebaseEvent(
-                                                  'StartupLinkedin_Launch-U-R-L');
+                                                  'StartupLinkedin_launch_u_r_l');
                                               await launchURL(widget.startup!
                                                   .linkedinUrlCompany!);
                                             },
@@ -1100,14 +1100,14 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                             onTap: () async {
                               logFirebaseEvent(
                                   'STARTUP_DETAIL_INFO_COMP_Pitch_ON_TAP');
-                              logFirebaseEvent('Pitch_Google-Analytics-Event');
+                              logFirebaseEvent('Pitch_google_analytics_event');
                               logFirebaseEvent(
                                 'play_video',
                                 parameters: {
                                   'startup_name': widget.startup!.name,
                                 },
                               );
-                              logFirebaseEvent('Pitch_Backend-Call');
+                              logFirebaseEvent('Pitch_backend_call');
 
                               final startupTrackingUpdateData = {
                                 'interactVideo': FieldValue.increment(1),
@@ -1309,7 +1309,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         logFirebaseEvent(
                                             'STARTUP_DETAIL_INFO_CEOLinkedin_ON_TAP');
                                         logFirebaseEvent(
-                                            'CEOLinkedin_Backend-Call');
+                                            'CEOLinkedin_backend_call');
 
                                         final startupTrackingUpdateData = {
                                           'accessLinkedinCeo':
@@ -1318,7 +1318,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                         await widget.startupTracking!.reference
                                             .update(startupTrackingUpdateData);
                                         logFirebaseEvent(
-                                            'CEOLinkedin_Launch-U-R-L');
+                                            'CEOLinkedin_launch_u_r_l');
                                         await launchURL(
                                             widget.startup!.linkedinUrl!);
                                       },
@@ -1367,7 +1367,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                             logFirebaseEvent(
                                                 'STARTUP_DETAIL_INFO_StartupSite_ON_TAP');
                                             logFirebaseEvent(
-                                                'StartupSite_Backend-Call');
+                                                'StartupSite_backend_call');
 
                                             final startupTrackingUpdateData = {
                                               'accessSite':
@@ -1378,7 +1378,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 .update(
                                                     startupTrackingUpdateData);
                                             logFirebaseEvent(
-                                                'StartupSite_Launch-U-R-L');
+                                                'StartupSite_launch_u_r_l');
                                             await launchURL(
                                                 widget.startup!.site!);
                                           },
@@ -1401,7 +1401,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                   logFirebaseEvent(
                                                       'STARTUP_DETAIL_INFO_StartupInstagram_ON_');
                                                   logFirebaseEvent(
-                                                      'StartupInstagram_Launch-U-R-L');
+                                                      'StartupInstagram_launch_u_r_l');
                                                   await launchURL(widget
                                                       .startup!.instagramUrl!);
                                                 },
@@ -1418,7 +1418,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                 logFirebaseEvent(
                                                     'STARTUP_DETAIL_INFO_StartupLinkedin_ON_T');
                                                 logFirebaseEvent(
-                                                    'StartupLinkedin_Backend-Call');
+                                                    'StartupLinkedin_backend_call');
 
                                                 final startupTrackingUpdateData =
                                                     {
@@ -1430,7 +1430,7 @@ class _StartupDetailInfoWidgetState extends State<StartupDetailInfoWidget> {
                                                     .update(
                                                         startupTrackingUpdateData);
                                                 logFirebaseEvent(
-                                                    'StartupLinkedin_Launch-U-R-L');
+                                                    'StartupLinkedin_launch_u_r_l');
                                                 await launchURL(widget.startup!
                                                     .linkedinUrlCompany!);
                                               },

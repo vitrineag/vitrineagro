@@ -34,57 +34,57 @@ class _LoadingLinkedinWidgetState extends State<LoadingLinkedinWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('LOADING_LINKEDIN_LoadingLinkedin_ON_LOAD');
-      logFirebaseEvent('LoadingLinkedin_Backend-Call');
+      logFirebaseEvent('LoadingLinkedin_backend_call');
       linkedinJwt = await GetLinkedinJwtCall.call(
         redirectUri: 'https://app.vitrine.ag/linkedinSign',
         authCode: functions.getQueryParam('code'),
       );
       if ((linkedinJwt?.succeeded ?? true)) {
-        logFirebaseEvent('LoadingLinkedin_Auth');
+        logFirebaseEvent('LoadingLinkedin_auth');
         GoRouter.of(context).prepareAuthEvent();
         final user = await signInWithJwtToken(
           context,
           getJsonField(
             (linkedinJwt?.jsonBody ?? ''),
             r'''$.jwt''',
-          ).toString(),
+          ).toString().toString(),
         );
         if (user == null) {
           return;
         }
 
-        logFirebaseEvent('LoadingLinkedin_Custom-Action');
+        logFirebaseEvent('LoadingLinkedin_custom_action');
         await actions.setUserEmail(
           getJsonField(
             (linkedinJwt?.jsonBody ?? ''),
             r'''$.email''',
-          ).toString(),
+          ).toString().toString(),
         );
-        logFirebaseEvent('LoadingLinkedin_Backend-Call');
+        logFirebaseEvent('LoadingLinkedin_backend_call');
 
         final usersUpdateData = createUsersRecordData(
           email: getJsonField(
             (linkedinJwt?.jsonBody ?? ''),
             r'''$.email''',
-          ).toString(),
+          ).toString().toString(),
           displayName: valueOrDefault<String>(
             getJsonField(
               (linkedinJwt?.jsonBody ?? ''),
               r'''$.name''',
-            ).toString(),
+            ).toString().toString(),
             '\$.name',
           ),
         );
         await currentUserReference!.update(usersUpdateData);
-        logFirebaseEvent('LoadingLinkedin_Navigate-To');
+        logFirebaseEvent('LoadingLinkedin_navigate_to');
 
         context.goNamedAuth('Loading', mounted);
       } else {
-        logFirebaseEvent('LoadingLinkedin_Navigate-To');
+        logFirebaseEvent('LoadingLinkedin_navigate_to');
 
         context.pushNamedAuth('PhoneAuthentication', mounted);
 
-        logFirebaseEvent('LoadingLinkedin_Show-Snack-Bar');
+        logFirebaseEvent('LoadingLinkedin_show_snack_bar');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(

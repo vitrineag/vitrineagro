@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ String getCategory(StartupsRecord startup) {
 }
 
 List<String> getSectorsOfActivity(StartupsRecord startup) {
-  return splitByChar(startup!.sectorsOfActivity!, ', \n');
+  return splitByChar(startup!.sectorsOfActivity!, ', ');
 }
 
 String encodeUri(String uri) {

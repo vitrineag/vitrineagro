@@ -18,7 +18,6 @@ class PhoneAuthenticationWidget extends StatefulWidget {
 
 class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
   TextEditingController? phoneNumberController;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -28,6 +27,12 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
         parameters: {'screen_name': 'PhoneAuthentication'});
     phoneNumberController = TextEditingController(text: '+55');
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    phoneNumberController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -120,7 +125,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                             onPressed: () async {
                               logFirebaseEvent(
                                   'PHONE_AUTHENTICATION_close_ICN_ON_TAP');
-                              logFirebaseEvent('IconButton_Navigate-Back');
+                              logFirebaseEvent('IconButton_navigate_back');
                               context.pop();
                             },
                           ),
@@ -261,7 +266,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'PHONE_AUTHENTICATION_SendToken_ON_TAP');
-                                logFirebaseEvent('SendToken_Auth');
+                                logFirebaseEvent('SendToken_auth');
                                 final phoneNumberVal =
                                     phoneNumberController!.text;
                                 if (phoneNumberVal == null ||
@@ -356,7 +361,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'PHONE_AUTHENTICATION_Container_2r8atnm2_');
-                                      logFirebaseEvent('Container_Auth');
+                                      logFirebaseEvent('Container_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       final user =
                                           await signInWithGoogle(context);
@@ -364,7 +369,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                         return;
                                       }
                                       logFirebaseEvent(
-                                          'Container_Google-Analytics-Event');
+                                          'Container_google_analytics_event');
                                       logFirebaseEvent('LOGIN_SOCIAL_GOOGLE');
 
                                       context.goNamedAuth('Loading', mounted);
@@ -396,7 +401,7 @@ class _PhoneAuthenticationWidgetState extends State<PhoneAuthenticationWidget> {
                                   onTap: () async {
                                     logFirebaseEvent(
                                         'PHONE_AUTHENTICATION_Container_evda45rc_');
-                                    logFirebaseEvent('Container_Launch-U-R-L');
+                                    logFirebaseEvent('Container_launch_u_r_l');
                                     await launchURL(
                                         functions.generateLinkedinSignUrl(
                                             'https://app.vitrine.ag/linkedinSign'));
